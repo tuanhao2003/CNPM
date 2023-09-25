@@ -34,7 +34,7 @@ public class mainGUI extends javax.swing.JFrame {
         navBar.setMinimumSize(new java.awt.Dimension(200, 100));
         navBar.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\wazapy\\Study\\nam3_HK1\\Sofware-Technique\\sellPhone\\compositions\\logo.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/logo.png"))); // NOI18N
         logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout navBarLayout = new javax.swing.GroupLayout(navBar);
