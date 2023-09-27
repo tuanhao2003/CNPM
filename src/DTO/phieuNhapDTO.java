@@ -7,7 +7,7 @@ public class phieuNhapDTO {
     private String ngayNhap;
     private int tongTien;
     private int thue;
-    private int phiVanchuyen;
+    private int chiPhi;
     
     public phieuNhapDTO(){
         this.maPn=null;
@@ -15,7 +15,7 @@ public class phieuNhapDTO {
         this.ngayNhap=null;
         this.tongTien=0;
         this.thue=0;
-        this.phiVanchuyen=0;
+        this.chiPhi=0;
     }
     
     public phieuNhapDTO(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax, int fee){
@@ -28,7 +28,7 @@ public class phieuNhapDTO {
         }
         this.thue=tax;
         this.tongTien = this.tongTien - this.tongTien*this.thue;
-        this.phiVanchuyen=fee;
+        this.chiPhi=fee;
     }
     
     public String getmaPn(){
@@ -71,10 +71,10 @@ public class phieuNhapDTO {
     }
     
     public int getphiVanchuyen(){
-        return this.phiVanchuyen;
+        return this.chiPhi;
     }
     public void setphiVanchuyen(int fee){
-        this.phiVanchuyen=fee;
+        this.chiPhi=fee;
     }
     
     public void setphieuNhap(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax, int fee){
@@ -87,7 +87,7 @@ public class phieuNhapDTO {
         }
         this.thue=tax;
         this.tongTien = this.tongTien - this.tongTien*this.thue;
-        this.phiVanchuyen=fee;
+        this.chiPhi=fee;
     }
 
     @Override

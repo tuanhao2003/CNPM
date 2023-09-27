@@ -1,15 +1,35 @@
 package GUI;
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 
 public class mainGUI extends javax.swing.JFrame {
 
     public mainGUI() {
         initComponents();
+        addComponents();
     }
     
     private void addComponents(){
+        String[] btnName ={"Phiếu nhập", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất"};
+        for(String name : btnName){
+            this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50*btnName.length));
+            this.toolsPanel.add(new JButton(name));
+        }
         
+        for(int i=0; i< this.toolsPanel.getComponents().length; i++){
+            this.toolsPanel.getComponent(i).setPreferredSize(new Dimension(200,50));
+            System.out.println(this.toolsPanel.getComponent(i));
+        }
+    }
+    
+    private void solveEvent(){
+        
+    }
+    
+    public static void main(String[] args) {
+        mainGUI display = new mainGUI();
+        display.setVisible(true);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -17,9 +37,9 @@ public class mainGUI extends javax.swing.JFrame {
 
         navBar = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        toolsBar = new javax.swing.JPanel();
         scrollBar = new javax.swing.JScrollPane();
-        mainMenu = new javax.swing.JTabbedPane();
+        toolsPanel = new javax.swing.JPanel();
+        mainDisplay = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang Chu");
@@ -36,6 +56,7 @@ public class mainGUI extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/logo.png"))); // NOI18N
         logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logo.setIconTextGap(0);
 
         javax.swing.GroupLayout navBarLayout = new javax.swing.GroupLayout(navBar);
         navBar.setLayout(navBarLayout);
@@ -53,52 +74,34 @@ public class mainGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        toolsBar.setBackground(new java.awt.Color(255, 0, 0));
-        toolsBar.setMaximumSize(new java.awt.Dimension(200, 600));
-        toolsBar.setMinimumSize(new java.awt.Dimension(200, 600));
-        toolsBar.setPreferredSize(new java.awt.Dimension(200, 600));
-
         scrollBar.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollBar.setMaximumSize(new java.awt.Dimension(200, 600));
-        scrollBar.setMinimumSize(new java.awt.Dimension(200, 600));
-        scrollBar.setPreferredSize(new java.awt.Dimension(200, 600));
+        scrollBar.setPreferredSize(new java.awt.Dimension(200, 555));
+        JScrollBar scb = new JScrollBar(JScrollBar.VERTICAL);
+        scb.setPreferredSize(new Dimension(0,0));
+        scrollBar.setVerticalScrollBar(scb);
 
-        javax.swing.GroupLayout toolsBarLayout = new javax.swing.GroupLayout(toolsBar);
-        toolsBar.setLayout(toolsBarLayout);
-        toolsBarLayout.setHorizontalGroup(
-            toolsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-            .addGroup(toolsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(toolsBarLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        toolsBarLayout.setVerticalGroup(
-            toolsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(toolsBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(toolsBarLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        toolsPanel.setBackground(new java.awt.Color(245, 245, 245));
+        toolsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+        toolsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+        toolsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        scrollBar.setViewportView(toolsPanel);
 
-        mainMenu.setBackground(new java.awt.Color(255, 255, 255));
-        mainMenu.setMaximumSize(new java.awt.Dimension(1000, 700));
-        mainMenu.setMinimumSize(new java.awt.Dimension(1000, 700));
-        mainMenu.setPreferredSize(new java.awt.Dimension(1000, 700));
+        mainDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        mainDisplay.setMaximumSize(new java.awt.Dimension(1000, 660));
+        mainDisplay.setMinimumSize(new java.awt.Dimension(1000, 660));
+        mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 660));
+        mainDisplay.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(toolsBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,18 +111,18 @@ public class mainGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(toolsBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(mainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel logo;
-    private javax.swing.JTabbedPane mainMenu;
+    private javax.swing.JPanel mainDisplay;
     private javax.swing.JPanel navBar;
     private javax.swing.JScrollPane scrollBar;
-    private javax.swing.JPanel toolsBar;
+    private javax.swing.JPanel toolsPanel;
     // End of variables declaration//GEN-END:variables
 }
