@@ -51,7 +51,7 @@ public class mainGUI extends javax.swing.JFrame {
         mainDisplay = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Trang Chu");
+        setTitle("Quản lý cửa hàng bán điện thoại");
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1200, 700));
         setMinimumSize(new java.awt.Dimension(1200, 700));
@@ -83,22 +83,23 @@ public class mainGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        scrollBar.setBackground(new java.awt.Color(200, 200, 200));
         scrollBar.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollBar.setPreferredSize(new java.awt.Dimension(200, 555));
+        scrollBar.setPreferredSize(new java.awt.Dimension(200, 600));
         JScrollBar scb = new JScrollBar(JScrollBar.VERTICAL);
         scb.setPreferredSize(new Dimension(0,0));
         scrollBar.setVerticalScrollBar(scb);
 
-        toolsPanel.setBackground(new java.awt.Color(245, 245, 245));
+        toolsPanel.setBackground(new java.awt.Color(255, 255, 255));
         toolsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         toolsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
         toolsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
         scrollBar.setViewportView(toolsPanel);
 
         mainDisplay.setBackground(new java.awt.Color(255, 255, 255));
-        mainDisplay.setMaximumSize(new java.awt.Dimension(1000, 660));
-        mainDisplay.setMinimumSize(new java.awt.Dimension(1000, 660));
-        mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 660));
+        mainDisplay.setMaximumSize(new java.awt.Dimension(1000, 700));
+        mainDisplay.setMinimumSize(new java.awt.Dimension(1000, 700));
+        mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 700));
         mainDisplay.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,9 +110,9 @@ public class mainGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +120,10 @@ public class mainGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addGap(0, 0, 0))
         );
 
         pack();

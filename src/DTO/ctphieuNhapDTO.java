@@ -1,5 +1,4 @@
 package DTO;
-import java.util.*;
 
 public class ctphieuNhapDTO {
     private String maPn;
