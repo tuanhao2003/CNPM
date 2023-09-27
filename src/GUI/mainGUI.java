@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 
@@ -7,20 +8,28 @@ public class mainGUI extends javax.swing.JFrame {
 
     public mainGUI() {
         initComponents();
-        addComponents();
+        solveEvent();
+        addComponent("Phiếu Nhập", new phieuNhapGUI());
+        
     }
     
-    private void addComponents(){
-        String[] btnName ={"Phiếu nhập", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất", "Phiếu Xuất"};
-        for(String name : btnName){
-            this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50*btnName.length));
-            this.toolsPanel.add(new JButton(name));
-        }
+    private void addComponent(String buttonName, JPanel panelName){
+        int compQuantity = this.toolsPanel.getComponentCount();
+        this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50*(compQuantity+1)));
+        JButton btn = new JButton(buttonName);
+        btn.setPreferredSize(new Dimension(200,50));
         
-        for(int i=0; i< this.toolsPanel.getComponents().length; i++){
-            this.toolsPanel.getComponent(i).setPreferredSize(new Dimension(200,50));
-            System.out.println(this.toolsPanel.getComponent(i));
-        }
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(panelName);
+                mainDisplay.removeAll();
+                mainDisplay.add(panelName);
+                mainDisplay.repaint();
+                mainDisplay.revalidate();
+            }
+        });
+        this.toolsPanel.add(btn);
     }
     
     private void solveEvent(){
