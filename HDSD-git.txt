@@ -1,4 +1,9 @@
-#Lấy code:
+######################LƯU Ý########################
+nên set size panel là 1000x700
+###################################################
+
+
+#Lấy code(lấy 1 lần thôi):
 git clone link-git
 
 #Cập nhật code mới:
@@ -9,5 +14,5 @@ git add .
 git commit -m "message"
 git push
 
-#xem trang thai:
+#xem trạng thái:
 git status
