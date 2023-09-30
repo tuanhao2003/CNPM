@@ -27,7 +27,7 @@ create table TaiKhoan
 	TenDangNhap				NCHAR(5)					NOT NULL,
 	MatKhau				NVARCHAR(20)				NOT NULL,
 	Quyen				INT						NOT NULL,
-	TrangThai					NVARCHAR(20)							NOT NULL
+	TrangThai					INT							NOT NULL
 )
 
 create table NhanVien
