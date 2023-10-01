@@ -5,11 +5,13 @@ import javax.swing.*;
 
 public class mainGUI extends javax.swing.JFrame {
 
-    public mainGUI() {
+    public mainGUI(){
         initComponents();
         addComponent("Phiếu Nhập", new phieuNhapGUI());
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
         addComponent("Phiếu Xuất", new phieuNhapGUI(), "logo.png");
+        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "logo.png");
+        addComponent("Thống Kê", new thongKeGUI(), "logo.png");
         
         solveEvent();
     }
