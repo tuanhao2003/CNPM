@@ -3,16 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-<<<<<<< HEAD
-public class mainGUI extends javax.swing.JFrame {
-
-    public mainGUI(){
-=======
 public class mainGUI extends javax.swing.JFrame {  
     private int working=-1;
-    
+   
     public mainGUI() {
->>>>>>> eb91bf8f582c4e1e721a4629fc801bf6e650ee91
         initComponents();
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         addComponent("Phiếu Nhập", new phieuNhapGUI());
