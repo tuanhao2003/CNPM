@@ -3,10 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+<<<<<<< HEAD
 public class mainGUI extends javax.swing.JFrame {
 
     public mainGUI(){
+=======
+public class mainGUI extends javax.swing.JFrame {  
+    private int working=-1;
+    
+    public mainGUI() {
+>>>>>>> eb91bf8f582c4e1e721a4629fc801bf6e650ee91
         initComponents();
+//thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         addComponent("Phiếu Nhập", new phieuNhapGUI());
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
         addComponent("Phiếu Xuất", new phieuNhapGUI(), "logo.png");
@@ -16,6 +24,7 @@ public class mainGUI extends javax.swing.JFrame {
         solveEvent();
     }
     
+//hàm thêm phần tử
     private void addComponent(String buttonName, JPanel panelName, String path){
         int compQuantity = this.toolsPanel.getComponentCount();
         this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50*(compQuantity+1)));
@@ -34,18 +43,6 @@ public class mainGUI extends javax.swing.JFrame {
             btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/logo.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
         }
         
-        btn.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                btn.setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.green));
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                btn.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-            }
-        });
-        
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +59,9 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent(buttonName, panelName, null);
     }
     
+//xử lý sự kiện
     private void solveEvent(){
+//tạo khung mã nhân viên (chỉnh sửa thêm mã tự động sau)
         String Manv="nv001";
         this.labelManv.setBackground(new Color(0, 200, 0));
         this.labelManv.setForeground(Color.RED);
@@ -70,6 +69,7 @@ public class mainGUI extends javax.swing.JFrame {
         this.labelManv.setFont(new Font(labelManv.getFont().getName(), Font.BOLD, 14));
         this.labelManv.setText("NV: "+Manv);
         
+//thêm nút đăng xuất vào thanh công cụ
         JButton logOut = new JButton("Đăng xuất");
         logOut.setPreferredSize(new Dimension(200,50));
         logOut.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
@@ -87,6 +87,24 @@ public class mainGUI extends javax.swing.JFrame {
         });
         this.toolsPanel.add(logOut);
         
+//xử lý hoạt ảnh đang hoạt động của thanh công cụ
+        for(int i=0; i<this.toolsPanel.getComponentCount(); i++){
+            int tmp = i;
+            this.toolsPanel.getComponent(i).addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    if(working>=0){
+                        ((JButton) toolsPanel.getComponent(working)).setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+                    }
+                    working=tmp;
+                    ((JButton) toolsPanel.getComponent(tmp)).setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.green));
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                }
+            });
+        }
     }
     
     public static void main(String[] args) {
