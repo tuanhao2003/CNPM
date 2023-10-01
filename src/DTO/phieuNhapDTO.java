@@ -7,7 +7,6 @@ public class phieuNhapDTO {
     private String ngayNhap;
     private int tongTien;
     private int thue;
-    private int chiPhi;
     
     public phieuNhapDTO(){
         this.maPn=null;
@@ -15,10 +14,9 @@ public class phieuNhapDTO {
         this.ngayNhap=null;
         this.tongTien=0;
         this.thue=0;
-        this.chiPhi=0;
     }
     
-    public phieuNhapDTO(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax, int fee){
+    public phieuNhapDTO(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax){
         this.maPn=ticketID;
         this.maKho=storedID;
         this.ngayNhap=dateModifier;
@@ -28,7 +26,6 @@ public class phieuNhapDTO {
         }
         this.thue=tax;
         this.tongTien = this.tongTien - this.tongTien*this.thue;
-        this.chiPhi=fee;
     }
     
     public String getmaPn(){
@@ -70,14 +67,7 @@ public class phieuNhapDTO {
         this.thue=tax;
     }
     
-    public int getphiVanchuyen(){
-        return this.chiPhi;
-    }
-    public void setphiVanchuyen(int fee){
-        this.chiPhi=fee;
-    }
-    
-    public void setphieuNhap(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax, int fee){
+    public void setphieuNhap(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax){
         this.maPn=ticketID;
         this.maKho=storedID;
         this.ngayNhap=dateModifier;
@@ -87,7 +77,6 @@ public class phieuNhapDTO {
         }
         this.thue=tax;
         this.tongTien = this.tongTien - this.tongTien*this.thue;
-        this.chiPhi=fee;
     }
 
     @Override

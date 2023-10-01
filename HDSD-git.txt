@@ -1,5 +1,5 @@
 ######################LƯU Ý########################
-nên set size panel là 1000x700
+nên set size panel là 1000x650
 ###################################################
 
 
@@ -7,7 +7,7 @@ nên set size panel là 1000x700
 git clone link-git
 
 #Cập nhật code mới:
-git pull
+git pull (nếu bị lỗi thì git add . rồi git commit -m "" rồi pull lại)
 
 #update code lên:
 git add .
