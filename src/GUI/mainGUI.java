@@ -9,9 +9,9 @@ public class mainGUI extends javax.swing.JFrame {
     public mainGUI() {
         initComponents();
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-        addComponent("Phiếu Nhập", new phieuNhapGUI());
+        addComponent("Phiếu Nhập", new phieuNhapGUI(), "pn.png");
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-        addComponent("Phiếu Xuất", new phieuNhapGUI(), "logo.png");
+        addComponent("Phiếu Xuất", new phieuNhapGUI(), "ctpn.png");
         
         solveEvent();
     }
@@ -32,7 +32,7 @@ public class mainGUI extends javax.swing.JFrame {
             btn.setIcon(null);
         }
         else{
-            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/logo.png")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/"+path)).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
         }
         
         btn.addActionListener(new ActionListener() {
@@ -42,6 +42,7 @@ public class mainGUI extends javax.swing.JFrame {
                 mainDisplay.add(panelName);
                 mainDisplay.repaint();
                 mainDisplay.revalidate();
+                title.setText("Quản Lý "+buttonName);
             }
         });
         this.toolsPanel.add(btn);
@@ -54,18 +55,14 @@ public class mainGUI extends javax.swing.JFrame {
 //xử lý sự kiện
     private void solveEvent(){
 //tạo khung mã nhân viên (chỉnh sửa thêm mã tự động sau)
-        String Manv="nv001";
-        this.labelManv.setBackground(new Color(0, 200, 0));
-        this.labelManv.setForeground(Color.RED);
+        this.labelMenu.setBackground(new Color(0, 200, 0));
+        this.labelMenu.setForeground(Color.RED);
         UIManager.put("Button.disabledText", Color.white);
-        this.labelManv.setFont(new Font(labelManv.getFont().getName(), Font.BOLD, 14));
-        this.labelManv.setText("NV: "+Manv);
+        this.labelMenu.setFont(new Font(labelMenu.getFont().getName(), Font.BOLD, 14));
+        this.labelMenu.setText("Menu Quản Lý");
         
-//thêm nút đăng xuất vào thanh công cụ
-        JButton logOut = new JButton("Đăng xuất");
-        logOut.setPreferredSize(new Dimension(200,50));
-        logOut.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-        logOut.setBackground(new Color(80,130,100));
+//sửa nút logOut
+        logOut.setPreferredSize(new Dimension(50,50));
         logOut.setForeground(Color.white);
         logOut.setFont(new Font(logOut.getFont().getName(), Font.BOLD, 14));
         logOut.setFocusPainted(false);
@@ -77,7 +74,6 @@ public class mainGUI extends javax.swing.JFrame {
                 SwingUtilities.windowForComponent(logoContainer).dispose();
             }
         });
-        this.toolsPanel.add(logOut);
         
 //xử lý hoạt ảnh đang hoạt động của thanh công cụ
         for(int i=0; i<this.toolsPanel.getComponentCount(); i++){
@@ -94,6 +90,7 @@ public class mainGUI extends javax.swing.JFrame {
 
                 @Override
                 public void focusLost(FocusEvent e) {
+                   //pass
                 }
             });
         }
@@ -109,10 +106,14 @@ public class mainGUI extends javax.swing.JFrame {
 
         logoContainer = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        labelManv = new javax.swing.JButton();
+        labelMenu = new javax.swing.JButton();
         scrollBar = new javax.swing.JScrollPane();
         toolsPanel = new javax.swing.JPanel();
         mainDisplay = new javax.swing.JPanel();
+        navBar = new javax.swing.JPanel();
+        logOut = new javax.swing.JButton();
+        labelManv = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý cửa hàng bán điện thoại");
@@ -131,12 +132,12 @@ public class mainGUI extends javax.swing.JFrame {
         logo.setIconTextGap(0);
         logoContainer.add(logo, java.awt.BorderLayout.CENTER);
 
-        labelManv.setForeground(new java.awt.Color(255, 255, 255));
-        labelManv.setBorderPainted(false);
-        labelManv.setEnabled(false);
-        labelManv.setFocusPainted(false);
-        labelManv.setPreferredSize(new java.awt.Dimension(200, 20));
-        logoContainer.add(labelManv, java.awt.BorderLayout.PAGE_END);
+        labelMenu.setForeground(new java.awt.Color(255, 255, 255));
+        labelMenu.setBorderPainted(false);
+        labelMenu.setEnabled(false);
+        labelMenu.setFocusPainted(false);
+        labelMenu.setPreferredSize(new java.awt.Dimension(200, 20));
+        logoContainer.add(labelMenu, java.awt.BorderLayout.PAGE_END);
 
         scrollBar.setBackground(new java.awt.Color(200, 200, 200));
         scrollBar.setBorder(null);
@@ -155,37 +156,87 @@ public class mainGUI extends javax.swing.JFrame {
         mainDisplay.setBackground(new java.awt.Color(255, 255, 255));
         mainDisplay.setMaximumSize(new java.awt.Dimension(1000, 700));
         mainDisplay.setMinimumSize(new java.awt.Dimension(1000, 10));
-        mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 700));
+        mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 650));
         mainDisplay.setLayout(new java.awt.BorderLayout());
+
+        navBar.setBackground(new java.awt.Color(200, 200, 200));
+        navBar.setPreferredSize(new java.awt.Dimension(1000, 50));
+
+        logOut.setBackground(new java.awt.Color(200, 200, 200));
+        logOut.setBorderPainted(false);
+        logOut.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        labelManv.setText("Mã nhân viên: ");
+
+        logOut.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/logout.png")).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
+
+        javax.swing.GroupLayout navBarLayout = new javax.swing.GroupLayout(navBar);
+        navBar.setLayout(navBarLayout);
+        navBarLayout.setHorizontalGroup(
+            navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navBarLayout.createSequentialGroup()
+                .addGap(383, 383, 383)
+                .addComponent(title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 483, Short.MAX_VALUE)
+                .addComponent(labelManv)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        navBarLayout.setVerticalGroup(
+            navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navBarLayout.createSequentialGroup()
+                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(navBarLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelManv)
+                    .addComponent(title))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton labelManv;
+    private javax.swing.JLabel labelManv;
+    private javax.swing.JButton labelMenu;
+    private javax.swing.JButton logOut;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel logoContainer;
     private javax.swing.JPanel mainDisplay;
+    private javax.swing.JPanel navBar;
     private javax.swing.JScrollPane scrollBar;
+    private javax.swing.JLabel title;
     private javax.swing.JPanel toolsPanel;
     // End of variables declaration//GEN-END:variables
 }
