@@ -16,16 +16,12 @@ public class phieuNhapDTO {
         this.thue=0;
     }
     
-    public phieuNhapDTO(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax){
+    public phieuNhapDTO(String ticketID, String storedID, String dateModifier, int total, int tax){
         this.maPn=ticketID;
         this.maKho=storedID;
         this.ngayNhap=dateModifier;
-        this.tongTien=0;
-        for(ctphieuNhapDTO ctpn : ctpnLst){
-            this.tongTien+=ctpn.gettamTinh();
-        }
+        this.tongTien=total;
         this.thue=tax;
-        this.tongTien = this.tongTien - this.tongTien*this.thue;
     }
     
     public String getmaPn(){
@@ -42,7 +38,7 @@ public class phieuNhapDTO {
         this.ngayNhap=date;
     }
     
-    public String getmaNcc(){
+    public String getmaKho(){
         return this.maKho;
     }
     public void setmaNcc(String ID){
@@ -67,16 +63,12 @@ public class phieuNhapDTO {
         this.thue=tax;
     }
     
-    public void setphieuNhap(String ticketID, String storedID, String dateModifier, ArrayList<ctphieuNhapDTO> ctpnLst, int tax){
+    public void setphieuNhap(String ticketID, String storedID, String dateModifier,int total, int tax){
         this.maPn=ticketID;
         this.maKho=storedID;
         this.ngayNhap=dateModifier;
-        this.tongTien=0;
-        for(ctphieuNhapDTO ctpn : ctpnLst){
-            this.tongTien+=ctpn.gettamTinh();
-        }
+        this.tongTien=total;
         this.thue=tax;
-        this.tongTien = this.tongTien - this.tongTien*this.thue;
     }
 
     @Override

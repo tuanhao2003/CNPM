@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class mainGUI extends javax.swing.JFrame {  
     private int working=-1;
+    private String manvLogined;
    
     public mainGUI() {
         initComponents();
@@ -56,6 +57,10 @@ public class mainGUI extends javax.swing.JFrame {
     
 //xử lý sự kiện
     private void solveEvent(){
+//Lấy mã nv đã đăng nhập và thêm vào màn hình chính
+        this.manvLogined= "nv001";//đổi thành phương thức get mã nhân viên
+        this.labelManv.setText(this.labelManv.getText()+this.manvLogined);
+
 //tạo khung mã nhân viên (chỉnh sửa thêm mã tự động sau)
         this.labelMenu.setBackground(new Color(0, 200, 0));
         this.labelMenu.setForeground(Color.RED);
