@@ -6,15 +6,17 @@ import javax.swing.*;
 public class mainGUI extends javax.swing.JFrame {  
     private int working=-1;
     private String manvLogined;
+    private phieuNhapGUI pnGUI;
    
     public mainGUI() {
         initComponents();
+        this.pnGUI = new phieuNhapGUI();
+        
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-        addComponent("Phiếu Nhập", new phieuNhapGUI(), "pn.png");
+        addComponent("Nhập Hàng", this.pnGUI, "import.png");
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-        addComponent("Phiếu Xuất", new phieuNhapGUI(), "ctpn.png");
-        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "logo.png");
-        addComponent("Thống Kê", new thongKeGUI(), "logo.png");
+        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
         
         solveEvent();
     }
@@ -31,11 +33,13 @@ public class mainGUI extends javax.swing.JFrame {
         btn.setFont(new Font(btn.getFont().getName(), Font.BOLD, 14));
         btn.setFocusPainted(false);
         btn.setContentAreaFilled(false);
+        btn.setHorizontalAlignment(SwingConstants.LEFT);
+        btn.setIconTextGap(30);
         if(path == null){
             btn.setIcon(null);
         }
         else{
-            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/"+path)).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/"+path)).getImage().getScaledInstance(40,40 , Image.SCALE_SMOOTH)));
         }
         
         btn.addActionListener(new ActionListener() {
@@ -57,16 +61,10 @@ public class mainGUI extends javax.swing.JFrame {
     
 //xử lý sự kiện
     private void solveEvent(){
+        
 //Lấy mã nv đã đăng nhập và thêm vào màn hình chính
         this.manvLogined= "nv001";//đổi thành phương thức get mã nhân viên
         this.labelManv.setText(this.labelManv.getText()+this.manvLogined);
-
-//tạo khung mã nhân viên (chỉnh sửa thêm mã tự động sau)
-        this.labelMenu.setBackground(new Color(0, 200, 0));
-        this.labelMenu.setForeground(Color.RED);
-        UIManager.put("Button.disabledText", Color.white);
-        this.labelMenu.setFont(new Font(labelMenu.getFont().getName(), Font.BOLD, 14));
-        this.labelMenu.setText("Menu Quản Lý");
         
 //sửa nút logOut
         logOut.setPreferredSize(new Dimension(50,50));
@@ -101,6 +99,8 @@ public class mainGUI extends javax.swing.JFrame {
                 }
             });
         }
+        
+    // su kien Phieu Nhap
     }
     
     public static void main(String[] args) {
@@ -113,14 +113,13 @@ public class mainGUI extends javax.swing.JFrame {
 
         logoContainer = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        labelMenu = new javax.swing.JButton();
         scrollBar = new javax.swing.JScrollPane();
         toolsPanel = new javax.swing.JPanel();
         mainDisplay = new javax.swing.JPanel();
         navBar = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
         labelManv = new javax.swing.JLabel();
-        title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý cửa hàng bán điện thoại");
@@ -131,30 +130,23 @@ public class mainGUI extends javax.swing.JFrame {
         logoContainer.setBackground(new java.awt.Color(200, 200, 200));
         logoContainer.setMaximumSize(new java.awt.Dimension(200, 100));
         logoContainer.setMinimumSize(new java.awt.Dimension(200, 100));
-        logoContainer.setPreferredSize(new java.awt.Dimension(200, 100));
-        logoContainer.setLayout(new java.awt.BorderLayout());
+        logoContainer.setPreferredSize(new java.awt.Dimension(200, 50));
+        logoContainer.setLayout(new java.awt.CardLayout());
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Comp/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Comp/logo.jpg")));
         logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         logo.setIconTextGap(0);
-        logoContainer.add(logo, java.awt.BorderLayout.CENTER);
-
-        labelMenu.setForeground(new java.awt.Color(255, 255, 255));
-        labelMenu.setBorderPainted(false);
-        labelMenu.setEnabled(false);
-        labelMenu.setFocusPainted(false);
-        labelMenu.setPreferredSize(new java.awt.Dimension(200, 20));
-        logoContainer.add(labelMenu, java.awt.BorderLayout.PAGE_END);
+        logoContainer.add(logo, "card2");
 
         scrollBar.setBackground(new java.awt.Color(200, 200, 200));
         scrollBar.setBorder(null);
         scrollBar.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollBar.setPreferredSize(new java.awt.Dimension(200, 600));
+        scrollBar.setPreferredSize(new java.awt.Dimension(200, 650));
         JScrollBar scb = new JScrollBar(JScrollBar.VERTICAL);
         scb.setPreferredSize(new Dimension(0,0));
         scrollBar.setVerticalScrollBar(scb);
 
-        toolsPanel.setBackground(new java.awt.Color(80, 130, 100));
+        toolsPanel.setBackground(new java.awt.Color(100, 150, 120));
         toolsPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         toolsPanel.setPreferredSize(new java.awt.Dimension(0, 0));
         toolsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
@@ -166,14 +158,25 @@ public class mainGUI extends javax.swing.JFrame {
         mainDisplay.setPreferredSize(new java.awt.Dimension(1000, 650));
         mainDisplay.setLayout(new java.awt.BorderLayout());
 
-        navBar.setBackground(new java.awt.Color(200, 200, 200));
+        navBar.setBackground(new java.awt.Color(153, 153, 153));
         navBar.setPreferredSize(new java.awt.Dimension(1000, 50));
 
-        logOut.setBackground(new java.awt.Color(200, 200, 200));
+        title.setBounds(navBar.getWidth()/2, this.title.getHeight()/2, this.title.getPreferredSize().width, this.title.getPreferredSize().height);
+        title.setFont(new java.awt.Font("Verdana", 2, 18)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Quản Lý Cửa Hàng Bán ĐiệnThoại");
+        title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        title.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        logOut.setBackground(new java.awt.Color(204, 204, 204));
         logOut.setBorderPainted(false);
         logOut.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        labelManv.setText("Mã nhân viên: ");
+        labelManv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelManv.setForeground(new java.awt.Color(255, 255, 255));
+        labelManv.setText("Nhân Viên: ");
+        labelManv.setPreferredSize(new java.awt.Dimension(100, 50));
 
         logOut.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/logout.png")).getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)));
 
@@ -182,24 +185,22 @@ public class mainGUI extends javax.swing.JFrame {
         navBarLayout.setHorizontalGroup(
             navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navBarLayout.createSequentialGroup()
-                .addGap(383, 383, 383)
-                .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 483, Short.MAX_VALUE)
-                .addComponent(labelManv)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(labelManv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
         navBarLayout.setVerticalGroup(
             navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(navBarLayout.createSequentialGroup()
-                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelManv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(navBarLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelManv)
-                    .addComponent(title))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,13 +210,11 @@ public class mainGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(scrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(mainDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -233,10 +232,10 @@ public class mainGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelManv;
-    private javax.swing.JButton labelMenu;
     private javax.swing.JButton logOut;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel logoContainer;

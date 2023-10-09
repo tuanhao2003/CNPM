@@ -14,14 +14,14 @@ public class phieuNhapDAO {
         ArrayList<phieuNhapDTO> resultList = new ArrayList<>();
         phieuNhapDTO phieuNhap = new phieuNhapDTO();
         ResultSet rs = null;
-        String query="select * form PhieuNhapKho";
+        String query="select * from PhieuNhapKho";
         try {
             rs = this.sql.getSta().executeQuery(query);
             while(rs.next()){
                 resultList.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
             }
         } catch (Exception e) {
-            System.out.println("Lỗi lấy danh sách phiếu nhập(r:25,DAO): "+e);
+            System.out.println("Loi lay danh sach phieu nhap(r:24,DAO): "+e);
         }
         return resultList;
     }
@@ -31,15 +31,25 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Lỗi thêm phiếu nhập(r:34,DAO): "+e);
+            System.out.println("Loi them phieu nhap(r:34,DAO): "+e);
         }
     }
     
     public void xoaPn(String id){
+        String query = "delete form table PhieuNhapKho where MaPhieuNhap='"+id+"';";
         try {
-            this.sql.getSta().executeUpdate("delete form table PhieuNhapKho where MaPhieuNhap='"+id+"';");
+            this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Lỗi xóa phiếu nhập(r:43,DAO): "+e);
+            System.out.println("Loi xoa phieu nhap(r:43,DAO): "+e);
+        }
+    }
+    
+    public void suaPn(String idPn, String id, String day, int total, int tax){
+        String query="update PhieuNhapKho set MaKho='"+id+"', NgayNhap='"+day+"', TongTien="+total+",Thue="+tax+" where MaPhieuNhap='"+idPn+"';";
+        try {
+            this.sql.getSta().executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Loi sua phieu nhap(r52,DAO): "+e);
         }
     }
 }

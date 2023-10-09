@@ -21,7 +21,7 @@ public class sqlConnect {
             this.C=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;TrustServerCertificate=true;integratedSecurity=true;"+this.dbName+this.userName+this.passWord);
             this.S=C.createStatement();
         } catch (Exception e) {
-            System.out.println("Lỗi kết nối cơ sở dữ liệu: "+e);
+            System.out.println("loi ket noi co so du lieu(r24,CONN): "+e);
         }
     }
     
