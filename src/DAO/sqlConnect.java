@@ -11,14 +11,14 @@ public class sqlConnect {
         //sửa thông tin đăng nhập ở đây
         this.dbName="QLCH";
         this.userName="DESKTOP-B4S6KHS\\Wazapy";
-        this.passWord='';
+        this.passWord="";
         connectTosql();
     }
     
     private void connectTosql(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            this.C=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;TrustServerCertificate=true;integratedSecurity=true;DatabaseName="+this.dbName+";user="+this.userName+this.passWord);
+            this.C=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;TrustServerCertificate=true;integratedSecurity=true;DatabaseName="+this.dbName+";user="+this.userName+";password="+this.passWord+";");
             this.S=C.createStatement();
         } catch (Exception e) {
             System.out.println("loi ket noi co so du lieu(r24,CONN): "+e);

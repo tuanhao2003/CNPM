@@ -15,19 +15,19 @@ public class ctphieuNhapDTO {
         this.tamTinh=0;
     }
 
-    public ctphieuNhapDTO(String ticketID,String providerID, int quantity ,int pricePeritem){
+    public ctphieuNhapDTO(String ticketID,String providerID, int quantity ,int pricePeritem, int tmpPrice){
         this.maPn=ticketID;
         this.maNcc=providerID;
         this.soLuong=quantity;
         this.donGia=pricePeritem;
-        this.tamTinh=pricePeritem*quantity;
+        this.tamTinh=tmpPrice;
     }
 
     public String getmaPn(){
         return this.maPn;
     }
 
-    public String getmaSp(){
+    public String getmaNcc(){
         return this.maNcc;
     }
 
@@ -61,16 +61,16 @@ public class ctphieuNhapDTO {
         this.donGia=tmpPrice;
     }
 
-    public void settamTinh(){
-        this.tamTinh=this.donGia*this.soLuong;
+    public void settamTinh(int tmpPrice){
+        this.tamTinh=tmpPrice;
     }
 
-    public void setctphieuNhap(String ticketID,String providerID, int quantity ,int pricePeritem){
+    public void setctphieuNhap(String ticketID,String providerID, int quantity ,int pricePeritem, int tmpPrice){
         this.maPn=ticketID;
         this.maNcc=providerID;
         this.soLuong=quantity;
         this.donGia=pricePeritem;
-        this.tamTinh=pricePeritem*quantity;
+        this.tamTinh=tmpPrice;
     }
    
 }
