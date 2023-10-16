@@ -22,7 +22,7 @@ public class phieuNhapDAO {
                 resultList.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
             }
         } catch (Exception e) {
-            System.out.println("Loi lay danh sach phieu nhap(r:24,DAO): "+e);
+            System.out.println("Loi lay danh sach phieu nhap: "+e);
         }
         return resultList;
     }
@@ -32,7 +32,7 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi them phieu nhap(r:34,DAO): "+e);
+            System.out.println("Loi them phieu nhap: "+e);
         }
     }
     
@@ -41,7 +41,7 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi xoa phieu nhap(r:43,DAO): "+e);
+            System.out.println("Loi xoa phieu nhap "+e);
         }
     }
     
@@ -50,23 +50,23 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi sua phieu nhap(r52,DAO): "+e);
+            System.out.println("Loi sua phieu nhap: "+e);
         }
     }
     
     
 //    CHI TIẾT PHIẾU NHẬP
-    public ArrayList<ctphieuNhapDTO> getListctall(){
+    public ArrayList<ctphieuNhapDTO> getListCt(String idpn){
         ArrayList<ctphieuNhapDTO> resultList = new ArrayList<>();
         ResultSet rs = null;
-        String query="select * from CTPhieuNhapKho";
+        String query="select * from CTPhieuNhapKho where MaPhieuNhap='"+idpn+"';";
         try {
             rs = this.sql.getSta().executeQuery(query);
             while(rs.next()){
                 resultList.add(new ctphieuNhapDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
             }
         } catch (Exception e) {
-            System.out.println("Loi lay danh sach phieu nhap(r:24,DAO): "+e);
+            System.out.println("Loi lay danh sach phieu nhap: "+e);
         }
         return resultList;
     }
@@ -76,7 +76,7 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi them chi tiet phieu nhap(r:34,DAO): "+e);
+            System.out.println("Loi them chi tiet phieu nhap: "+e);
         }
     }
     
@@ -85,7 +85,7 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi xoa phieu nhap(r:43,DAO): "+e);
+            System.out.println("Loi xoa phieu nhap: "+e);
         }
     }
     
@@ -94,14 +94,14 @@ public class phieuNhapDAO {
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("Loi sua phieu nhap(r52,DAO): "+e);
+            System.out.println("Loi sua phieu nhap: "+e);
         }
     }
     
-    public ArrayList<phieuNhapDTO> timKiempn(String data, String type){
+    public ArrayList<phieuNhapDTO> getSearch(String data, String type){
         ResultSet rs = null;
         ArrayList<phieuNhapDTO> dspn = new ArrayList<>();
-        String query = "select * form PhieuNhapHang where ";
+        String query = "select * from PhieuNhapKho where ";
         try{
             switch (type) {
                 case "Mã Phiếu":
@@ -114,14 +114,15 @@ public class phieuNhapDAO {
                     query += "TongTien="+Integer.parseInt(data)+";";
                     break;
                 default:
-                    query += "MaPhieuNhap like '%"+data+"%' or MaKho like '%"+data+"%' or TongTien ="+data+";";
+                    query += "MaPhieuNhap like '%"+data+"%' or MaKho like '%"+data+"%' or NgayNhap like '%"+data+"%';";
             }
+            System.out.println(query);
             rs = this.sql.getSta().executeQuery(query);
             while(rs.next()){
                 dspn.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
             }
         }catch(Exception e){
-            System.out.println("Loi tim kiem phieu nhap(r:118, DAO): "+e);
+            System.out.println("Loi tim kiem phieu nhap: "+e);
         }
         return dspn;
     }
@@ -137,7 +138,7 @@ public class phieuNhapDAO {
             }
         }
         catch (Exception e) {
-            System.out.println("Loi lay phieu nhap theo ngay(r, DAO): "+e);
+            System.out.println("Loi lay phieu nhap theo ngay: "+e);
         }
         return dspn;
     }

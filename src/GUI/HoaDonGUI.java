@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package GUI;
-import BUS.CTHoaDonBLL;
-import BUS.HoaDonBLL;
+import BLL.CTHoaDonBLL;
+import BLL.HoaDonBLL;
 import DTO.CTHoaDonDTO;
 import DTO.HoaDonDTO;
 import java.awt.Color;

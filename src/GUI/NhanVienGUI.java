@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-import BUS.NhanVienBLL;
+import BLL.NhanVienBLL;
 import DAO.NhanVienDAO;
 import DTO.NhanVienDTO;
 import java.awt.event.ActionEvent;

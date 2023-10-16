@@ -59,9 +59,11 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent(buttonName, panelName, null);
     }
     
+    
+    
+    
 //xử lý sự kiện
     private void solveEvent(){
-        
 //Lấy mã nv đã đăng nhập và thêm vào màn hình chính
         this.manvLogined= "nv001";//đổi thành phương thức get mã nhân viên
         this.labelManv.setText(this.labelManv.getText()+this.manvLogined);
@@ -83,7 +85,7 @@ public class mainGUI extends javax.swing.JFrame {
 //xử lý hoạt ảnh đang hoạt động của thanh công cụ
         for(int i=0; i<this.toolsPanel.getComponentCount(); i++){
             int tmp = i;
-            this.toolsPanel.getComponent(i).addFocusListener(new FocusListener() {
+            this.toolsPanel.getComponent(i).addFocusListener(new FocusAdapter() {
                 @Override
                 public void focusGained(FocusEvent e) {
                     if(working>=0){
@@ -92,16 +94,14 @@ public class mainGUI extends javax.swing.JFrame {
                     working=tmp;
                     ((JButton) toolsPanel.getComponent(tmp)).setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.green));
                 }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                   //pass
-                }
             });
         }
-        
-    // su kien Phieu Nhap
+
     }
+    
+    
+    
+    
     
     public static void main(String[] args) {
         mainGUI display = new mainGUI();

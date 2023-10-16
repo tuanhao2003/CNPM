@@ -1,19 +1,20 @@
-package BUS;
+package BLL;
 
 import DAO.phieuNhapDAO;
+import DTO.ctphieuNhapDTO;
 import DTO.phieuNhapDTO;
 import java.util.*;
 
-public class phieuNhapBUS {
+public class phieuNhapBLL {
     private phieuNhapDAO daoPn;
     private ArrayList<phieuNhapDTO> dtoLst;
 
-    public phieuNhapBUS() {
+    public phieuNhapBLL() {
         daoPn = new phieuNhapDAO();
         dtoLst = new ArrayList<>();
     }
     
-    public ArrayList<phieuNhapDTO> getAll(){
+    public ArrayList<phieuNhapDTO> showAll(){
         this.dtoLst = this.daoPn.getListall();
         return this.dtoLst;
     }
@@ -144,4 +145,14 @@ public class phieuNhapBUS {
         
         return this.daoPn.getByDays(parsedDay);
     }
+    
+    public ArrayList<phieuNhapDTO> showSearch(String data, String type){
+        return this.daoPn.getSearch(data, type);
+    }
+    
+    public ArrayList<ctphieuNhapDTO> showCtpn(String id){
+        return this.daoPn.getListCt(id);
+    }
+    
+    
 }
