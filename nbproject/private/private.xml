@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/phieuNhapDAO.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/mainGUI.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/phieuNhapGUI.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/BUS/phieuNhapBUS.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/DTO/TaiKhoanDTO.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/DTO/KhachHangDTO.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/GUI/mainGUI.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/GUI/khuyenMaiGUI.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/GUI/thongKeGUI.java</file>
+            <file>file:/D:/JAVAProjects/CNPM/src/GUI/Login.java</file>
         </group>
     </open-files>
 </project-private>
