@@ -7,70 +7,67 @@ import java.util.*;
 
 public class phieuNhapBLL {
     private phieuNhapDAO daoPn;
-    private ArrayList<phieuNhapDTO> dtoLst;
 
     public phieuNhapBLL() {
         daoPn = new phieuNhapDAO();
-        dtoLst = new ArrayList<>();
     }
     
     public ArrayList<phieuNhapDTO> showAll(){
-        this.dtoLst = this.daoPn.getListall();
-        return this.dtoLst;
+        return this.daoPn.getListall();
     }
     
-    public void sort(ArrayList<phieuNhapDTO> list, String type, String way){
-        list = this.dtoLst;
+    public ArrayList<phieuNhapDTO> showSort(ArrayList<phieuNhapDTO> list, String type, String way){
+        ArrayList<phieuNhapDTO> tmpList = list;
         if(way.equals("Tăng Dần")){
             if(type.equals("Mã Phiếu")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(list.get(i).getmaPn().compareTo(list.get(j).getmaPn())>0){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(tmpList.get(i).getmaPn().compareTo(tmpList.get(j).getmaPn())>0){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
             }
-            
+
             if(type.equals("Mã Kho")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(list.get(i).getmaKho().compareTo(list.get(j).getmaKho())>0){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(tmpList.get(i).getmaKho().compareTo(tmpList.get(j).getmaKho())>0){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
             }
-            
+
             if(type.equals("Ngày Nhập")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[2])>Integer.parseInt(list.get(j).getngayNhap().split("/")[2])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])>Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[1])>Integer.parseInt(list.get(j).getngayNhap().split("/")[1])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])==Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2]) && Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[1])>Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[1])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[0])>Integer.parseInt(list.get(j).getngayNhap().split("/")[0])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])==Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2]) &&  Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[1])==Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[1]) && Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[0])>Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[0])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
@@ -78,70 +75,71 @@ public class phieuNhapBLL {
         }
         else{
             if(type.equals("Mã Phiếu")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(list.get(i).getmaPn().compareTo(list.get(j).getmaPn())<0){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(tmpList.get(i).getmaPn().compareTo(tmpList.get(j).getmaPn())<0){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
             }
-            
+
             if(type.equals("Mã Kho")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(list.get(i).getmaKho().compareTo(list.get(j).getmaKho())<0){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(tmpList.get(i).getmaKho().compareTo(tmpList.get(j).getmaKho())<0){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
             }
-            
+
             if(type.equals("Ngày Nhập")){
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[2])<Integer.parseInt(list.get(j).getngayNhap().split("/")[2])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])<Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[1])<Integer.parseInt(list.get(j).getngayNhap().split("/")[1])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])==Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2]) && Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[1])<Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[1])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
-                for(int i = 0; i<list.size()-1; i++){
-                    for (int j = i+1; j< list.size(); j++){
-                        if(Integer.parseInt(list.get(i).getngayNhap().split("/")[0])<Integer.parseInt(list.get(j).getngayNhap().split("/")[0])){
-                            phieuNhapDTO tmp = list.get(i);
-                            list.set(i, list.get(j));
-                            list.set(j, tmp);
+                for(int i = 0; i<tmpList.size()-1; i++){
+                    for (int j = i+1; j< tmpList.size(); j++){
+                        if(Integer.parseInt(tmpList.get(i).getngayNhap().replace(" ", "").split("/")[2])==Integer.parseInt(tmpList.get(j).getngayNhap().replace(" ", "").split("/")[2]) &&  Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[1])==Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[1]) && Integer.parseInt(tmpList.get(i).getngayNhap().split("/")[0])<Integer.parseInt(tmpList.get(j).getngayNhap().split("/")[0])){
+                            phieuNhapDTO tmp = tmpList.get(i);
+                            tmpList.set(i, tmpList.get(j));
+                            tmpList.set(j, tmp);
                         }
                     }
                 }
             }
         }
-        this.dtoLst=list;
+        return tmpList;
     }
     
-    public ArrayList<phieuNhapDTO> showByDays(String dayStart, String dayEnd){
+    public ArrayList<phieuNhapDTO> showByDays(String dayStart,String monthStart,String yearStart, String dayEnd, String monthEnd, String yearEnd){
         ArrayList<Integer> parsedDay = new ArrayList<>();
-        for(String i : dayStart.split("/")){
-            parsedDay.add(Integer.parseInt(i));
-        }
-        for(String i : dayEnd.split("/")){
-            parsedDay.add(Integer.parseInt(i));
-        }
+        parsedDay.add(Integer.parseInt(dayStart.split(" ")[1]));
+        parsedDay.add(Integer.parseInt(monthStart.split(" ")[1]));
+        parsedDay.add(Integer.parseInt(yearStart.split(" ")[1]));
+        
+        parsedDay.add(Integer.parseInt(dayEnd.split(" ")[1]));
+        parsedDay.add(Integer.parseInt(monthEnd.split(" ")[1]));
+        parsedDay.add(Integer.parseInt(yearEnd.split(" ")[1]));
         
         return this.daoPn.getByDays(parsedDay);
     }
@@ -152,7 +150,5 @@ public class phieuNhapBLL {
     
     public ArrayList<ctphieuNhapDTO> showCtpn(String id){
         return this.daoPn.getListCt(id);
-    }
-    
-    
+    } 
 }

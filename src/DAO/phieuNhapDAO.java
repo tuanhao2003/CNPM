@@ -116,7 +116,6 @@ public class phieuNhapDAO {
                 default:
                     query += "MaPhieuNhap like '%"+data+"%' or MaKho like '%"+data+"%' or NgayNhap like '%"+data+"%';";
             }
-            System.out.println(query);
             rs = this.sql.getSta().executeQuery(query);
             while(rs.next()){
                 dspn.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
@@ -130,11 +129,11 @@ public class phieuNhapDAO {
     public ArrayList<phieuNhapDTO> getByDays(ArrayList<Integer> days){
         ResultSet rs = null;
         ArrayList<phieuNhapDTO> dspn = new ArrayList<>();
-        String  query = "select * form PhieuNhapKho where convert(DATE, NgayNhap, 103) between '"+days.get(0)+"-"+days.get(1)+"-"+days.get(2)+"' and '"+days.get(3)+"-"+days.get(4)+"-"+days.get(5)+"';";
+        String  query = "select * from PhieuNhapKho where convert(DATE, NgayNhap, 103) between '"+days.get(0)+"-"+days.get(1)+"-"+days.get(2)+"' and '"+days.get(3)+"-"+days.get(4)+"-"+days.get(5)+"';";
         try {
             rs = this.sql.getSta().executeQuery(query);
             while (rs.next()) {
-                dspn.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getDate(3).toString(), rs.getInt(4), rs.getInt(5)));
+                dspn.add(new phieuNhapDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
             }
         }
         catch (Exception e) {
