@@ -28,4 +28,8 @@ public class sqlConnect {
     protected Statement getSta(){
         return this.S;
     }
+    
+    protected Connection getConnection() {
+        return this.C;
+    }
 }
