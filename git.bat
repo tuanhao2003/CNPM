@@ -24,6 +24,7 @@ goto stop
 set /p msg=Nhập commit:
 git.exe add .
 git.exe commit -m "%msg%"
+git.exe pull
 git.exe push
 echo Đã cập nhật lên Github
 goto stop
