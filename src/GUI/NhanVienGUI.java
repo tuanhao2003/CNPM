@@ -7,8 +7,10 @@ package GUI;
 import BLL.NhanVienBLL;
 import DAO.NhanVienDAO;
 import DTO.NhanVienDTO;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
         modelNV.addColumn("Giới Tính");
         modelNV.addColumn("Địa Chỉ");
         modelNV.addColumn("Số Điện Thoại");
+        
+        loadNVlist();
     }
 
     /**
@@ -183,9 +187,20 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         jComboBox_SearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Nhân Viên","Tên Nhân Viên" }));
         jComboBox_SearchType.setPreferredSize(new java.awt.Dimension(100, 30));
+        jComboBox_SearchType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_SearchTypeItemStateChanged(evt);
+            }
+        });
         jComboBox_SearchType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_SearchTypeActionPerformed(evt);
+            }
+        });
+
+        jTextField_Search.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_SearchFocusGained(evt);
             }
         });
 
@@ -393,6 +408,25 @@ public class NhanVienGUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
+    private void jTextField_SearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_SearchFocusGained
+        // TODO add your handling code here:
+         if(jTextField_Search!=null){
+            jTextField_Search.setText("");
+            jTextField_Search.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jTextField_SearchFocusGained
+
+    private void jComboBox_SearchTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_SearchTypeItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+        String selectedValue = jComboBox_SearchType.getSelectedItem().toString();
+        
+        // Thiết lập giá trị mẫu cho jTextField dựa trên mục đã chọn
+        setTextFieldPlaceholder(selectedValue);
+        }
+        
+    }//GEN-LAST:event_jComboBox_SearchTypeItemStateChanged
+
     private void searchByID(String id) {
     // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
         
@@ -425,6 +459,20 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 stt++;
             }
         }
+    }
+    private void setTextFieldPlaceholder(String selectedValue) {
+        String placeholderText = ""; // Chuỗi mẫu sẽ được hiển thị trong jTextField
+
+        // Xác định chuỗi mẫu dựa trên mục đã chọn
+        if ("Mã Nhân Viên".equals(selectedValue)) {
+            placeholderText = "Ví dụ: NV001";
+        }else if ("Tên Nhân Viên".equals(selectedValue)) {
+            placeholderText = "Ví dụ: Nguyễn Văn A";
+        }
+        
+
+        // Thiết lập giá trị mẫu cho jTextField
+        jTextField_Search.setText(placeholderText);
     }
     public void loadNVlist(){
         arrNhanVien = nvBLL.getListNhanVien();
