@@ -22,13 +22,13 @@ public class NhanVienDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QuanLiNCC;"
-                    + "user=sa;password=12;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=Sellphones;"
+                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Ket noi that bai :"+e);
             return false;
         }
     }
@@ -45,13 +45,13 @@ public class NhanVienDAO {
                 NhanVienDTO nv = new NhanVienDTO();
                 String maNCC = rs.getString("MaNV");
                 if (!maNCC.startsWith("NV")) {
-                    continue; // Chuyển sang bản ghi tiếp theo nếu MaNCC không bắt đầu bằng "NCC"
+                    continue; // Chuyển sang bản ghi tiếp theo nếu MaNCC không bắt đầu bằng "NV"
                 }
                 nv.setMaNV(rs.getString("MaNV"));
                 nv.setTenNV(rs.getString("TenNV"));
                 nv.setGioiTinh(rs.getString("GioiTinh"));
-                nv.setDiaChi(rs.getString("DiaChi"));
-                nv.setSDT(rs.getString("SDT"));
+                nv.setDiaChi(rs.getString("DiaChiNV"));
+                nv.setSDT(rs.getString("SDTNV"));
                 
                 list.add(nv);
             }

@@ -85,6 +85,8 @@ public class HoaDonGUI extends javax.swing.JPanel {
             }
         });
         timer.start();
+        loadHDlist();
+        
     }
     
     
@@ -202,7 +204,13 @@ public class HoaDonGUI extends javax.swing.JPanel {
                 jTextField_SearchFocusLost(evt);
             }
         });
+        jTextField_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_SearchActionPerformed(evt);
+            }
+        });
 
+        jButton_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Comp/search icon.png"))); // NOI18N
         jButton_Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SearchActionPerformed(evt);
@@ -525,6 +533,10 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //            
 //        }
     }//GEN-LAST:event_jTextField_SearchFocusLost
+
+    private void jTextField_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_SearchActionPerformed
 
     private void setTextFieldPlaceholder(String selectedValue) {
         String placeholderText = ""; // Chuỗi mẫu sẽ được hiển thị trong jTextField
