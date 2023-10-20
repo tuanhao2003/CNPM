@@ -84,6 +84,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Quên mật khẩu?");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Tên đăng nhập:");
 
@@ -215,6 +220,11 @@ public class Login extends javax.swing.JFrame {
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Vui lòng liên hệ trantrunghieu20122002@gmail.com để lấy lại mật khẩu");
+    }//GEN-LAST:event_jLabel2MouseClicked
    
     
     public static void main(String args[]) {
@@ -229,8 +239,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-   
-
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,4 +251,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
 }
