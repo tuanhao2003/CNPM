@@ -17,7 +17,7 @@ public class mainGUI extends javax.swing.JFrame {
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
         addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
         addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-        
+        addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");       
         solveEvent();
     }
     
