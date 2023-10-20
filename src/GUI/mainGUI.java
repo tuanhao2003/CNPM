@@ -15,9 +15,13 @@ public class mainGUI extends javax.swing.JFrame {
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         addComponent("Nhập Hàng", this.pnGUI, "import.png");
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+        addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
+        addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
         addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-        addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");       
+        addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");         
+        addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");    
+
         solveEvent();
     }
     
@@ -79,6 +83,9 @@ public class mainGUI extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
                 SwingUtilities.windowForComponent(logoContainer).dispose();
+                Login lg = new Login();
+                lg.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
+                lg.setVisible(true);
             }
         });
         

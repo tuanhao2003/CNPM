@@ -10,8 +10,8 @@ public class sqlConnect {
     protected sqlConnect(){
         //sửa thông tin đăng nhập ở đây
         this.dbName="QLCH";
-        this.userName="DESKTOP-B4S6KHS\\Wazapy";
-        this.passWord="";
+        this.userName="sa";
+        this.passWord="123";
         connectTosql();
     }
     
@@ -23,6 +23,7 @@ public class sqlConnect {
         } catch (Exception e) {
             System.out.println("loi ket noi co so du lieu(r24,CONN): "+e);
         }
+          
     }
     
     protected Statement getSta(){
