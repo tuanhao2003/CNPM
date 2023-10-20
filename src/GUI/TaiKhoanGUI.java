@@ -4,19 +4,56 @@
  */
 package GUI;
 
+import BLL.TaiKhoanBLL;
+import DTO.TaiKhoanDTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author toica
+ * @author Trung Hiếu
  */
 public class TaiKhoanGUI extends javax.swing.JPanel {
-
+    TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+    ArrayList<TaiKhoanDTO> arrTaiKhoan = new ArrayList<TaiKhoanDTO>();
+    DefaultTableModel modelTK = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // không cho phép chỉnh sửa giá trị các ô trong bảng
+    }
+    };
     /**
      * Creates new form TaiKhoanGUI
      */
+    
     public TaiKhoanGUI() {
         initComponents();
+        jTableTaiKhoan.setModel(modelTK);
+        modelTK.addColumn("Mã Tài Khoản");
+        modelTK.addColumn("Tên đăng nhập");
+        modelTK.addColumn("Mật khẩu");
+        modelTK.addColumn("Quyền");
+        modelTK.addColumn("Trạng thái");
+        loadTKList();
     }
-
+    public void loadTKList(){
+        arrTaiKhoan = tkBLL.getListTaiKhoan();
+//        int a = arrNCC.size();
+//        System.out.print(rootPaneCheckingEnabled);
+//        for(int i = modelTK.getRowCount()-1;i>=0;i--)
+//            modelTK.removeRow(i);
+        for(int i = 0; i<arrTaiKhoan.size();i++){
+            TaiKhoanDTO tk = arrTaiKhoan.get(i);
+            String id= tk.getMaTK();
+            String username = tk.getTenDangNhap();
+            String password = tk.getMatKhau();
+            int quyen = tk.getQuyen();
+            int trangthai = tk.getTrangThai();
+            
+            Object[] row = {id,username,password,quyen,trangthai};
+            modelTK.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +64,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableTaiKhoan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -43,7 +80,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,7 +91,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableTaiKhoan);
 
         jLabel1.setText("Mã tài khoản:");
 
@@ -205,7 +242,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableTaiKhoan;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
