@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/phieuNhapDAO.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/mainGUI.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/HoaDonDAO.java</file>
@@ -10,6 +11,23 @@
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/khuyenMaiDAO.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/BLL/phieuNhapBLL.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DTO/phieuNhapDTO.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/D:/CNPM/CNPM/src/GUI/QLTaiKhoan.java</file>
+            <file>file:/D:/CNPM/CNPM/src/GUI/mainGUI.java</file>
+            <file>file:/D:/CNPM/CNPM/src/DAO/CTHoaDonDAO.java</file>
+            <file>file:/D:/CNPM/CNPM/src/GUI/Login.java</file>
+            <file>file:/D:/CNPM/CNPM/src/DAO/khuyenMaiDAO.java</file>
+            <file>file:/D:/CNPM/CNPM/src/GUI/khuyenMaiGUI.java</file>
+            <file>file:/D:/CNPM/CNPM/src/DAO/sqlConnect.java</file>
+            <file>file:/D:/CNPM/CNPM/src/DAO/NhanVienDAO.java</file>
+            <file>file:/D:/CNPM/CNPM/src/DAO/HoaDonDAO.java</file>
+=======
+            <file>file:/C:/SGU/test/CNPM/src/GUI/mainGUI.java</file>
+            <file>file:/C:/SGU/test/CNPM/src/DAO/khuyenMaiDAO.java</file>
+            <file>file:/C:/SGU/test/CNPM/src/GUI/khuyenMaiGUI.java</file>
+>>>>>>> 1609367a94fa25424828176306ab38a3e2de8929
+>>>>>>> 8830df39f9eaeebff48065351bc508d2331f60c6
         </group>
     </open-files>
 </project-private>
