@@ -84,6 +84,7 @@ public class mainGUI extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e){
                 SwingUtilities.windowForComponent(logoContainer).dispose();
                 Login lg = new Login();
+                lg.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
                 lg.setVisible(true);
             }
         });
