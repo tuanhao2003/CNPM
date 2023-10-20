@@ -19,6 +19,8 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
         addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
         addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+        addComponent("Thống Kê", new thongKeGUI(), "empty.png");   
+        addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
         addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");        
         solveEvent();
     }
@@ -81,6 +83,9 @@ public class mainGUI extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e){
                 SwingUtilities.windowForComponent(logoContainer).dispose();
+                Login lg = new Login();
+                lg.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
+                lg.setVisible(true);
             }
         });
         
