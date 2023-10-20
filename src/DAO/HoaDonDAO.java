@@ -21,8 +21,8 @@ public class HoaDonDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QuanLiNCC;"
-                    + "user=sa;password=12;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=Sellphones;"
+                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
@@ -65,7 +65,7 @@ public class HoaDonDAO {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "UPDATE PN SET NgayGiao = ? WHERE MaHD = ?";
+                String sql = "UPDATE HoaDon SET NgayGiao = ? WHERE MaHoaDon = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, NgayGiao);
                 ps.setString(2, id);
@@ -123,12 +123,12 @@ public class HoaDonDAO {
         boolean result = false;
         if(openConnection()){
             try {
-                String sql1 = "Delete from CTHD where MaHD=?";
+                String sql1 = "Delete from CTHoaDon where MaHoaDon=?";
                 PreparedStatement pc1 = conn.prepareCall(sql1);
                 pc1.setString(1, id);
                 pc1.executeUpdate();
                 
-                String sql2 = "Delete from HD where MaHD=?";
+                String sql2 = "Delete from HoaDon where MaHoaDon=?";
                 PreparedStatement pc2 = conn.prepareCall(sql2);
                 pc2.setString(1, id);
                 if(pc2.executeUpdate()>=1) {

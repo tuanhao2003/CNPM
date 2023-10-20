@@ -16,3 +16,7 @@ git push
 
 #xem trạng thái:
 git status
+
+#reset branch
+git reset --hard //id
+git push -f origin main
