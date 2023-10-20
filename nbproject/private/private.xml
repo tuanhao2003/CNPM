@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/CNPM/CNPM/src/GUI/QLTaiKhoan.java</file>
             <file>file:/D:/CNPM/CNPM/src/GUI/mainGUI.java</file>
             <file>file:/D:/CNPM/CNPM/src/DAO/CTHoaDonDAO.java</file>
@@ -12,6 +13,11 @@
             <file>file:/D:/CNPM/CNPM/src/DAO/sqlConnect.java</file>
             <file>file:/D:/CNPM/CNPM/src/DAO/NhanVienDAO.java</file>
             <file>file:/D:/CNPM/CNPM/src/DAO/HoaDonDAO.java</file>
+=======
+            <file>file:/C:/SGU/test/CNPM/src/GUI/mainGUI.java</file>
+            <file>file:/C:/SGU/test/CNPM/src/DAO/khuyenMaiDAO.java</file>
+            <file>file:/C:/SGU/test/CNPM/src/GUI/khuyenMaiGUI.java</file>
+>>>>>>> 1609367a94fa25424828176306ab38a3e2de8929
         </group>
     </open-files>
 </project-private>

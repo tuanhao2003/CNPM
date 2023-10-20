@@ -18,30 +18,30 @@ public class khuyenMaiDAO {
         sqlConn = new sqlConnect();
     }
 
-//    public void loadKhuyenMaiData(JTable jTable1) {
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//        model.setRowCount(0); // Xóa hết dữ liệu trong jTable1
-//
-//        try {
-//            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM CTChuongTrinhKhuyenMai"; // Thay thế bằng tên bảng thực tế
-//            ResultSet resultSet = sqlConn.getSta().executeQuery(query);
-//
-//            while (resultSet.next()) {
-//                String maCTKM = resultSet.getString("MaCTKM");
-//                String tenCTKM = resultSet.getString("TenCTKM");
-//                int mucGiamGia = resultSet.getInt("MucGiamGia");
-//                String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
-//                String ngayBatDau = resultSet.getString("ThoiGianBatDau");
-//                String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
-//                // Thêm dữ liệu vào model của jTable1
-//                model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
-//            }
-//
-//            resultSet.close();
-//        } catch (SQLException e) {
-//            System.out.println("Lỗi truy vấn cơ sở dữ liệu: " + e);
-//        }
-//    }
+    public void loadKhuyenMaiData(JTable jTable1) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Xóa hết dữ liệu trong jTable1
+
+        try {
+            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM CTChuongTrinhKhuyenMai"; // Thay thế bằng tên bảng thực tế
+            ResultSet resultSet = sqlConn.getSta().executeQuery(query);
+
+            while (resultSet.next()) {
+                String maCTKM = resultSet.getString("MaCTKM");
+                String tenCTKM = resultSet.getString("TenCTKM");
+                int mucGiamGia = resultSet.getInt("MucGiamGia");
+                String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
+                String ngayBatDau = resultSet.getString("ThoiGianBatDau");
+                String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
+                // Thêm dữ liệu vào model của jTable1
+                model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
+            }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println("Lỗi truy vấn cơ sở dữ liệu: " + e);
+        }
+    }
 
     public void searchKhuyenMai(JTable jTable1, String keyword) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

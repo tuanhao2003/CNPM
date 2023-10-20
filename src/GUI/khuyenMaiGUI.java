@@ -583,12 +583,12 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
     }
     
     private void trangthai(){
-//        jRadioButton1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                khuyenMaiDAO.loadKhuyenMaiData(jTable1);
-//            }
-//        });
+        jRadioButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                khuyenMaiDAO.loadKhuyenMaiData(jTable1);
+            }
+        });
 
         jRadioButton2.addActionListener(new ActionListener() {
             @Override
