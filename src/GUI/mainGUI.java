@@ -6,19 +6,20 @@ import javax.swing.*;
 public class mainGUI extends javax.swing.JFrame {  
     private int working=-1;
     private String manvLogined;
-    private phieuNhapGUI pnGUI;
+    private NhanVienGUI nvGUI;
    
     public mainGUI() {
         initComponents();
-        this.pnGUI = new phieuNhapGUI();
+        this.nvGUI = new NhanVienGUI();
         
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-        addComponent("Nhập Hàng", this.pnGUI, "import.png");
-        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
-        solveEvent();
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
+//        solveEvent();
+          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
     }
     
 //hàm thêm phần tử

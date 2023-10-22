@@ -68,6 +68,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         modelHD.addColumn("Ngày Lập");
         modelHD.addColumn("Ngày Xuất");
         modelHD.addColumn("Tổng Giá Trị");
+        modelHD.addColumn("Tổng Giá Trị Sau Giảm");
         
         modelCTHD.addColumn("STT");
         modelCTHD.addColumn("Mã Sản Phẩm");
@@ -576,8 +577,9 @@ public class HoaDonGUI extends javax.swing.JPanel {
             String makh = em.getMaKH();
             String ngaylap = em.getNgayLap();
             String ngaygiao = em.getNgayGiao();
-            int tong = em.getTongTien();
-            Object[] row = {stt,mahd,manv,makh,ngaylap,ngaygiao,tong};
+            int tong = em.getTongTienGoc();
+            int tongsaugiam= em.getTongTienSauGiam();
+            Object[] row = {stt,mahd,manv,makh,ngaylap,ngaygiao,tong,tongsaugiam};
             modelHD.addRow(row);
         }
     }
