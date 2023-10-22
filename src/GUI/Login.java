@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 /**
  *
  * @author toica
@@ -34,7 +36,7 @@ public class Login extends javax.swing.JFrame {
             String dbUrl = "localhost";
             String DatabaseName="QLCH" ;
             String TenDangNhap = "sa"; 
-            String MatKhau= "123";
+            String MatKhau= "1234";
             String url = "jdbc:sqlserver://" +dbUrl + ":1433;DatabaseName=" + DatabaseName + ";username="+TenDangNhap+";password="+MatKhau+";encrypt=true;trustServerCertificate=true;";
             con=DriverManager.getConnection(url);         
             return true;
@@ -82,6 +84,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Quên mật khẩu?");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Tên đăng nhập:");
 
@@ -106,13 +113,13 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addComponent(TxtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(106, 106, 106)
                                         .addComponent(Loginbtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(47, 47, 47)
-                                        .addComponent(TxtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel2))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -120,7 +127,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(248, 248, 248)
                         .addComponent(jLabel1)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +157,7 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,8 +219,13 @@ public class Login extends javax.swing.JFrame {
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Vui lòng liên hệ trantrunghieu20122002@gmail.com để lấy lại mật khẩu!!!");
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Vui lòng liên hệ trantrunghieu20122002@gmail.com để lấy lại mật khẩu");
+    }//GEN-LAST:event_jLabel2MouseClicked
+   
     
     public static void main(String args[]) {
 
@@ -227,8 +239,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-   
-
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -241,4 +251,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
 }
