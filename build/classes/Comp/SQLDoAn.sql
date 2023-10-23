@@ -4,6 +4,12 @@ create table NhaCungCap
 	TenNCC				NVARCHAR(10)				NOT NULL,
 	DiaChiNCC			NVARCHAR(10),
 	SDTNCC				NVARCHAR(10)
+
+
+
+
+
+	
 )
 create table Quyen
 (
@@ -13,7 +19,6 @@ create table Quyen
 create table SanPham
 (
 	MaSP				NCHAR(5)					NOT NULL,
-	MaKho				NCHAR(5)					NOT NULL,
 	TenSP				NVARCHAR(20)                                    NOT NULL,
 	DonGia				INT						NOT NULL,
 	SoLuong 			INT						NOT NULL,
