@@ -8,7 +8,6 @@ public class mainGUI extends javax.swing.JFrame {
 
     private int working = -1;
     private String manvLogined;
-<<<<<<< HEAD
     private NhanVienGUI nvGUI;
    
     public mainGUI() {
@@ -23,25 +22,26 @@ public class mainGUI extends javax.swing.JFrame {
 //        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
 //        solveEvent();
           addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
-=======
-    private phieuNhapGUI pnGUI;
-
-    public mainGUI() {
-        initComponents();
-        this.pnGUI = new phieuNhapGUI();
-
-//thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-        addComponent("Nhập Hàng", this.pnGUI, "import.png");
-        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
-        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
-        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-
-        solveEvent();
->>>>>>> 45a6d14ad22f822d51263319a67cdb7ce051c65c
     }
+//=======
+//    private phieuNhapGUI pnGUI;
+
+//    public mainGUI() {
+//        initComponents();
+//        this.pnGUI = new phieuNhapGUI();
+//
+////thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+////        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+//        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//
+//        solveEvent();
+//
+//    }
 
 //hàm thêm phần tử
     private void addComponent(String buttonName, JPanel panelName, String path) {
