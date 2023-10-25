@@ -11,7 +11,7 @@ public class sqlConnect {
         //sửa thông tin đăng nhập ở đây
         this.dbName="QLCH";
         this.userName="sa";
-        this.passWord="123";
+        this.passWord="12345";
         connectTosql();
     }
     
