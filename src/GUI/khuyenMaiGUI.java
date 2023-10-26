@@ -1,6 +1,7 @@
 package GUI;
 import javax.swing.table.DefaultTableModel;
 import DAO.khuyenMaiDAO;
+import BLL.KhuyenMaiBLL;
 import java.awt.Color;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -21,10 +22,12 @@ import javax.swing.event.ListSelectionListener;
 
 public class khuyenMaiGUI extends javax.swing.JPanel {
     private khuyenMaiDAO khuyenMaiDAO;
+    private KhuyenMaiBLL KhuyenMaiBLL;
 
     public khuyenMaiGUI() {
         initComponents();
         khuyenMaiDAO = new khuyenMaiDAO();
+        KhuyenMaiBLL = new KhuyenMaiBLL();
         showALL();
     }
 
@@ -47,6 +50,8 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         buttonGroup = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
@@ -69,6 +74,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
+        Xuatbtn = new javax.swing.JButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(630, 400));
 
@@ -90,12 +96,17 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Điện thoại", "Phụ kiện", "Toàn bộ sản phẩm" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Iphone", "Samsung", "Xiaomi", "Oppo", "Nokia" }));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel4.setText("TẠO KHUYẾN MÃI");
 
         jButton1.setText("LÀM MỚI");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("TẠO ");
 
@@ -110,6 +121,8 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
 
         jDateChooser2.setDateFormatString("dd/MM/yyyy");
 
+        jLabel10.setText("Mã sản phẩm:");
+
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
@@ -117,13 +130,6 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             .addGroup(jDialog1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialog1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +152,20 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(48, 48, 48))))
+                        .addGap(48, 48, 48))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +195,11 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(135, 135, 135))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3))
+                        .addGap(93, 93, 93))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
                         .addGap(0, 5, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +273,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã CTKM", "Tên CTKM", "Mức giảm giá", "Loại sản phẩm", "Thời gian bắt đầu", "Thời gian kết thúc"
+                "Mã CTKM", "Tên CTKM", "Mức giảm giá", "Loại sản phẩm", "Thời gian bắt đầu", "Thời gian kết thúc", "Thời gian tạo", "Mã sản phẩm"
             }
         )
         {
@@ -348,6 +371,8 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             .addContainerGap(24, Short.MAX_VALUE))
     );
 
+    Xuatbtn.setText("Xuất Excel");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -372,9 +397,14 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(searchkmbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(Xuatbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(72, 72, 72)))))
             .addContainerGap(32, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -387,7 +417,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                 .addComponent(searchkmbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(createbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(25, 25, 25)
+            .addGap(23, 23, 23)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,8 +426,9 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(formtf, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(totf, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(28, 28, 28)
+                        .addComponent(totf, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Xuatbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(25, 25, 25)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(30, Short.MAX_VALUE))
     );
@@ -471,6 +502,20 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             jTextField1.setText("00001(5 số)"); // Đặt văn bản placeholder
         }
     }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTextField1.setText(null);
+        if (jTextField1.getText().isEmpty()) {
+            jTextField1.setForeground(Color.GRAY); // Đổi màu về màu placeholder
+            jTextField1.setText("00001(5 số)"); // Đặt văn bản placeholder
+        }
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jComboBox1.setSelectedItem("Iphone");
+        jComboBox2.setSelectedItem("10%");   
+        jDateChooser1.setDate(null);
+        jDateChooser2.setDate(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
        
     
    
@@ -502,11 +547,11 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                 String loaiKhuyenMai = jComboBox1.getSelectedItem().toString();
                 Date ngayBatDau = jDateChooser1.getDate();
                 Date ngayKetThuc = jDateChooser2.getDate();
-
-                khuyenMaiDTO khuyenMai = new khuyenMaiDTO(maKhuyenMai, tenKhuyenMai, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc);
+                String maSanPham = jTextField3.getText();
+                khuyenMaiDTO khuyenMai = new khuyenMaiDTO(maKhuyenMai, tenKhuyenMai, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc, maSanPham);
 
                 // Gọi phương thức DAO để thêm dữ liệu vào cơ sở dữ liệu
-                boolean themThanhCong = khuyenMaiDAO.themKhuyenMai(khuyenMai);
+                boolean themThanhCong = KhuyenMaiBLL.themKhuyenMai(khuyenMai);
 
                 if (themThanhCong) {
                     JOptionPane.showMessageDialog(khuyenMaiGUI.this, "Đã tạo khuyến mãi: " + khuyenMai.getTenKhuyenMai(), "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -518,7 +563,8 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
                     jComboBox2.setSelectedIndex(0);
                     jDateChooser1.setDate(null);
                     jDateChooser2.setDate(null);
-                    khuyenMaiDAO.loadKhuyenMaiData(jTable1);
+                    jTextField3.setText("");
+                    KhuyenMaiBLL.loadKhuyenMaiData(jTable1);
                 }else {
                     JOptionPane.showMessageDialog(khuyenMaiGUI.this, "Vui lòng nhập lại thông tin", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
@@ -537,12 +583,12 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
 
                 if (option == JOptionPane.YES_OPTION) {
                     // Gọi phương thức DAO để xóa khuyến mãi
-                    boolean xoaThanhCong = khuyenMaiDAO.xoaKhuyenMai(maKhuyenMaiCanXoa);
+                    boolean xoaThanhCong = KhuyenMaiBLL.xoaKhuyenMai(maKhuyenMaiCanXoa);
 
                     if (xoaThanhCong) {
                         JOptionPane.showMessageDialog(khuyenMaiGUI.this, "Đã xóa khuyến mãi có mã: " + maKhuyenMaiCanXoa, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                         // Cập nhật giao diện hoặc làm bất kỳ điều gì cần thiết sau khi xóa thành công
-                        khuyenMaiDAO.loadKhuyenMaiData(jTable1);
+                        KhuyenMaiBLL.loadKhuyenMaiData(jTable1);
                     } else {
                         JOptionPane.showMessageDialog(khuyenMaiGUI.this, "Lỗi khi xóa khuyến mãi", "Thông báo", JOptionPane.ERROR_MESSAGE);
                     }
@@ -556,7 +602,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 String timkiem = searchkmtf.getText();
-                khuyenMaiDAO.searchKhuyenMai(jTable1, timkiem); 
+                KhuyenMaiBLL.searchKhuyenMai(jTable1, timkiem); 
             }
         });
     }
@@ -586,7 +632,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
         jRadioButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                khuyenMaiDAO.loadKhuyenMaiData(jTable1);
+                KhuyenMaiBLL.loadKhuyenMaiData(jTable1);
             }
         });
 
@@ -594,7 +640,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Hiển thị khuyến mãi còn hạn
-                khuyenMaiDAO.loadExpiredData(jTable1);
+                KhuyenMaiBLL.loadExpiredData(jTable1);
             }
         });
 
@@ -602,7 +648,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Hiển thị khuyến mãi đã hết hạn
-                khuyenMaiDAO.loadValidData(jTable1);
+                KhuyenMaiBLL.loadValidData(jTable1);
             }
         });
     }
@@ -612,7 +658,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
     }
     
     private void showALL(){
-        khuyenMaiDAO.loadKhuyenMaiData(jTable1);
+        KhuyenMaiBLL.loadKhuyenMaiData(jTable1);
         taokhuyemai();
         tao();
         xoa();
@@ -628,6 +674,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Xuatbtn;
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton createbtn;
@@ -641,6 +688,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -662,6 +710,7 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton searchkmbtn;
     private javax.swing.JTextField searchkmtf;
     private javax.swing.JTextField totf;
