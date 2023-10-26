@@ -79,11 +79,11 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField_Ten = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox_OPPO = new javax.swing.JCheckBox();
+        jCheckBox_SAMSUNG = new javax.swing.JCheckBox();
+        jCheckBox_APPLE = new javax.swing.JCheckBox();
+        jCheckBox_VIVO = new javax.swing.JCheckBox();
+        jCheckBox_REALME = new javax.swing.JCheckBox();
         jButton_Xoa = new javax.swing.JButton();
         jComboBox_SearchType = new javax.swing.JComboBox<>();
         jTextField_Search = new javax.swing.JTextField();
@@ -127,38 +127,38 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Tên Nhà Cung Cấp");
 
-        jCheckBox1.setText("jCheckBox1");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox_OPPO.setText("OPPO");
+        jCheckBox_OPPO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                jCheckBox_OPPOActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setText("jCheckBox1");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox_SAMSUNG.setText("SAMSUNG");
+        jCheckBox_SAMSUNG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                jCheckBox_SAMSUNGActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("jCheckBox1");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox_APPLE.setText("APPLE");
+        jCheckBox_APPLE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                jCheckBox_APPLEActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("jCheckBox1");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox_VIVO.setText("VIVO");
+        jCheckBox_VIVO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                jCheckBox_VIVOActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("jCheckBox1");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox_REALME.setText("REALME");
+        jCheckBox_REALME.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                jCheckBox_REALMEActionPerformed(evt);
             }
         });
 
@@ -189,14 +189,14 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox3)
+                                .addComponent(jCheckBox_APPLE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox4))
+                                .addComponent(jCheckBox_VIVO))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
+                                .addComponent(jCheckBox_OPPO)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox2))
-                            .addComponent(jCheckBox5))))
+                                .addComponent(jCheckBox_SAMSUNG))
+                            .addComponent(jCheckBox_REALME))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -216,14 +216,14 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox_OPPO, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox_SAMSUNG, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox_APPLE, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox_VIVO, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox_REALME, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
         );
@@ -355,7 +355,8 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         String ten = jTextField_Ten.getText();
         String sdt = jTextField_SDT.getText();
         String diachi = jTextField_DiaChi.getText();
-        String loaisanpham = jCheckBox1.toString();
+        String loaisanpham = jCheckBox_OPPO.toString();
+        
         
         try{
             // Kiểm tra nếu cả hai trường không rỗng
@@ -461,25 +462,25 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBox_OPPOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_OPPOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jCheckBox_OPPOActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void jCheckBox_SAMSUNGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_SAMSUNGActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_jCheckBox_SAMSUNGActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void jCheckBox_APPLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_APPLEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_jCheckBox_APPLEActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void jCheckBox_VIVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_VIVOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_jCheckBox_VIVOActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void jCheckBox_REALMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_REALMEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_jCheckBox_REALMEActionPerformed
                                                                                                
 
     private void searchByID(String id) {
@@ -554,11 +555,11 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private javax.swing.JButton jButton_Sua;
     private javax.swing.JButton jButton_Them;
     private javax.swing.JButton jButton_Xoa;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox_APPLE;
+    private javax.swing.JCheckBox jCheckBox_OPPO;
+    private javax.swing.JCheckBox jCheckBox_REALME;
+    private javax.swing.JCheckBox jCheckBox_SAMSUNG;
+    private javax.swing.JCheckBox jCheckBox_VIVO;
     private javax.swing.JComboBox<String> jComboBox_SearchType;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

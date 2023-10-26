@@ -1,15 +1,13 @@
+create database N5
+go
+use database N5
+
 create table NhaCungCap
 (
 	MaNCC				NCHAR(5)					NOT NULL,
 	TenNCC				NVARCHAR(10)				NOT NULL,
 	DiaChiNCC			NVARCHAR(10),
 	SDTNCC				NVARCHAR(10)
-
-
-
-
-
-	
 )
 create table Quyen
 (
@@ -195,3 +193,4 @@ alter table CTPhieuNhapKho
 
 alter table ChuongTrinhKhuyenMai
 	add constraint FK_MaSP_ChuongTrinhKhuyenMai foreign key (MaSP) references SanPham(MaSP)
+
