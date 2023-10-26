@@ -21,8 +21,8 @@ public class HoaDonDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=1234;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=Sellphones;"
+                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
@@ -51,7 +51,8 @@ public class HoaDonDAO {
                 nv.setMaNV(rs.getString("MaNV"));
                 nv.setNgayLap(rs.getString("NgayLap"));
                 nv.setNgayGiao(rs.getString("NgayXuat"));
-                nv.setTongTien(rs.getInt("TongGiaTri"));
+                nv.setTongTienGoc(rs.getInt("TongTienGoc"));
+                nv.setTongTienSauGiam(rs.getInt("TongTienSauGiam"));
                 
                 list.add(nv);
             }

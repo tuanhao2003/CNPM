@@ -8,15 +8,15 @@ public class mainGUI extends javax.swing.JFrame {
 
     private int working = -1;
     private String manvLogined;
-    private phieuNhapGUI pnGUI;
-
+    private NhanVienGUI nvGUI;
+   
     public mainGUI() {
         initComponents();
-        this.pnGUI = new phieuNhapGUI();
-
+        this.nvGUI = new NhanVienGUI();
+        
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-        addComponent("Nhập Hàng", this.pnGUI, "import.png");
-        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
         addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
         addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
@@ -25,6 +25,25 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
         solveEvent();
     }
+//=======
+//    private phieuNhapGUI pnGUI;
+
+//    public mainGUI() {
+//        initComponents();
+//        this.pnGUI = new phieuNhapGUI();
+//
+////thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+////        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+//        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//
+//        solveEvent();
+//
+//    }
 
 //hàm thêm phần tử
     private void addComponent(String buttonName, JPanel panelName, String path) {
