@@ -18,4 +18,10 @@ public class TaiKhoanBLL {
     public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
         return tkDao.getListall();
     }
+    public String AddTaiKhoan(String MaTK, String TenDangNhap, String MatKhau, int TrangThai){
+        if(tkDao.themTk(MaTK, TenDangNhap, MatKhau, TrangThai))
+            return "Thêm thành công";
+        else 
+            return "Thêm thất bại";
+    }
 }

@@ -11,10 +11,9 @@ package DTO;
 public class TaiKhoanDTO {
     private String MaTK;
     private String TenDangNhap;
-    private String MatKhau;
-    private int Quyen;
+    private String MatKhau; 
     private int TrangThai;
-    public TaiKhoanDTO(String MaTK, String TenDangNhap, String MatKhau, int Quyen, int TrangThai){
+    public TaiKhoanDTO(String MaTK, String TenDangNhap, String MatKhau, int TrangThai){
         this.MaTK = MaTK;
         this.TenDangNhap = TenDangNhap;
         this.MatKhau = MatKhau;
@@ -37,9 +36,6 @@ public class TaiKhoanDTO {
         return MatKhau;
     }
 
-    public int getQuyen() {
-        return Quyen;
-    }
 
     public int getTrangThai() {
         return TrangThai;
@@ -55,10 +51,6 @@ public class TaiKhoanDTO {
 
     public void setMatKhau(String MatKhau) {
         this.MatKhau = MatKhau;
-    }
-
-    public void setQuyen(int Quyen) {
-        this.Quyen = Quyen;
     }
 
     public void setTrangThai(int TrangThai) {

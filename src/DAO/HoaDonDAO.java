@@ -51,7 +51,8 @@ public class HoaDonDAO {
                 nv.setMaNV(rs.getString("MaNV"));
                 nv.setNgayLap(rs.getString("NgayLap"));
                 nv.setNgayGiao(rs.getString("NgayXuat"));
-                nv.setTongTien(rs.getInt("TongGiaTri"));
+                nv.setTongTienGoc(rs.getInt("TongTienGoc"));
+                nv.setTongTienSauGiam(rs.getInt("TongTienSauGiam"));
                 
                 list.add(nv);
             }
