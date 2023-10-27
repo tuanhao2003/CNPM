@@ -3,17 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+import java.sql.Connection;
 
 import DTO.TaiKhoanDTO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.sql.PreparedStatement; 
 
 /**
  *
  * @author toica
  */
 public class TaiKhoanDAO {
-    private sqlConnect sql;
+    private sqlConnect sqlConn;
+    String matk = "003";
     public TaiKhoanDAO(){
          this.sql=new sqlConnect();
     }
@@ -33,11 +36,19 @@ public class TaiKhoanDAO {
     }
     public void themTk(TaiKhoanDTO tk){
        boolean result = false;
-       if(openConnection()){
-           try{
-               String sql = "Insert into TaiKhoan values (?,?,?,?)";
-               
-           }
+       try{
+            String query = "Insert into TaiKhoan values (?,?,?,?)";
+            ResultSet resultSet = sqlConn.getSta().executeQuery(query);
+            Connection connection = sqlConn.getConnection();
+            
+            if(connection != null){
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1,matk);
+                matk++;
+                
+                
+            }
+       }
        }
     
 }
