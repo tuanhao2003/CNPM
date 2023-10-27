@@ -9,6 +9,7 @@ import GUI.khuyenMaiGUI;
 import DTO.khuyenMaiDTO;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement; 
 
 public class khuyenMaiDAO {
     private sqlConnect sqlConn;
