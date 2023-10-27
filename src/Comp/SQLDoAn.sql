@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+create database QLCH
+use QLCH
+=======
 create database N5
 go
 use database N5
 
+>>>>>>> 7303c5e1ced65a4fdfd450e66b597ff9c03a1db4
 create table NhaCungCap
 (
 	MaNCC				NCHAR(5)					NOT NULL,
