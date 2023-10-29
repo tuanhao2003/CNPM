@@ -1,6 +1,8 @@
 package BLL;
 
 import DAO.thongKeSanPhamDAO;
+import java.sql.ResultSet;
+import java.util.List;
 
 public class thongKeSanPhamBLL {
     private thongKeSanPhamDAO thongKeSanPhamDAO;
@@ -22,4 +24,7 @@ public class thongKeSanPhamBLL {
         return thongKeSanPhamDAO.getSanPhamCountByHangForMonth(hang);
     }
 
+    public List<String[]> getSalesDataForWeek() {
+        return thongKeSanPhamDAO.getSalesDataForWeek();
+    }
 }

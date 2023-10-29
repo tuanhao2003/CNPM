@@ -70,7 +70,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         modelHD.addColumn("Tổng Giá Trị");
         modelHD.addColumn("Tổng Giá Trị Sau Giảm");
         
-        modelCTHD.addColumn("STT");
+       
         modelCTHD.addColumn("Mã Sản Phẩm");
         modelCTHD.addColumn("Tên Sản Phẩm");
         modelCTHD.addColumn("Số Lượng");
@@ -240,7 +240,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         jLabel_Date.setName(""); // NOI18N
         jLabel_Date.setVerifyInputWhenFocusTarget(false);
 
-        jComboBox_SearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {" ","Mã Nhân Viên","Tên Nhân Viên" }));
+        jComboBox_SearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {" ","Mã Hóa Đơn","Mã Nhân Viên","Mã Khách Hàng" }));
         jComboBox_SearchType.setPreferredSize(new java.awt.Dimension(100, 30));
         jComboBox_SearchType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -370,19 +370,26 @@ public class HoaDonGUI extends javax.swing.JPanel {
         }
         int row = jTable_HD.getSelectedRow();
         HoaDonDTO hd = arrHoaDon.get(row);
+        System.out.print(hd.getMaHD()+"-----------------------------------------------");
         ArrayList<CTHoaDonDTO> listCTHD = cthdBLL.getListCTHoaDon();
-        for(CTHoaDonDTO cthd : listCTHD) {
-            if(cthd.getMaHD().equals(hd.getMaHD())) {
-            	
-                String id = cthd.getMaSP();
-                String name = cthd.getTenSP();
-                int soLuong = (int) cthd.getSoLuong();
-                int dongia = cthd.getDonGia();
-                
-                Object[] rowData = {id, name, dongia, soLuong};
-                modelCTHD.addRow(rowData);
-            }
-        }
+        System.out.print(listCTHD.size()+" Phần tử ");
+//        for(CTHoaDonDTO cthd : listCTHD) {
+//            System.out.print(cthd.getMaHD()+"-----------------------------------------------");
+//            int stt=1;
+//            if(cthd.getMaHD().equals(hd.getMaHD())) {
+//            	
+//                String id = cthd.getMaSP();
+//                String name = cthd.getTenSP();
+//                int soLuong = (int) cthd.getSoLuong();
+//                int dongia = cthd.getDonGia();
+//                
+//                Object[] rowData = {stt,id, name, dongia, soLuong};
+//                stt++;
+//                modelCTHD.addRow(rowData);
+//            }
+        
+//        }
+        loadCTHDlist(hd.getMaHD());
     
     }//GEN-LAST:event_jTable_HDMouseClicked
 
@@ -399,75 +406,171 @@ public class HoaDonGUI extends javax.swing.JPanel {
     private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
 
             // TODO add your handling code here:
+//        String selectedValue = jComboBox_SearchDate.getSelectedItem().toString();
+//        String selectedValueID = jComboBox_SearchType.getSelectedItem().toString();
+//        // Lấy giá trị từ jTextField
+////        String searchText = jTextField_Search.getText().trim();
+////
+////        // Tách giá trị ngày, tháng và năm từ chuỗi
+////        String[] dateParts = searchText.split("/");
+////        String day = "";
+////        String month = "";
+////        String year = "";
+////
+////        if (dateParts.length == 3) {
+////            day = dateParts[0].trim();
+////            month = dateParts[1].trim();
+////            year = dateParts[2].trim();
+////        } else {
+////            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+////            JOptionPane.showMessageDialog(this, "Giá trị ngày tháng năm không hợp lệ.");
+////            return; // Thoát khỏi hàm nếu giá trị không hợp lệ
+////        }
+////        
+////
+////        // Chuyển đổi giá trị ngày, tháng và năm thành số nguyên
+////        int dayValue = Integer.parseInt(day);
+////        int monthValue = Integer.parseInt(month);
+////        int yearValue = Integer.parseInt(year);
+////
+////        // Kiểm tra tính hợp lệ của ngày, tháng và năm
+////        if (isValidDate(dayValue, monthValue, yearValue)) {
+////            // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm
+////            if ("Ngày".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày trong jTable
+////                searchByDay(day);
+////            } else if ("Tháng".equals(selectedValue)) {
+////                // Tìm kiếm theo tháng trong jTable
+////                searchByMonth(month);
+////            } else if ("Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo năm trong jTable
+////                searchByYear(year);
+////            } else if ("Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo tháng và năm trong jTable
+////                searchByMonthAndYear(month, year);
+////            } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày, tháng và năm trong jTable
+////                searchByDayMonthYear(day, month, year);
+////            } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày, tháng và năm trong jTable
+////                SearchByKhoangCach(searchText);
+////            } 
+////            // ...
+////        } else {
+////            // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+////            JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+////        }
+//        String searchText = jTextField_Search.getText().trim();
+//
+//// Biểu thức chính quy cho ngày tháng có định dạng "ngày/tháng/năm"
+//        String datePattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+//
+//        if (searchText.matches(datePattern)) {
+//            // searchText đúng định dạng ngày tháng, thực hiện tìm kiếm
+//            String[] dateParts = searchText.split("/");
+//            String day = dateParts[0].trim();
+//            String month = dateParts[1].trim();
+//            String year = dateParts[2].trim();
+//
+//            int dayValue = Integer.parseInt(day);
+//            int monthValue = Integer.parseInt(month);
+//            int yearValue = Integer.parseInt(year);
+//
+//            if (isValidDate(dayValue, monthValue, yearValue)) {
+//                // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm theo các điều kiện
+//                if ("Ngày".equals(selectedValue)) {
+//                    searchByDay(day);
+//                } else if ("Tháng".equals(selectedValue)) {
+//                    searchByMonth(month);
+//                } else if ("Năm".equals(selectedValue)) {
+//                    searchByYear(year);
+//                } else if ("Tháng/Năm".equals(selectedValue)) {
+//                    searchByMonthAndYear(month, year);
+//                } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+//                    searchByDayMonthYear(day, month, year);
+//                } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+//                    SearchByKhoangCach(searchText);
+//                } 
+//                // ...
+//            } else {
+//                // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+//                JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+//            }
+//        }
+//
+//
+//        
+//        if ("Mã Hóa Đơn".equals(selectedValueID)){
+//            searchByIDHD(searchText);
+//        } else if ("Mã Nhân Viên".equals(selectedValueID)){
+//            searchByIDNV(searchText);
+//        } else if ("Mã Hóa Đơn".equals(selectedValueID)){
+//            searchByIDNV(searchText);
+//        } else if ("Tất cả".equals(selectedValueID)){
+//            loadHDlist();
+//        }
+//        else {
+//            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+//            JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
+//        }
         String selectedValue = jComboBox_SearchDate.getSelectedItem().toString();
         String selectedValueID = jComboBox_SearchType.getSelectedItem().toString();
-        // Lấy giá trị từ jTextField
         String searchText = jTextField_Search.getText().trim();
 
-        // Tách giá trị ngày, tháng và năm từ chuỗi
-        String[] dateParts = searchText.split("/");
-        String day = "";
-        String month = "";
-        String year = "";
+        // Kiểm tra xem selectedValue có rỗng không
+        if (!selectedValue.isEmpty()) {
+            // Tìm kiếm theo ngày tháng
+            // Biểu thức chính quy cho ngày tháng có định dạng "ngày/tháng/năm"
+            String datePattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
 
-        if (dateParts.length == 3) {
-            day = dateParts[0].trim();
-            month = dateParts[1].trim();
-            year = dateParts[2].trim();
+            if (searchText.matches(datePattern)) {
+                // searchText đúng định dạng ngày tháng, thực hiện tìm kiếm theo ngày tháng
+                String[] dateParts = searchText.split("/");
+                String day = dateParts[0].trim();
+                String month = dateParts[1].trim();
+                String year = dateParts[2].trim();
+
+                int dayValue = Integer.parseInt(day);
+                int monthValue = Integer.parseInt(month);
+                int yearValue = Integer.parseInt(year);
+
+                if (isValidDate(dayValue, monthValue, yearValue)) {
+                    // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm theo ngày tháng
+                    if ("Ngày".equals(selectedValue)) {
+                        searchByDay(day);
+                    } else if ("Tháng".equals(selectedValue)) {
+                        searchByMonth(month);
+                    } else if ("Năm".equals(selectedValue)) {
+                        searchByYear(year);
+                    } else if ("Tháng/Năm".equals(selectedValue)) {
+                        searchByMonthAndYear(month, year);
+                    } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+                        searchByDayMonthYear(day, month, year);
+                    } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+                        SearchByKhoangCach(searchText);
+                    } 
+                    // ...
+                } else {
+                    // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+                    JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+                }
+            }
         } else {
-            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
-            JOptionPane.showMessageDialog(this, "Giá trị ngày tháng năm không hợp lệ.");
-            return; // Thoát khỏi hàm nếu giá trị không hợp lệ
-        }
-        
-
-        // Chuyển đổi giá trị ngày, tháng và năm thành số nguyên
-        int dayValue = Integer.parseInt(day);
-        int monthValue = Integer.parseInt(month);
-        int yearValue = Integer.parseInt(year);
-
-        // Kiểm tra tính hợp lệ của ngày, tháng và năm
-        if (isValidDate(dayValue, monthValue, yearValue)) {
-            // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm
-            if ("Ngày".equals(selectedValue)) {
-                // Tìm kiếm theo ngày trong jTable
-                searchByDay(day);
-            } else if ("Tháng".equals(selectedValue)) {
-                // Tìm kiếm theo tháng trong jTable
-                searchByMonth(month);
-            } else if ("Năm".equals(selectedValue)) {
-                // Tìm kiếm theo năm trong jTable
-                searchByYear(year);
-            } else if ("Tháng/Năm".equals(selectedValue)) {
-                // Tìm kiếm theo tháng và năm trong jTable
-                searchByMonthAndYear(month, year);
-            } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
-                // Tìm kiếm theo ngày, tháng và năm trong jTable
-                searchByDayMonthYear(day, month, year);
-            } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
-                // Tìm kiếm theo ngày, tháng và năm trong jTable
-                SearchByKhoangCach(searchText);
-            } 
-            // ...
-        } else {
-            // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
-            JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+            // Tìm kiếm theo ID nhân viên
+            if ("Mã Hóa Đơn".equals(selectedValueID)) {
+                searchByIDHD(searchText);
+            } else if ("Mã Nhân Viên".equals(selectedValueID)) {
+                searchByIDNV(searchText);
+            } else if ("Mã Hóa Đơn".equals(selectedValueID)) {
+                searchByIDNV(searchText);
+            } else if ("Tất cả".equals(selectedValueID)) {
+                loadHDlist();
+            } else {
+                // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+                JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
+            }
         }
 
-        
-        if ("Mã Hóa Đơn".equals(selectedValueID)){
-            searchByIDHD(searchText);
-        } else if ("Mã Nhân Viên".equals(selectedValueID)){
-            searchByIDNV(searchText);
-        } else if ("Mã Hóa Đơn".equals(selectedValueID)){
-            searchByIDNV(searchText);
-        } else if ("Tất cả".equals(selectedValueID)){
-            loadHDlist();
-        }
-        else {
-            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
-            JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
-        }
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
     private void jComboBox_SearchTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SearchTypeActionPerformed
@@ -565,43 +668,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         // Thiết lập giá trị mẫu cho jTextField
         jTextField_Search.setText(placeholderText);
     }
-        private void loadHDlist(){
-        arrHoaDon = hdBLL.getListHoaDon();
-//        for(int i = modelSP.getRowCount()-1;i>=0;i--)
-//            modelSP.removeRow(i);
-        for(int i = 0; i<arrHoaDon.size();i++){
-            HoaDonDTO em= arrHoaDon.get(i);
-            int stt= i+1;
-            String mahd = em.getMaHD();
-            String manv = em.getMaNV();
-            String makh = em.getMaKH();
-            String ngaylap = em.getNgayLap();
-            String ngaygiao = em.getNgayGiao();
-            int tong = em.getTongTienGoc();
-            int tongsaugiam= em.getTongTienSauGiam();
-            Object[] row = {stt,mahd,manv,makh,ngaylap,ngaygiao,tong,tongsaugiam};
-            modelHD.addRow(row);
-        }
-    }
-    private void loadCTHDlist(String mahd){
-        arrCTHoaDon = cthdBLL.getListCTHoaDon();
-//        for(int i = modelSP.getRowCount()-1;i>=0;i--)
-//            modelSP.removeRow(i);
-        for(int i = 0; i<arrCTHoaDon.size();i++){
-            CTHoaDonDTO em= arrCTHoaDon.get(i);
-            int stt= i+1;
-            String masp = em.getMaSP();
-            String tensp = em.getTenSP();
-            int soluong = em.getSoLuong();
-            int dongia = em.getDonGia();
-            String Mahd= em.getMaHD();
-            if (mahd.equals(Mahd)) {
-        	  Object[] row = {masp,tensp,soluong,dongia};
-        	  modelCTHD.addRow(row);
-          }
-
-        }
-    }
+    
     private void searchByIDKH(String idkh) {
     // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
         
@@ -621,8 +688,16 @@ public class HoaDonGUI extends javax.swing.JPanel {
     }
     private void searchByIDNV(String idnv) {
     // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
+        DefaultTableModel newModel = new DefaultTableModel(); // Tạo một DefaultTableModel mới để chứa kết quả tìm kiếm\
+        newModel.addColumn("STT");
+        newModel.addColumn("Mã Hóa Đơn");
+        newModel.addColumn("Mã Nhân Viên");
+        newModel.addColumn("Mã Khách Hàng");
+        newModel.addColumn("Ngày Lập");
+        newModel.addColumn("Ngày Xuất");
+        newModel.addColumn("Tổng Giá Trị");
+        newModel.addColumn("Tổng Giá Trị Sau Giảm");
         
-        modelHD.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong jTable
         int stt=1;
         for (int i = 0; i < modelHD.getRowCount(); i++) {
             String rowData = modelHD.getValueAt(i, 1).toString(); // Cột ID là cột 0
@@ -630,7 +705,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
                 // Nếu tìm thấy ID, thêm hàng tương ứng vào jTable
                 
                 Object[] row = new Object[]{stt,modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2),modelHD.getValueAt(i, 3),modelHD.getValueAt(i, 4),modelHD.getValueAt(i, 5),modelHD.getValueAt(i, 6)};
-                modelHD.addRow(row);
+                newModel.addRow(row);
                 stt++;
                 
             }
@@ -921,7 +996,43 @@ public class HoaDonGUI extends javax.swing.JPanel {
     }
 
 
+    private void loadHDlist(){
+        arrHoaDon = hdBLL.getListHoaDon();
+        for(int i = modelHD.getRowCount()-1;i>=0;i--)
+            modelHD.removeRow(i);
+        for(int i = 0; i<arrHoaDon.size();i++){
+            HoaDonDTO em= arrHoaDon.get(i);
+            int stt= i+1;
+            String mahd = em.getMaHD();
+            String manv = em.getMaNV();
+            String makh = em.getMaKH();
+            String ngaylap = em.getNgayLap();
+            String ngaygiao = em.getNgayGiao();
+            int tong = em.getTongTienGoc();
+            int tongsaugiam= em.getTongTienSauGiam();
+            Object[] row = {stt,mahd,manv,makh,ngaylap,ngaygiao,tong,tongsaugiam};
+            modelHD.addRow(row);
+        }
+    }
+    private void loadCTHDlist(String mahd){
+        arrCTHoaDon = cthdBLL.getListCTHoaDon();
+        for(int i = modelCTHD.getRowCount()-1;i>=0;i--)
+            modelCTHD.removeRow(i);
+        for(int i = 0; i<arrCTHoaDon.size();i++){
+            CTHoaDonDTO em= arrCTHoaDon.get(i);
+            
+            String masp = em.getMaSP();
+            String tensp = em.getTenSP();
+            int soluong = em.getSoLuong();
+            int dongia = em.getDonGia();
+            String Mahd= em.getMaHD();
+            if (mahd.equals(Mahd)) {
+        	  Object[] row = {masp,tensp,soluong,dongia};
+        	  modelCTHD.addRow(row);
+          }
 
+        }
+    }
 
     
 

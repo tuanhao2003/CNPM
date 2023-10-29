@@ -6,10 +6,15 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.ChartPanel;
 import BLL.thongKeSanPhamBLL;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.text.DecimalFormat;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import java.util.List;
+import org.jfree.chart.labels.CategoryItemLabelGenerator;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
 
 /**
  *
@@ -176,7 +181,7 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,39 +230,38 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(209, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,32 +330,61 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         jPanel1.revalidate();
     }
     
-    private void createBarChart(){
-        // Tạo dữ liệu cho Bar Chart
+    private void createBarChart() {
+        thongKeSanPhamBLL bll = new thongKeSanPhamBLL();
+        List<String[]> salesData = bll.getSalesDataForWeek();
+
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(100, "Category 1", "Value 1");
-        dataset.addValue(200, "Category 1", "Value 2");
-        dataset.addValue(300, "Category 1", "Value 3");
-        dataset.addValue(400, "Category 2", "Value 1");
-        dataset.addValue(500, "Category 2", "Value 2");
-        dataset.addValue(600, "Category 2", "Value 3");
 
-        // Tạo Bar Chart
+        for (String[] data : salesData) {
+            String ngayTrongTuan = data[0];
+            int tongSoLuong = Integer.parseInt(data[1]);
+            String category;
+            Color color;
+
+            if (ngayTrongTuan.equals("Hôm nay")) {
+                category = "Category 1";
+                color = Color.GREEN;
+            } else {
+                category = "Category 2";
+                color = Color.RED;
+            }
+
+            dataset.addValue(tongSoLuong, category, ngayTrongTuan);
+        }
+
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Bar Chart Example", // Tiêu đề
-                "Category",          // Label trục x
-                "Value",             // Label trục y
-                dataset,             // Dữ liệu
-                PlotOrientation.VERTICAL, // Định dạng Bar Chart (VERTICAL hoặc HORIZONTAL)
-                true, true, false);
+            "Hôm nay so với các ngày trong tuần",
+            "Category",
+            "Value",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true, true, false);
 
-        // Sử dụng ChartPanel để hiển thị Bar Chart
+        CategoryPlot plot = barChart.getCategoryPlot();
+
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+        // Đặt màu cho cột
+        for (int i = 0; i < salesData.size(); i++) {
+            String ngayTrongTuan = salesData.get(i)[0];
+            Color color = ngayTrongTuan.equals("Hôm nay") ? Color.GREEN : Color.RED;
+            renderer.setSeriesPaint(i, color);
+        }
+
+        // Hiển thị số lượng trên đầu mỗi cột
+        CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator("{2}", new DecimalFormat("0"));
+        renderer.setBaseItemLabelGenerator(generator);
+        renderer.setBaseItemLabelsVisible(true);
+
         ChartPanel chartPanel = new ChartPanel(barChart);
         chartPanel.setSize(300, 300);
         jPanel6.removeAll();
-        jPanel6.add(chartPanel, BorderLayout.CENTER);       
+        jPanel6.add(chartPanel, BorderLayout.CENTER);
         jPanel6.revalidate();
     }
+
+
   
     private void updateLabelsNgay() {
         // Lấy dữ liệu tổng số lượng sản phẩm của từng hãng từ cơ sở dữ liệu

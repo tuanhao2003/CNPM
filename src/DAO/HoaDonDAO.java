@@ -21,8 +21,8 @@ public class HoaDonDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=Sellphones;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
+                    + "user=sa;password=1234;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
@@ -42,7 +42,7 @@ public class HoaDonDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDonDTO nv = new HoaDonDTO();
-                String maHD = rs.getString("MaHD");
+                String maHD = rs.getString("MaHoaDon");
                 if (!maHD.startsWith("HD")) {
                     continue; // Chuyển sang bản ghi tiếp theo nếu MaNCC không bắt đầu bằng "NCC"
                 }
@@ -51,8 +51,8 @@ public class HoaDonDAO {
                 nv.setMaNV(rs.getString("MaNV"));
                 nv.setNgayLap(rs.getString("NgayLap"));
                 nv.setNgayGiao(rs.getString("NgayXuat"));
-                nv.setTongTienGoc(rs.getInt("TongTienGoc"));
-                nv.setTongTienSauGiam(rs.getInt("TongTienSauGiam"));
+                nv.setTongTienGoc(rs.getInt("TongGiaGoc"));
+                nv.setTongTienSauGiam(rs.getInt("TongGiaSauGiam"));
                 
                 list.add(nv);
             }

@@ -17,9 +17,9 @@ public class CTHoaDonDTO {
     private int DonGia;
 
     public CTHoaDonDTO() {
-        MaHD = null;
-        MaSP = null;
-        TenSP = null;
+        MaHD = "";
+        MaSP = "";
+        TenSP = "";
         SoLuong = 0;
         DonGia = 0;
     }

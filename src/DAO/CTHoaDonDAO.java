@@ -21,7 +21,7 @@ public class CTHoaDonDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=Sellphones;"
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
                     + "user=sa;password=1234;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
@@ -42,11 +42,11 @@ public class CTHoaDonDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 CTHoaDonDTO nv = new CTHoaDonDTO();
-                String maHD = rs.getString("MaHD");
+                String maHD = rs.getString("MaHoaDon");
                 if (!maHD.startsWith("HD")) {
                     continue; // Chuyển sang bản ghi tiếp theo nếu MaNCC không bắt đầu bằng "NCC"
                 }
-                
+                nv.setMaHD(maHD);
                 nv.setMaSP(rs.getString("MaSP"));
                 nv.setTenSP(rs.getString("TenSP"));
                 nv.setSoLuong(rs.getInt("SoLuong"));
