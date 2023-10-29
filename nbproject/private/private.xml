@@ -6,10 +6,8 @@
             <file>file:/C:/SGU/test/CNPM/src/DAO/sqlConnect.java</file>
             <file>file:/C:/SGU/test/CNPM/src/GUI/thongKeSanPhamGUI.java</file>
             <file>file:/C:/SGU/test/CNPM/src/DAO/thongKeSanPhamDAO.java</file>
+            <file>file:/C:/SGU/test/CNPM/src/BLL/thongKeSanPhamBLL.java</file>
             <file>file:/C:/SGU/test/CNPM/src/GUI/mainGUI.java</file>
-            <file>file:/C:/SGU/test/CNPM/src/GUI/khuyenMaiGUI.java</file>
-            <file>file:/C:/SGU/test/CNPM/src/BLL/phieuNhapBLL.java</file>
-            <file>file:/C:/SGU/test/CNPM/src/GUI/Login.java</file>
         </group>
     </open-files>
 </project-private>

@@ -31,8 +31,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jTableTaiKhoan.setModel(modelTK);
         modelTK.addColumn("Mã Tài Khoản");
         modelTK.addColumn("Tên đăng nhập");
-        modelTK.addColumn("Mật khẩu");
-        modelTK.addColumn("Quyền");
+        modelTK.addColumn("Mật khẩu");       
         modelTK.addColumn("Trạng thái");
         loadTKList();
     }
@@ -46,11 +45,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             TaiKhoanDTO tk = arrTaiKhoan.get(i);
             String id= tk.getMaTK();
             String username = tk.getTenDangNhap();
-            String password = tk.getMatKhau();
-            int quyen = tk.getQuyen();
+            String password = tk.getMatKhau();            
             int trangthai = tk.getTrangThai();
             
-            Object[] row = {id,username,password,quyen,trangthai};
+            Object[] row = {id,username,password,trangthai};
             modelTK.addRow(row);
         }
     }

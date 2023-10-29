@@ -1,7 +1,6 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JTable;
@@ -10,6 +9,7 @@ import GUI.khuyenMaiGUI;
 import DTO.khuyenMaiDTO;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement; 
 
 public class khuyenMaiDAO {
     private sqlConnect sqlConn;
