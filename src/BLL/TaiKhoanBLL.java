@@ -4,9 +4,11 @@
  */
 package BLL;
 
+import DAO.PhanQuyenDAO;
 import DAO.TaiKhoanDAO;
 import DTO.TaiKhoanDTO;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  */
 public class TaiKhoanBLL {
     TaiKhoanDAO tkDao = new TaiKhoanDAO();
-    
+    PhanQuyenDAO pqDao = new PhanQuyenDAO();
     public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
         return tkDao.getListall();
     }
@@ -32,8 +34,8 @@ public class TaiKhoanBLL {
             return "Xóa thất bại";
     }
     
-    public String UpTK( String username, String password, int trangthai){
-       if(tkDao.UpTK(username,password,trangthai))
+    public String UpTK( String id, String username, String password, int trangthai, int quyen){
+       if(tkDao.updateTK(username,password,trangthai) )
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }
