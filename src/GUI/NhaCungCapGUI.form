@@ -134,29 +134,11 @@
                       <Component id="jTextField_SDT" alignment="1" pref="243" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="148" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" pref="148" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField_DiaChi" min="-2" pref="243" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" pref="148" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jCheckBox_APPLE" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jCheckBox_VIVO" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jCheckBox_OPPO" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jCheckBox_SAMSUNG" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jCheckBox_REALME" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jTextField_DiaChi" min="-2" pref="243" max="-2" attributes="0"/>
+                      <Component id="jButton_SanPhamNCC" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -176,21 +158,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextField_SDT" alignment="0" pref="66" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox_OPPO" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="jCheckBox_SAMSUNG" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="0" pref="67" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextField_SDT" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
+                              <Component id="jButton_SanPhamNCC" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jCheckBox_APPLE" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="jCheckBox_VIVO" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCheckBox_REALME" min="-2" pref="16" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -200,12 +173,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="jTextField_DiaChi">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -230,44 +197,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField_Ten">
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_OPPO">
+        <Component class="javax.swing.JButton" name="jButton_SanPhamNCC">
           <Properties>
-            <Property name="text" type="java.lang.String" value="OPPO"/>
+            <Property name="text" type="java.lang.String" value="Th&#xea;m S&#x1ea3;n Ph&#x1ea9;m Nh&#xe0; Cung C&#x1ea5;p"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_OPPOActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_SAMSUNG">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="SAMSUNG"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_SAMSUNGActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_APPLE">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="APPLE"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_APPLEActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_VIVO">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="VIVO"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_VIVOActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox_REALME">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="REALME"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox_REALMEActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_SanPhamNCCActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -329,7 +264,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="73" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="72" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

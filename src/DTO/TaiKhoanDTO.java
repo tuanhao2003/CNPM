@@ -11,17 +11,16 @@ package DTO;
 public class TaiKhoanDTO {
     private String MaTK;
     private String TenDangNhap;
-    private String MatKhau; 
+    private String MatKhau;
     private int TrangThai;
     public TaiKhoanDTO(String MaTK, String TenDangNhap, String MatKhau, int TrangThai){
         this.MaTK = MaTK;
         this.TenDangNhap = TenDangNhap;
-        this.MatKhau = MatKhau;
+        this.MatKhau = MatKhau;       
         this.TrangThai = TrangThai;
     }
 
     public TaiKhoanDTO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getMaTK() {
@@ -55,6 +54,6 @@ public class TaiKhoanDTO {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
-    }
+    }   
     
 }
