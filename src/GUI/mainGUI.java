@@ -19,11 +19,11 @@ public class mainGUI extends javax.swing.JFrame {
 //        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 //        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
+        addComponent("Thống Kê Doanh Thu", new thongKeGUI(), "empty.png");        
 //        solveEvent();
-            addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+//            addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
 
-          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+//          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
           addComponent("Nha cung cap",new NhaCungCapGUI(),"empty.png");
     }
 //=======

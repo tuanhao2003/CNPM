@@ -4,6 +4,20 @@
  */
 package GUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
 /**
  *
  * @author loc01
@@ -28,34 +42,204 @@ public class thongKeGUI extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        Start_Date = new javax.swing.JTextPane();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        End_Date = new javax.swing.JTextPane();
+        dayFilter_Table = new javax.swing.JButton();
+        Pie = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_Ngay = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        Start_Date1 = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        End_Date1 = new javax.swing.JTextPane();
+        monthFilter1 = new javax.swing.JButton();
+        Pie2 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_Thang = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Lọc Từ Ngày:");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Đến Ngày:");
+
+        jScrollPane10.setViewportView(Start_Date);
+
+        jScrollPane11.setViewportView(End_Date);
+
+        dayFilter_Table.setText("Lọc");
+        dayFilter_Table.setPreferredSize(new java.awt.Dimension(100, 30));
+        dayFilter_Table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayFilter_TableActionPerformed(evt);
+            }
+        });
+
+        Pie.setText("Biểu đồ");
+        Pie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PieActionPerformed(evt);
+            }
+        });
+
+        jTable_Ngay.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_Ngay);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 897, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(dayFilter_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(Pie, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(jScrollPane10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(jScrollPane11))
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dayFilter_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Pie, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Doanh thu ngày", jPanel1);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Lọc Từ Ngày:");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Đến Ngày:");
+
+        jScrollPane9.setViewportView(Start_Date1);
+
+        jScrollPane8.setViewportView(End_Date1);
+
+        monthFilter1.setText("Lọc");
+        monthFilter1.setPreferredSize(new java.awt.Dimension(100, 30));
+        monthFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthFilter1ActionPerformed(evt);
+            }
+        });
+
+        Pie2.setText("Biều đồ");
+        Pie2.setPreferredSize(new java.awt.Dimension(100, 30));
+        Pie2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pie2ActionPerformed(evt);
+            }
+        });
+
+        jTable_Thang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable_Thang);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 897, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
+                        .addComponent(monthFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(Pie2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(jScrollPane9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8))
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(monthFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Pie2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Doanh thu tháng", jPanel2);
@@ -77,11 +261,136 @@ public class thongKeGUI extends javax.swing.JPanel {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+// Doanh thu theo tháng----------------------------------------------------------------------------------------------
+    private void Pie2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pie2ActionPerformed
+        // TODO add your handling code here:
+        Connection conn = null;
+        try {
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+            + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
+            conn = DriverManager.getConnection(connectionUrl);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = dateFormat.parse(Start_Date1.getText());
+            Date endDate = dateFormat.parse(End_Date1.getText());
+
+            String query = "Select DATEPART(YEAR, NgayLap) as year, DATEPART(MONTH, NgayLap) as month, sum(DoanhThu.TongDoanhThu) AS TDT From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? Group by DATEPART(year, NgayLap), DATEPART(month, NgayLap) order by year, month";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, new java.sql.Date(startDate.getTime()));
+            pstmt.setDate(2, new java.sql.Date(endDate.getTime()));
+
+            ResultSet rs = pstmt.executeQuery();
+            DefaultPieDataset pieDataset = new DefaultPieDataset();
+            while(rs.next()){
+                //pieDataset.setValue;
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                int TongDoanhThu = rs.getInt("TDT");
+                String ngayLap = year + "-" + month;
+                pieDataset.setValue(ngayLap.toString(), TongDoanhThu);
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Thống kê doanh thu theo tháng", pieDataset, true, true, true);
+            PiePlot P = (PiePlot)chart.getPlot();
+            //        P.setForegroundAlpha(TOP_ALIGNMENT);
+            ChartFrame frame = new ChartFrame("Thống kê Doanh thu", chart);
+            frame.setVisible(true);
+            frame.setSize(450, 500);
+        }catch(SQLException | ParseException e )
+        {
+            e.printStackTrace();
+        }finally{
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_Pie2ActionPerformed
+//Bảng thống kê theo ngày
+    private void dayFilter_TableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayFilter_TableActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_dayFilter_TableActionPerformed
+// Doanh thu theo ngày ---------------------------------------------------------------------------------------
+    private void PieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PieActionPerformed
+        // TODO add your handling code here:
+        Connection conn = null;
+        try {
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+            + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
+            conn = DriverManager.getConnection(connectionUrl);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDate = dateFormat.parse(Start_Date.getText());
+            Date endDate = dateFormat.parse(End_Date.getText());
+
+            String query = "Select DATEPART(YEAR, NgayLap) as year, DATEPART(MONTH, NgayLap) as month, DATEPART(DAY, NgayLap) as day, sum(DoanhThu.TongDoanhThu) AS TDT From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? Group by DATEPART(year, NgayLap), DATEPART(month, NgayLap), DATEPART(DAY, NgayLap) order by year, month, day";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setDate(1, new java.sql.Date(startDate.getTime()));
+            pstmt.setDate(2, new java.sql.Date(endDate.getTime()));
+
+            ResultSet rs = pstmt.executeQuery();
+            DefaultPieDataset pieDataset = new DefaultPieDataset();
+            while(rs.next()){
+                //pieDataset.setValue;
+                //String ngayLap = rs.getString("NgayLap");
+                int year = rs.getInt("year");
+                int month = rs.getInt("month");
+                int day = rs.getInt("day");
+                int TongDoanhThu = rs.getInt("TDT");
+                String ngayLap = year + "-" + month + "-" + day;
+                pieDataset.setValue(ngayLap.toString(), TongDoanhThu);
+            }
+            JFreeChart chart = ChartFactory.createPieChart("Thống kê doanh thu theo ngày", pieDataset, true, true, true);
+            PiePlot P = (PiePlot)chart.getPlot();
+            //        P.setForegroundAlpha(TOP_ALIGNMENT);
+            ChartFrame frame = new ChartFrame("Thống kê Doanh thu", chart);
+            frame.setVisible(true);
+            frame.setSize(450, 500);
+        }catch(SQLException | ParseException e )
+        {
+            e.printStackTrace();
+        }finally{
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_PieActionPerformed
+//Bảng thống kê theo tháng
+    private void monthFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthFilter1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthFilter1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane End_Date;
+    private javax.swing.JTextPane End_Date1;
+    private javax.swing.JButton Pie;
+    private javax.swing.JButton Pie2;
+    private javax.swing.JTextPane Start_Date;
+    private javax.swing.JTextPane Start_Date1;
+    private javax.swing.JButton dayFilter_Table;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable_Ngay;
+    private javax.swing.JTable jTable_Thang;
+    private javax.swing.JButton monthFilter1;
     // End of variables declaration//GEN-END:variables
 }
