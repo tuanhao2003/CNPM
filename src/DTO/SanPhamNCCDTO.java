@@ -21,6 +21,12 @@ public class SanPhamNCCDTO {
         this.DonGia = DonGia;
     }
 
+    public SanPhamNCCDTO(){
+        MaNCC=null;
+        MaSP=null; 
+        SoLuong=0;
+        DonGia=0;
+    }
     public String getMaNCC() {
         return MaNCC;
     }
