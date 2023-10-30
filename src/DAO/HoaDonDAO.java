@@ -66,7 +66,7 @@ public class HoaDonDAO {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "UPDATE HoaDon SET NgayGiao = ? WHERE MaHoaDon = ?";
+                String sql = "UPDATE HoaDon SET NgayXuat = ? WHERE MaHoaDon = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, NgayGiao);
                 ps.setString(2, id);
