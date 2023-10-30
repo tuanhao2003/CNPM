@@ -15,7 +15,8 @@ public class HoaDonDTO {
     private String MaNV;
     private String NgayLap;
     private String NgayGiao;
-    private int TongTien;
+    private int TongTienGoc;
+    private int TongTienSauGiam;
     
     public HoaDonDTO(){
         MaHD=null;
@@ -23,16 +24,35 @@ public class HoaDonDTO {
         MaNV=null;
         NgayLap=null;
         NgayGiao=null;
-        TongTien=0;
+        TongTienGoc=0;
+        TongTienSauGiam=0;
     }
 
-    public HoaDonDTO(String MaHD, String MaKH, String MaNV, String NgayLap, String NgayGiao, int TongTien) {
+    public HoaDonDTO(String MaHD, String MaKH, String MaNV, String NgayLap, String NgayGiao, int TongTienGoc,int TongTienSauGiam) {
         this.MaHD = MaHD;
         this.MaKH = MaKH;
         this.MaNV = MaNV;
         this.NgayLap = NgayLap;
         this.NgayGiao = NgayGiao;
-        this.TongTien = TongTien;
+        this.TongTienGoc = TongTienGoc;
+        this.TongTienSauGiam = TongTienSauGiam;
+
+    }
+
+    public int getTongTienSauGiam() {
+        return TongTienSauGiam;
+    }
+
+    public void setTongTienSauGiam(int TongTienSauGiam) {
+        this.TongTienSauGiam = TongTienSauGiam;
+    }
+
+    public void setTongTienGoc(int TongTienGoc) {
+        this.TongTienGoc = TongTienGoc;
+    }
+
+    public int getTongTienGoc() {
+        return TongTienGoc;
     }
 
     public String getMaHD() {
@@ -55,9 +75,7 @@ public class HoaDonDTO {
         return NgayLap;
     }
 
-    public int getTongTien() {
-        return TongTien;
-    }
+   
 
     public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
@@ -79,9 +97,7 @@ public class HoaDonDTO {
         this.NgayLap = NgayLap;
     }
 
-    public void setTongTien(int TongTien) {
-        this.TongTien = TongTien;
-    }
+    
     
     
 }

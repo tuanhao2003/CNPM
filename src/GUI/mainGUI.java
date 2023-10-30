@@ -1,51 +1,81 @@
 package GUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class mainGUI extends javax.swing.JFrame {  
-    private int working=-1;
+public class mainGUI extends javax.swing.JFrame {
+
+    private int working = -1;
     private String manvLogined;
-    private phieuNhapGUI pnGUI;
+    private NhanVienGUI nvGUI;
    
     public mainGUI() {
         initComponents();
-        this.pnGUI = new phieuNhapGUI();
+        this.nvGUI = new NhanVienGUI();
         
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
-       addComponent("Nhập Hàng", this.pnGUI, "import.png");
+
+//       addComponent("Nhập Hàng", this.pnGUI, "import.png");
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-//       addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+       addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 //       addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
-       addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
-       addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-       addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
-       addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
+//       addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
+//       addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//       addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
+//       addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
        addComponent("Sản Phẩm", new SanPhamGUI(), "empty.png");    
         solveEvent();
+
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
+//        solveEvent();
+          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+
     }
-    
+//=======
+//    private phieuNhapGUI pnGUI;
+
+//    public mainGUI() {
+//        initComponents();
+//        this.pnGUI = new phieuNhapGUI();
+//
+////thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+////        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+//        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//
+//        solveEvent();
+//
+//    }
+
 //hàm thêm phần tử
-    private void addComponent(String buttonName, JPanel panelName, String path){
+    private void addComponent(String buttonName, JPanel panelName, String path) {
         int compQuantity = this.toolsPanel.getComponentCount();
-        this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50*(compQuantity+1)));
+        this.toolsPanel.setPreferredSize(new Dimension(this.toolsPanel.getWidth(), 50 * (compQuantity + 1)));
         JButton btn = new JButton(buttonName);
-        btn.setPreferredSize(new Dimension(200,50));
+        btn.setPreferredSize(new Dimension(200, 50));
         btn.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-        btn.setBackground(new Color(80,130,100));
+        btn.setBackground(new Color(80, 130, 100));
         btn.setForeground(Color.white);
         btn.setFont(new Font(btn.getFont().getName(), Font.BOLD, 14));
         btn.setFocusPainted(false);
         btn.setContentAreaFilled(false);
         btn.setHorizontalAlignment(SwingConstants.LEFT);
         btn.setIconTextGap(30);
-        if(path == null){
+        if (path == null) {
             btn.setIcon(null);
+        } else {
+            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/" + path)).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         }
-        else{
-            btn.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource("Comp/"+path)).getImage().getScaledInstance(40,40 , Image.SCALE_SMOOTH)));
-        }
-        
+
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,67 +83,62 @@ public class mainGUI extends javax.swing.JFrame {
                 mainDisplay.add(panelName);
                 mainDisplay.repaint();
                 mainDisplay.revalidate();
-                title.setText("Quản Lý "+buttonName);
+                title.setText("Quản Lý " + buttonName);
             }
         });
         this.toolsPanel.add(btn);
         this.logo.requestFocusInWindow();
     }
-    private void addComponent(String buttonName, JPanel panelName){
+
+    private void addComponent(String buttonName, JPanel panelName) {
         addComponent(buttonName, panelName, null);
     }
-    
-    
-    
-    
+
 //xử lý sự kiện
-    private void solveEvent(){
+    private void solveEvent() {
 //Lấy mã nv đã đăng nhập và thêm vào màn hình chính
-        this.manvLogined= "nv001";//đổi thành phương thức get mã nhân viên
-        this.labelManv.setText(this.labelManv.getText()+this.manvLogined);
-        
+        this.manvLogined = "nv001";//đổi thành phương thức get mã nhân viên
+        this.labelManv.setText(this.labelManv.getText() + this.manvLogined);
+
 //sửa nút logOut
-        logOut.setPreferredSize(new Dimension(50,50));
+        logOut.setPreferredSize(new Dimension(50, 50));
         logOut.setForeground(Color.white);
         logOut.setFont(new Font(logOut.getFont().getName(), Font.BOLD, 14));
         logOut.setFocusPainted(false);
         logOut.setContentAreaFilled(false);
-        
-        logOut.addActionListener(new ActionListener(){
+
+        logOut.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 SwingUtilities.windowForComponent(logoContainer).dispose();
                 Login lg = new Login();
                 lg.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
                 lg.setVisible(true);
             }
         });
-        
+
 //xử lý hoạt ảnh đang hoạt động của thanh công cụ
-        for(int i=0; i<this.toolsPanel.getComponentCount(); i++){
+        for (int i = 0; i < this.toolsPanel.getComponentCount(); i++) {
             int tmp = i;
             this.toolsPanel.getComponent(i).addFocusListener(new FocusAdapter() {
                 @Override
                 public void focusGained(FocusEvent e) {
-                    if(working>=0){
+                    if (working >= 0) {
                         ((JButton) toolsPanel.getComponent(working)).setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
                     }
-                    working=tmp;
+                    working = tmp;
                     ((JButton) toolsPanel.getComponent(tmp)).setBorder(BorderFactory.createMatteBorder(0, 5, 0, 0, Color.green));
                 }
             });
         }
 
     }
-    
-    
-    
-    
-    
+
     public static void main(String[] args) {
         mainGUI display = new mainGUI();
         display.setVisible(true);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
