@@ -9,14 +9,20 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 /**
  *
@@ -24,11 +30,13 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class thongKeGUI extends javax.swing.JPanel {
 
+    Connection conn;
     /**
      * Creates new form thongKeGUI
      */
     public thongKeGUI() {
         initComponents();
+        
     }
 
     /**
@@ -95,15 +103,20 @@ public class thongKeGUI extends javax.swing.JPanel {
 
         jTable_Ngay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Ngày Lập", "Doanh Thu"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable_Ngay);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -126,9 +139,9 @@ public class thongKeGUI extends javax.swing.JPanel {
                         .addGap(85, 85, 85)
                         .addComponent(Pie, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(51, 51, 51)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,16 +155,16 @@ public class thongKeGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                            .addComponent(jScrollPane11))
-                        .addGap(30, 30, 30))
+                            .addComponent(jScrollPane11)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dayFilter_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Pie, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane1.addTab("Doanh thu ngày", jPanel1);
@@ -184,16 +197,16 @@ public class thongKeGUI extends javax.swing.JPanel {
 
         jTable_Thang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Ngày Lập", "Doanh Thu"
             }
         ));
         jScrollPane4.setViewportView(jTable_Thang);
+        if (jTable_Thang.getColumnModel().getColumnCount() > 0) {
+            jTable_Thang.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -249,9 +262,8 @@ public class thongKeGUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +278,7 @@ public class thongKeGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         Connection conn = null;
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCH1;"
             + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
 
@@ -311,14 +323,36 @@ public class thongKeGUI extends javax.swing.JPanel {
 //Bảng thống kê theo ngày
     private void dayFilter_TableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayFilter_TableActionPerformed
         // TODO add your handling code here:
-
+        String startDate = Start_Date.getText();
+        String endDate = End_Date.getText();
+        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+            connecttoDatabase();
+            List<Object[]> loc = LocNgay(startDate, endDate);
+            DefaultTableModel model = (DefaultTableModel) jTable_Ngay.getModel();
+            model.setRowCount(0);
+            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+            
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            jTable_Ngay.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            jTable_Ngay.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+            jTable_Ngay.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+            
+            int stt = 1;
+            
+            for(Object[] row : loc){
+               double TienValue = (Double)row[1];
+               String formattedTien = currencyFormatter.format(TienValue);
+               model.addRow(new Object[] { stt++, row[0], formattedTien });
+            }
+        }
     }//GEN-LAST:event_dayFilter_TableActionPerformed
 // Doanh thu theo ngày ---------------------------------------------------------------------------------------
     private void PieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PieActionPerformed
         // TODO add your handling code here:
         Connection conn = null;
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCH1;"
             + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
 
@@ -365,9 +399,87 @@ public class thongKeGUI extends javax.swing.JPanel {
 //Bảng thống kê theo tháng
     private void monthFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthFilter1ActionPerformed
         // TODO add your handling code here:
+        String startDate = Start_Date1.getText();
+        String endDate = End_Date1.getText();
+        if (startDate != null && !startDate.isEmpty() && endDate != null && !endDate.isEmpty()) {
+            connecttoDatabase();
+            List<Object[]> loc = LocThang(startDate, endDate);
+            DefaultTableModel model = (DefaultTableModel) jTable_Thang.getModel();
+            model.setRowCount(0);
+            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+            
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            jTable_Thang.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            jTable_Thang.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+            jTable_Thang.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+            
+            int stt = 1;
+            
+            for(Object[] row : loc){
+               double TienValue = (Double)row[1];
+               String formattedTien = currencyFormatter.format(TienValue);
+               model.addRow(new Object[] { stt++, row[0], formattedTien });
+            }
+        }
     }//GEN-LAST:event_monthFilter1ActionPerformed
 
-
+    public void connecttoDatabase ()
+    {
+        try{
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCH1;"
+            + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
+            conn = DriverManager.getConnection(connectionUrl);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }    
+    private List<Object[]> LocNgay(String startDate, String endDate)
+    {
+        List<Object[]> data = new ArrayList<>();
+        try {
+            //String query = "Select DATEPART(YEAR, NgayLap) as year, DATEPART(MONTH, NgayLap) as month, DATEPART(DAY, NgayLap) as day, sum(DoanhThu.TongDoanhThu) AS TDT From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? Group by DATEPART(year, NgayLap), DATEPART(month, NgayLap), DATEPART(DAY, NgayLap) order by year, month, day";
+            String query = "Select HoaDon.NgayLap, SUM(DoanhThu.TongDoanhThu) AS TongTDT	From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? GROUP BY HoaDon.NgayLap ORDER BY HoaDon.NgayLap;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, startDate);
+            pstmt.setString(2, endDate);
+            
+            ResultSet rs = pstmt.executeQuery();
+            
+            while (rs.next()){
+                
+                Object[] row = {rs.getString("ngayLap"), rs.getDouble("TongTDT" )};
+                data.add(row);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return data;
+    }
+    
+    private List<Object[]> LocThang(String startDate, String endDate)
+    {
+        List<Object[]> data = new ArrayList<>();
+        try {
+            //String query = "Select DATEPART(YEAR, NgayLap) as year, DATEPART(MONTH, NgayLap) as month, DATEPART(DAY, NgayLap) as day, sum(DoanhThu.TongDoanhThu) AS TDT From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? Group by DATEPART(year, NgayLap), DATEPART(month, NgayLap), DATEPART(DAY, NgayLap) order by year, month, day";
+            String query = "SELECT CONCAT(DATEPART(YEAR, NgayLap),'-', DATEPART(MONTH, NgayLap)) as thangLap, sum(DoanhThu.TongDoanhThu) AS TDT From HoaDon Inner Join DoanhThu on HoaDon.MaDoanhThu = DoanhThu.MaDoanhThu Where HoaDon.NgayLap between ? and ? GROUP BY DATEPART(YEAR, NgayLap), DATEPART(MONTH, NgayLap) ORDER BY DATEPART(YEAR, NgayLap), DATEPART(MONTH, NgayLap)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, startDate);
+            pstmt.setString(2, endDate);
+            
+            ResultSet rs = pstmt.executeQuery();
+            
+            while (rs.next()){
+//               
+                Object[] row = {rs.getString("thangLap"), rs.getDouble("TDT" )};
+                data.add(row);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return data;
+    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane End_Date;
     private javax.swing.JTextPane End_Date1;
