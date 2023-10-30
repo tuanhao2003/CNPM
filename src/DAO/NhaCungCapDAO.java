@@ -21,8 +21,8 @@ public class NhaCungCapDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QuanLiNCC;"
-                    + "user=sa;password=12;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+                    + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
@@ -65,7 +65,7 @@ public class NhaCungCapDAO {
         boolean result= false;
         if(openConnection()){
             try {
-                String sql = "Insert into Nha Cung cap values(?,?,?,?,?)";
+                String sql = "Insert into NhaCungCap values(?,?,?,?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, emp.getMaNCC());
                 stmt.setString(2, emp.getTenNCC());
@@ -85,7 +85,7 @@ public class NhaCungCapDAO {
         boolean result = false;
         if(openConnection()){
             try {
-                String sql = "Delete from Nha Cung cap where MaNCC=?";
+                String sql = "Delete from NhaCungCap where MaNCC=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
                 stmt.setString(1, id);
                 if(stmt.executeUpdate()>=1)
@@ -128,4 +128,8 @@ public class NhaCungCapDAO {
         }
         return result;
     }
+    
+    
 }
+
+

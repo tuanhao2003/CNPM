@@ -31,10 +31,17 @@ public class mainGUI extends javax.swing.JFrame {
 //        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 //        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
+        addComponent("Thống Kê Doanh Thu", new thongKeGUI(), "empty.png");        
 //        solveEvent();
+<<<<<<< HEAD
           addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
 
+=======
+//            addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+
+//          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+          addComponent("Nhà Cung Cấp",new NhaCungCapGUI(),"empty.png");
+>>>>>>> bd1d3dd09ccaac1384907b0a1308c1043b9a74b2
     }
 //=======
 //    private phieuNhapGUI pnGUI;

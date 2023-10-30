@@ -14,6 +14,9 @@ public class KhachHangDTO {
     private String DiaChi;
     private String SDT;
 
+    public KhachHangDTO(String MaKH, String TenKH, String DiaChi, String SDT){
+        
+    }
     public String getMaKH() {
         return MaKH;
     }
