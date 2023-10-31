@@ -104,7 +104,6 @@ create table PhieuNhapKho
 	MaPhieuNhap		NCHAR(5)						NOT NULL,
 	MaKho			NCHAR(5)						NOT NULL,
 	NgayNhap		datetime                                               NOT NULL,
-        NgayNhan                datetime,               
 	TongTien		int                                                     NOT NULL,
         Thue                    int
 )
@@ -114,7 +113,9 @@ create table CTPhieuNhapKho
 	MaPhieuNhap		NCHAR(5)						NOT NULL,
 	MaNCC			NCHAR(5)						NOT NULL,
 	SLNhap			int,
-	GiaNhap			int
+	Tamtinh			int
+        SoLuong                         int                                             NOT NULL,
+        DonGia                          int                                             NOT NULL
 )
 
 create table SanPhamNCC
