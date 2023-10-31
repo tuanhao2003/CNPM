@@ -23,6 +23,8 @@ create table SanPham
 (
 	MaSP				NCHAR(5)					NOT NULL,
 	TenSP				NVARCHAR(20)                                    NOT NULL,
+	Hang				NVARCHAR(20)				NOT NULL,
+	DungLuong			NVARCHAR(20)			NOT NULL,
 	DonGia				INT						NOT NULL,
 	SoLuong 			INT						NOT NULL,
         DuongDanHinhAnh                 NCHAR(100)                                      NOT NULL    

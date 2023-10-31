@@ -29,6 +29,8 @@ public class khuyenMaiGUI extends javax.swing.JPanel {
         khuyenMaiDAO = new khuyenMaiDAO();
         KhuyenMaiBLL = new KhuyenMaiBLL();
         showALL();
+        formtf.setVisible(false);
+        totf.setVisible(false);       
     }
 
     @SuppressWarnings("unchecked")
