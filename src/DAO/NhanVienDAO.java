@@ -43,8 +43,8 @@ public class NhanVienDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 NhanVienDTO nv = new NhanVienDTO();
-                String maNCC = rs.getString("MaNV");
-                if (!maNCC.startsWith("NV")) {
+                String maNV = rs.getString("MaNV");
+                if (!maNV.startsWith("NV")) {
                     continue; // Chuyển sang bản ghi tiếp theo nếu MaNCC không bắt đầu bằng "NV"
                 }
                 nv.setMaNV(rs.getString("MaNV"));

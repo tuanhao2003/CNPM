@@ -19,11 +19,11 @@ public class HoaDonDTO {
     private int TongTienSauGiam;
     
     public HoaDonDTO(){
-        MaHD=null;
-        MaKH=null;
-        MaNV=null;
-        NgayLap=null;
-        NgayGiao=null;
+        MaHD="";
+        MaKH="";
+        MaNV="";
+        NgayLap="";
+        NgayGiao="";
         TongTienGoc=0;
         TongTienSauGiam=0;
     }
