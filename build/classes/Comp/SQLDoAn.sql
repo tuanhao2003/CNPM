@@ -122,8 +122,6 @@ create table SanPhamNCC
 (
         MaNCC				NCHAR(5)					NOT NULL,
 	MaSP				NCHAR(5)					NOT NULL,
-        SoLuong                         int                                             NOT NULL,
-        DonGia                          int                                             NOT NULL
 )
 
 
