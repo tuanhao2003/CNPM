@@ -32,7 +32,7 @@ public class mainGUI extends javax.swing.JFrame {
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
         addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
-  
+        addComponent("Thống Kê Sản Phẩm", new thongKeGUI(), "empty.png");  
         solveEvent();
 
     }
