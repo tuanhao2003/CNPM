@@ -8,6 +8,7 @@ import BLL.thongKeSanPhamBLL;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import java.util.List;
@@ -47,6 +48,8 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -65,7 +68,7 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Theo ngày", "Theo tuần", "Theo tháng" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo ngày", "Theo tháng", "Theo năm" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -105,7 +108,7 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("Tuần này");
+        jLabel2.setText("Tuần");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 0));
         jPanel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,24 +124,41 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel3.setText("Tháng này");
+        jLabel3.setText("Tháng ");
+
+        jPanel8.setBackground(new java.awt.Color(0, 51, 204));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 72, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        jLabel15.setText("Năm");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +175,11 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -166,15 +190,30 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel6.setText("OPPO:");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel7.setText("XIAOMI:");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel8.setText("SAMSUNG:");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel9.setText("IPHONE:");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel10.setText("NOKIA:");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -185,7 +224,7 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -236,8 +275,8 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,9 +293,9 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,11 +309,15 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
 
         if ("Theo ngày".equals(selectedOption)) {
             createPieChartBasedOnDay();
-        } else if ("Theo tuần".equals(selectedOption)) {
-            createPieChartBasedOnWeek();
-        } else if ("Theo tháng".equals(selectedOption)) {
+        }
+//        else if ("Theo tuần".equals(selectedOption)) {
+//            createPieChartBasedOnWeek();
+//        } 
+        else if ("Theo tháng".equals(selectedOption)) {
             createPieChartBasedOnMonth();
-        } 
+        } else if ("Theo năm".equals(selectedOption)) {
+            createPieChartBasedOnYear();
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private void createPieChartBasedOnDay() {
@@ -283,14 +326,21 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         createBarChart();
     }
 
-    private void createPieChartBasedOnWeek() {
-        updateLabelsTuan();
-        createPieChart();
-    }
+//    private void createPieChartBasedOnWeek() {
+//        updateLabelsTuan();
+//        createPieChart();
+//    }
 
     private void createPieChartBasedOnMonth() {
         updateLabelsThang();
         createPieChart();
+        createBarChartMonth();
+    }
+    
+    private void createPieChartBasedOnYear() {
+        updateLabelsNam();
+        createPieChart();
+        createBarChartYear();
     }
        
     
@@ -343,10 +393,10 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
             Color color;
 
             if (ngayTrongTuan.equals("Hôm nay")) {
-                category = "Category 1";
+                category = "Ngày hôm nay";
                 color = Color.GREEN;
             } else {
-                category = "Category 2";
+                category = "Các ngày còn lại trong tuần";
                 color = Color.RED;
             }
 
@@ -384,8 +434,116 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         jPanel6.revalidate();
     }
 
+    private void createBarChartMonth() {
+        thongKeSanPhamBLL bll = new thongKeSanPhamBLL();
+        List<String[]> salesData = bll.getRecentMonthsSalesData();
 
-  
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (String[] data : salesData) {
+            String monthName = data[0];
+            int tongSoLuong = Integer.parseInt(data[1]);
+            String category;
+            Color color;
+
+            // Xác định màu cho cột cuối cùng (tháng hiện tại)
+            if (monthName.equals("Tháng hiện tại")) {
+                category = "Category 1";
+                color = Color.GREEN;
+            } else {
+                category = "Các tháng";
+                color = Color.YELLOW;
+            }
+
+            dataset.addValue(tongSoLuong, category, monthName);
+        }
+
+        JFreeChart barChart = ChartFactory.createBarChart(
+            "Tổng số lượng sản phẩm bán trong các tháng gần đây",
+            "Category",
+            "Value",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true, true, false);
+
+        CategoryPlot plot = barChart.getCategoryPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+        // Đặt màu cho cột
+        for (int i = 0; i < salesData.size(); i++) {
+            String monthName = salesData.get(i)[0];
+            Color color = monthName.equals("Tháng hiện tại") ? Color.GREEN : Color.YELLOW;
+            renderer.setSeriesPaint(i, color);
+        }
+
+        // Hiển thị số lượng trên đầu mỗi cột
+        CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator("{2}", new DecimalFormat("0"));
+        renderer.setBaseItemLabelGenerator(generator);
+        renderer.setBaseItemLabelsVisible(true);
+
+        ChartPanel chartPanel = new ChartPanel(barChart);
+        chartPanel.setSize(300, 300);
+        jPanel6.removeAll();
+        jPanel6.add(chartPanel, BorderLayout.CENTER);
+        jPanel6.revalidate();
+    }
+    
+    private void createBarChartYear() {
+        thongKeSanPhamBLL bll = new thongKeSanPhamBLL();
+        List<String[]> salesData = bll.getRecentYearsSalesData();
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (String[] data : salesData) {
+            String yearName = data[0];
+            int tongSoLuong = Integer.parseInt(data[1]);
+            String category;
+            Color color;
+
+            // Xác định màu cho cột cuối cùng (năm hiện tại)
+            if (yearName.equals(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)))) {
+                category = "Năm nay";
+                color = Color.BLUE;
+            } else {
+                category = "Các năm";
+                color = Color.BLUE;
+            }
+
+            dataset.addValue(tongSoLuong, category, yearName);
+        }
+
+        JFreeChart barChart = ChartFactory.createBarChart(
+            "Tổng số lượng sản phẩm bán trong các năm gần đây",
+            "Category",
+            "Value",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true, true, false);
+
+        CategoryPlot plot = barChart.getCategoryPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+        // Đặt màu cho cột
+        for (int i = 0; i < salesData.size(); i++) {
+            String yearName = salesData.get(i)[0];
+            Color color = yearName.equals(Integer.toString(Calendar.getInstance().get(Calendar.YEAR))) ? Color.BLUE : Color.BLUE;
+            renderer.setSeriesPaint(i, color);
+        }
+
+        // Hiển thị số lượng trên đầu mỗi cột
+        CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator("{2}", new DecimalFormat("0"));
+        renderer.setBaseItemLabelGenerator(generator);
+        renderer.setBaseItemLabelsVisible(true);
+
+        ChartPanel chartPanel = new ChartPanel(barChart);
+        chartPanel.setSize(300, 300);
+        jPanel6.removeAll();
+        jPanel6.add(chartPanel, BorderLayout.CENTER);
+        jPanel6.revalidate();
+    }
+
+
+
     private void updateLabelsNgay() {
         // Lấy dữ liệu tổng số lượng sản phẩm của từng hãng từ cơ sở dữ liệu
         int samsungCount = tkSanPhamBLL.getSanPhamCountByHang("Samsung");
@@ -402,13 +560,29 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
         jLabel14.setText(String.valueOf(nokiaCount));
     }
     
-    private void updateLabelsTuan() {
+//    private void updateLabelsTuan() {
+//        // Lấy dữ liệu tổng số lượng sản phẩm của từng hãng từ cơ sở dữ liệu
+//        int samsungCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Samsung");
+//        int oppoCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Oppo");
+//        int iphoneCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Iphone");
+//        int xiaomiCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Xiaomi");
+//        int nokiaCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Nokia");
+//
+//        // Cập nhật các JLabel để hiển thị dữ liệu
+//        jLabel5.setText(String.valueOf(samsungCount));
+//        jLabel11.setText(String.valueOf(oppoCount));
+//        jLabel12.setText(String.valueOf(iphoneCount));
+//        jLabel13.setText(String.valueOf(xiaomiCount));
+//        jLabel14.setText(String.valueOf(nokiaCount));
+//    }
+    
+    private void updateLabelsNam() {
         // Lấy dữ liệu tổng số lượng sản phẩm của từng hãng từ cơ sở dữ liệu
-        int samsungCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Samsung");
-        int oppoCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Oppo");
-        int iphoneCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Iphone");
-        int xiaomiCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Xiaomi");
-        int nokiaCount = tkSanPhamBLL.getSanPhamCountByHangForWeek("Nokia");
+        int samsungCount = tkSanPhamBLL.getSanPhamCountByHangForYear("Samsung");
+        int oppoCount = tkSanPhamBLL.getSanPhamCountByHangForYear("Oppo");
+        int iphoneCount = tkSanPhamBLL.getSanPhamCountByHangForYear("Iphone");
+        int xiaomiCount = tkSanPhamBLL.getSanPhamCountByHangForYear("Xiaomi");
+        int nokiaCount = tkSanPhamBLL.getSanPhamCountByHangForYear("Nokia");
 
         // Cập nhật các JLabel để hiển thị dữ liệu
         jLabel5.setText(String.valueOf(samsungCount));
@@ -442,6 +616,7 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -457,5 +632,6 @@ public class thongKeSanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
 }

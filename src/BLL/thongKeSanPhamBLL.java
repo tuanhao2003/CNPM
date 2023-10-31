@@ -16,15 +16,27 @@ public class thongKeSanPhamBLL {
         return thongKeSanPhamDAO.getSanPhamCountByHang(hang);
     }
     
-    public int getSanPhamCountByHangForWeek(String hang) {
-        return thongKeSanPhamDAO.getSanPhamCountByHangForWeek(hang);
-    }
+//    public int getSanPhamCountByHangForWeek(String hang) {
+//        return thongKeSanPhamDAO.getSanPhamCountByHangForWeek(hang);
+//    }
     
     public int getSanPhamCountByHangForMonth(String hang) {
         return thongKeSanPhamDAO.getSanPhamCountByHangForMonth(hang);
     }
+    
+    public int  getSanPhamCountByHangForYear(String hang) {
+        return thongKeSanPhamDAO.getSanPhamCountByHangForYear(hang);
+    }
 
     public List<String[]> getSalesDataForWeek() {
         return thongKeSanPhamDAO.getSalesDataForWeek();
+    }
+    
+    public List<String[]> getRecentMonthsSalesData() {
+        return thongKeSanPhamDAO.getRecentMonthsSalesData();
+    }
+    
+    public List<String[]> getRecentYearsSalesData() {
+        return thongKeSanPhamDAO.getRecentYearsSalesData();
     }
 }

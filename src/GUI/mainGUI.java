@@ -18,13 +18,17 @@ public class mainGUI extends javax.swing.JFrame {
 //        addComponent("Nhập Hàng", this.pnGUI, "import.png");
 //        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-
-//        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
-        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
         addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
-        addComponent("Nhân Viên", new NhanVienGUI(), "empty.png");
-        addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
+//        addComponent("Nhân Viên", new NhanVienGUI(), "empty.png");
+//        addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
+
+//        addComponent("Thống Kê Doanh Thu", new thongKeGUI(), "empty.png");        
         solveEvent();
+//            addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+
+//          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+//          addComponent("Nhà Cung Cấp",new NhaCungCapGUI(),"empty.png");
 
     }
 //=======
