@@ -1,7 +1,6 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JTable;
@@ -10,6 +9,7 @@ import GUI.khuyenMaiGUI;
 import DTO.khuyenMaiDTO;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement; 
 
 public class khuyenMaiDAO {
     private sqlConnect sqlConn;
@@ -23,7 +23,7 @@ public class khuyenMaiDAO {
         model.setRowCount(0); // Xóa hết dữ liệu trong jTable1
 
         try {
-            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM CTChuongTrinhKhuyenMai"; // Thay thế bằng tên bảng thực tế
+            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianTaoKM, MaSP FROM ChuongTrinhKhuyenMai"; // Thay thế bằng tên bảng thực tế
             ResultSet resultSet = sqlConn.getSta().executeQuery(query);
 
             while (resultSet.next()) {
@@ -33,8 +33,10 @@ public class khuyenMaiDAO {
                 String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
                 String ngayBatDau = resultSet.getString("ThoiGianBatDau");
                 String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
+                String thoiGianTao = resultSet.getString("ThoiGianTaoKM");
+                String maSanPham = resultSet.getString("MaSP");
                 // Thêm dữ liệu vào model của jTable1
-                model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
+                model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc, thoiGianTao, maSanPham});
             }
 
             resultSet.close();
@@ -51,10 +53,10 @@ public class khuyenMaiDAO {
             String query;
             if (keyword == null || keyword.isEmpty()) {
                 // Nếu từ khóa là null hoặc trống, hiển thị toàn bộ dữ liệu
-                query = "SELECT * FROM CTChuongTrinhKhuyenMai"; // Lấy tất cả các cột
+                query = "SELECT * FROM ChuongTrinhKhuyenMai"; // Lấy tất cả các cột
             } else {
                 // Ngược lại, thực hiện tìm kiếm theo từ khóa
-                query = "SELECT * FROM CTChuongTrinhKhuyenMai WHERE MaCTKM LIKE ? OR TenCTKM LIKE ?";
+                query = "SELECT * FROM ChuongTrinhKhuyenMai WHERE MaCTKM LIKE ? OR TenCTKM LIKE ?";
             }
             Connection connection = sqlConn.getConnection(); // Lấy kết nối
 
@@ -73,9 +75,11 @@ public class khuyenMaiDAO {
                     String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
                     String ngayBatDau = resultSet.getString("ThoiGianBatDau");
                     String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
+                    String thoiGianTao = resultSet.getString("ThoiGianTaoKM");
+                    String maSanPham = resultSet.getString("MaSP");
 
                     // Thêm dòng mới vào model của jTable1
-                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
+                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc, thoiGianTao, maSanPham});
                 }
 
                 resultSet.close();
@@ -92,19 +96,13 @@ public class khuyenMaiDAO {
     public boolean themKhuyenMai(khuyenMaiDTO khuyenMai) {
         try {
             if (khuyenMai.getNgayBatDau().after(khuyenMai.getNgayKetThuc()) || khuyenMai.getNgayBatDau().equals(khuyenMai.getNgayKetThuc())) {
-                // Ngày bắt đầu sau hoặc bằng ngày kết thúc
-                JOptionPane.showMessageDialog(null, "Ngày bắt đầu không thể sau hoặc bằng ngày kết thúc.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-            else {
-                // Kiểm tra xem mã đã tồn tại trong cơ sở dữ liệu hay chưa
+                return false; // Thay vì hiển thị thông báo lỗi, chỉ cần trả về false.
+            } else {
                 if (maKhuyenMaiDaTonTai(khuyenMai.getMaKhuyenMai())) {
-                    JOptionPane.showMessageDialog(null, "Mã khuyến mãi đã tồn tại trong cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    return false;
+                    return false; // Mã khuyến mãi đã tồn tại trong cơ sở dữ liệu.
                 }
 
-                // Tiếp tục thêm dữ liệu vào cơ sở dữ liệu
-                String query = "INSERT INTO CTChuongTrinhKhuyenMai (MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianTaoKM) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO ChuongTrinhKhuyenMai (MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianTaoKM, MaSP) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 Connection connection = sqlConn.getConnection();
 
                 if (connection != null) {
@@ -115,26 +113,25 @@ public class khuyenMaiDAO {
                     preparedStatement.setString(4, khuyenMai.getLoaiKhuyenMai());
                     preparedStatement.setDate(5, new java.sql.Date(khuyenMai.getNgayBatDau().getTime()));
                     preparedStatement.setDate(6, new java.sql.Date(khuyenMai.getNgayKetThuc().getTime()));
-                    preparedStatement.setDate(7, new java.sql.Date(System.currentTimeMillis())); // Thêm thông tin thời gian áp dụng (nếu có)
-
+                    preparedStatement.setDate(7, new java.sql.Date(System.currentTimeMillis()));
+                    preparedStatement.setString(8, khuyenMai.getmaSanPham());
                     int rowsInserted = preparedStatement.executeUpdate();
 
                     preparedStatement.close();
                     return rowsInserted > 0;
                 } else {
-                    System.out.println("Không thể kết nối đến cơ sở dữ liệu.");
-                    return false;
+                    return false; // Không thể kết nối đến cơ sở dữ liệu.
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Lỗi truy vấn cơ sở dữ liệu: " + e);
-            return false;
+            return false; // Lỗi truy vấn cơ sở dữ liệu.
         }
     }
+    
 
     private boolean maKhuyenMaiDaTonTai(String maKhuyenMai) {
         try {
-            String query = "SELECT MaCTKM FROM CTChuongTrinhKhuyenMai WHERE MaCTKM = ?";
+            String query = "SELECT MaCTKM FROM ChuongTrinhKhuyenMai WHERE MaCTKM = ?";
             Connection connection = sqlConn.getConnection();
 
             if (connection != null) {
@@ -142,7 +139,6 @@ public class khuyenMaiDAO {
                 preparedStatement.setString(1, maKhuyenMai);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                // Kiểm tra xem có bất kỳ bản ghi nào có mã khuyến mãi tương tự hay không
                 boolean tonTai = resultSet.next();
 
                 resultSet.close();
@@ -150,20 +146,17 @@ public class khuyenMaiDAO {
 
                 return tonTai;
             } else {
-                System.out.println("Không thể kết nối đến cơ sở dữ liệu.");
-                return false;
+                return false; // Không thể kết nối đến cơ sở dữ liệu.
             }
         } catch (SQLException e) {
-            System.out.println("Lỗi truy vấn cơ sở dữ liệu: " + e);
-            return false;
+            return false; // Lỗi truy vấn cơ sở dữ liệu.
         }
     }
 
 
-
     public boolean xoaKhuyenMai(String maKhuyenMai) {
         try {
-            String query = "DELETE FROM CTChuongTrinhKhuyenMai WHERE MaCTKM = ?";
+            String query = "DELETE FROM ChuongTrinhKhuyenMai WHERE MaCTKM = ?";
             Connection connection = sqlConn.getConnection();
 
             if (connection != null) {
@@ -175,20 +168,19 @@ public class khuyenMaiDAO {
                 preparedStatement.close();
                 return rowsDeleted > 0;
             } else {
-                System.out.println("Không thể kết nối đến cơ sở dữ liệu.");
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Lỗi truy vấn cơ sở dữ liệu: " + e);
             return false;
         }
     }
+    
     public void loadValidData(JTable jTable1) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Xóa hết dữ liệu trong jTable1
 
         try {
-            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM CTChuongTrinhKhuyenMai WHERE ThoiGianKetThuc >= ?"; // Thay thế bằng tên bảng thực tế
+            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianTaoKM, MaSP FROM ChuongTrinhKhuyenMai WHERE ThoiGianKetThuc >= ?";
             Connection connection = sqlConn.getConnection();
 
             if (connection != null) {
@@ -204,9 +196,11 @@ public class khuyenMaiDAO {
                     String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
                     String ngayBatDau = resultSet.getString("ThoiGianBatDau");
                     String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
+                    String ThoiGianTao = resultSet.getString("ThoiGianTaoKM");
+                    String maSanPham = resultSet.getString("MaSP");
 
                     // Thêm dữ liệu vào model của jTable1
-                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
+                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc, ThoiGianTao, maSanPham});
                 }
 
                 resultSet.close();
@@ -224,7 +218,7 @@ public class khuyenMaiDAO {
         model.setRowCount(0); // Xóa hết dữ liệu trong jTable1
 
         try {
-            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM CTChuongTrinhKhuyenMai WHERE ThoiGianKetThuc < ?"; // Thay thế bằng tên bảng thực tế
+            String query = "SELECT MaCTKM, TenCTKM, MucGiamGia, LoaiSanPhamDuocApDung, ThoiGianBatDau, ThoiGianKetThuc FROM ChuongTrinhKhuyenMai WHERE ThoiGianKetThuc < ?";
             Connection connection = sqlConn.getConnection();
 
             if (connection != null) {
@@ -240,9 +234,11 @@ public class khuyenMaiDAO {
                     String loaiKhuyenMai = resultSet.getString("LoaiSanPhamDuocApDung");
                     String ngayBatDau = resultSet.getString("ThoiGianBatDau");
                     String ngayKetThuc = resultSet.getString("ThoiGianKetThuc");
+                    String ThoiGianTao = resultSet.getString("ThoiGianTaoKM");
+                    String maSanPham = resultSet.getString("MaSP");
 
                     // Thêm dữ liệu vào model của jTable1
-                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc});
+                    model.addRow(new Object[]{maCTKM, tenCTKM, mucGiamGia, loaiKhuyenMai, ngayBatDau, ngayKetThuc, ThoiGianTao, maSanPham});
                 }
 
                 resultSet.close();

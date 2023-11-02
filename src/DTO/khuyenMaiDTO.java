@@ -10,14 +10,16 @@ public class khuyenMaiDTO {
     private int mucGiamGia;
     private Date ngayBatDau;
     private Date ngayKetThuc;
+    private String maSanPham;
 
-    public khuyenMaiDTO(String maKhuyenMai, String tenKhuyenMai, int mucGiamGia, String loaiKhuyenMai, Date ngayBatDau, Date ngayKetThuc) {
+    public khuyenMaiDTO(String maKhuyenMai, String tenKhuyenMai, int mucGiamGia, String loaiKhuyenMai, Date ngayBatDau, Date ngayKetThuc, String maSanPham) {
         this.maKhuyenMai = maKhuyenMai;
         this.tenKhuyenMai = tenKhuyenMai;
         this.mucGiamGia = mucGiamGia;
         this.loaiKhuyenMai = loaiKhuyenMai;       
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
+        this.maSanPham = maSanPham;
     }
 
 
@@ -69,5 +71,12 @@ public class khuyenMaiDTO {
         this.ngayKetThuc = ngayKetThuc;
     }
     
+    public String getmaSanPham() {
+        return maSanPham;
+    }
+
+    public void setmaSanPham(String maSanPham) {
+        this.maSanPham = maSanPham;
+    }
 
 }

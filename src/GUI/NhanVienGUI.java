@@ -142,7 +142,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +185,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
             }
         });
 
-        jComboBox_SearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Nhân Viên","Tên Nhân Viên" }));
+        jComboBox_SearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID","Name" }));
         jComboBox_SearchType.setPreferredSize(new java.awt.Dimension(100, 30));
         jComboBox_SearchType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -234,7 +234,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
         );
 
         jButton_Huy.setText("Hủy");
@@ -315,7 +315,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String gioitinh = jComboBox_Gender.getSelectedItem().toString();
         try{
     // Kiểm tra nếu cả hai trường không rỗng
-            if (!ten.isEmpty() && !gioitinh.isEmpty() && !sdt.isEmpty() && !diachi.isEmpty()) 
+            if (ten.isEmpty() && gioitinh.isEmpty() && sdt.isEmpty() && diachi.isEmpty()) 
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
             else{
                 NhanVienDTO nv=new NhanVienDTO();
@@ -327,11 +327,11 @@ public class NhanVienGUI extends javax.swing.JPanel {
 	                int id = Integer.parseInt(NV.getMaNV().substring(3));
 	                
 	                if(id<=9)
-	                    nv.setMaNV("NCC00"+(id+1));
+	                    nv.setMaNV("NV00"+(id+1));
 	                else if(id>=10 && id<=99)
-	                    nv.setMaNV("NCC0"+(id+1));
+	                    nv.setMaNV("NV0"+(id+1));
 	                else
-	                    nv.setMaNV("NCC"+(id+1));
+	                    nv.setMaNV("NV"+(id+1));
                 }
                 nv.setTenNV(jTextField_Ten.getText());
                 nv.setGioiTinh(jComboBox_Gender.getSelectedItem().toString());
@@ -392,14 +392,17 @@ public class NhanVienGUI extends javax.swing.JPanel {
     private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
         // TODO add your handling code here:
         String selectedValue = jComboBox_SearchType.getSelectedItem().toString();
+        System.out.println(selectedValue);
 
         // Lấy giá trị từ jTextField
         String searchText = jTextField_Search.getText().trim();
+        System.out.println(searchText);
+
         
-        if ("Mã Nhân Viên".equals(selectedValue)) {
+        if ("ID".equals(selectedValue)) {
             // Tìm kiếm theo ID trong jTable
             searchByID(searchText);
-        } else if ("Tên Nhân Viên".equals(selectedValue)) {
+        } else if ("Name".equals(selectedValue)) {
             // Tìm kiếm theo Name trong jTable
             searchByName(searchText);
         } else {
@@ -410,10 +413,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
     private void jTextField_SearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_SearchFocusGained
         // TODO add your handling code here:
-         if(jTextField_Search!=null){
-            jTextField_Search.setText("");
-            jTextField_Search.setForeground(Color.GRAY);
-        }
+//         if(jTextField_Search!=null){
+//            jTextField_Search.setText("");
+//            jTextField_Search.setForeground(Color.GRAY);
+//        }
     }//GEN-LAST:event_jTextField_SearchFocusGained
 
     private void jComboBox_SearchTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_SearchTypeItemStateChanged
@@ -427,38 +430,83 @@ public class NhanVienGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jComboBox_SearchTypeItemStateChanged
 
+//    private void searchByID(String id) {
+//    // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
+//        
+////        modelNV.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong jTable
+//        int stt=1;
+//        Object[] row = null;
+//        System.out.println("That Bai");
+//        for (int i = 0; i < modelNV.getRowCount(); i++) {
+//            System.out.println("Thanh Cong");
+////           
+//            String rowData = modelNV.getValueAt(i, 1).toString(); // Cột ID là cột 0
+//            
+////            System.out.print(rowData);
+//            if (rowData.equals(id)) {
+//                // Nếu tìm thấy ID, thêm hàng tương ứng vào jTable
+//                
+//                row = new Object[]{stt,modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2),modelNV.getValueAt(i, 3),modelNV.getValueAt(i, 4),modelNV.getValueAt(i, 5)};
+//                
+//                stt++;
+//                
+//            }
+//        }
+//        modelNV.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong jTable
+//        modelNV.addRow(row);
+//        
+//    }
     private void searchByID(String id) {
-    // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
-        
-        modelNV.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong jTable
-        int stt=1;
+        int stt = 1;
+        DefaultTableModel newModel = new DefaultTableModel(); // Tạo một DefaultTableModel mới để chứa kết quả tìm kiếm\
+        newModel.addColumn("STT");
+        newModel.addColumn("Mã Nhân Viên");
+        newModel.addColumn("Tên Nhân Viên");
+        newModel.addColumn("Giới Tính");
+        newModel.addColumn("Địa Chỉ");
+        newModel.addColumn("Số Điện Thoại");
+
         for (int i = 0; i < modelNV.getRowCount(); i++) {
-            String rowData = modelNV.getValueAt(i, 1).toString(); // Cột ID là cột 0
-            if (rowData.equals(id)) {
-                // Nếu tìm thấy ID, thêm hàng tương ứng vào jTable
-                
-                Object[] row = new Object[]{stt,modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2),modelNV.getValueAt(i, 3),modelNV.getValueAt(i, 4),modelNV.getValueAt(i, 5)};
-                modelNV.addRow(row);
+            String rowData = modelNV.getValueAt(i, 1).toString(); // Lấy giá trị từ cột ID (cột 1)
+
+            if (rowData.contains(id)) {
+                // Nếu tìm thấy ID, thêm hàng tương ứng vào DefaultTableModel mới
+                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5)};
+                newModel.addRow(row);
                 stt++;
-                
             }
         }
+
+        // Cập nhật dữ liệu trong jTable với kết quả tìm kiếm mới
+        jTable_NhanVien.setModel(newModel);
     }
+
 
     private void searchByName(String name) {
         // Thực hiện tìm kiếm theo Name trong jTable và cập nhật kết quả lên jTable
         
-        modelNV.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong jTable
-        int stt=1;
+        int stt = 1;
+        DefaultTableModel newModel = new DefaultTableModel(); // Tạo một DefaultTableModel mới để chứa kết quả tìm kiếm\
+        newModel.addColumn("STT");
+        newModel.addColumn("Mã Nhân Viên");
+        newModel.addColumn("Tên Nhân Viên");
+        newModel.addColumn("Giới Tính");
+        newModel.addColumn("Địa Chỉ");
+        newModel.addColumn("Số Điện Thoại");
+
         for (int i = 0; i < modelNV.getRowCount(); i++) {
-            String rowData = modelNV.getValueAt(i, 2).toString(); // Cột Name là cột 1
-            if (rowData.equalsIgnoreCase(name)) {
-                // Nếu tìm thấy Name, thêm hàng tương ứng vào jTable
-                Object[] row = new Object[]{modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2),modelNV.getValueAt(i, 3),modelNV.getValueAt(i, 4),modelNV.getValueAt(i, 5)};
-                modelNV.addRow(row);
+            String rowData = modelNV.getValueAt(i, 2).toString(); // Lấy giá trị từ cột ID (cột 1)
+
+            if (rowData.contains(name)) {
+                // Nếu tìm thấy ID, thêm hàng tương ứng vào DefaultTableModel mới
+                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5)};
+                newModel.addRow(row);
                 stt++;
             }
         }
+
+        // Cập nhật dữ liệu trong jTable với kết quả tìm kiếm mới
+        jTable_NhanVien.setModel(newModel);
     }
     private void setTextFieldPlaceholder(String selectedValue) {
         String placeholderText = ""; // Chuỗi mẫu sẽ được hiển thị trong jTextField
@@ -477,7 +525,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
     public void loadNVlist(){
         arrNhanVien = nvBLL.getListNhanVien();
 //        int a = arrNCC.size();
-//        System.out.print(rootPaneCheckingEnabled);
+        System.out.print("sai ne` ba");
         for(int i = modelNV.getRowCount()-1;i>=0;i--)
             modelNV.removeRow(i);
         for(int i = 0; i<arrNhanVien.size();i++){
