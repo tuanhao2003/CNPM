@@ -364,6 +364,11 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                 jTextField_SearchFocusGained(evt);
             }
         });
+        jTextField_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_SearchActionPerformed(evt);
+            }
+        });
         add(jTextField_Search);
         jTextField_Search.setBounds(364, 228, 261, 44);
 
@@ -619,6 +624,10 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private void jTextField_TenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_TenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_TenActionPerformed
+
+    private void jTextField_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_SearchActionPerformed
                                                                                                
 
     private void searchByID(String id) {
