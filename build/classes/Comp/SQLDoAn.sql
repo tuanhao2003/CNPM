@@ -45,6 +45,7 @@ create table NhanVien
         GioiTinh        NVARCHAR(10)                                    NOT NULL,
         DiaChiNV			NVARCHAR(100),
 	SDTNV				NVARCHAR(20)
+        MaTK				NCHAR(5)					NOT NULL,
 	
 )
 
@@ -179,7 +180,7 @@ alter table CTHoaDon
 
 
 alter table NhanVien
-	add constraint FK_MaNV_NhanVien foreign key (MaNV) references TaiKhoan(MaTK)
+	add constraint FK_MaTK_NhanVien foreign key (MaTK) references TaiKhoan(MaTK)
 
 alter table Quyen   
         add constraint FK_MaTK_Quyen foreign key (MaTK) references TaiKhoan(MaTK)

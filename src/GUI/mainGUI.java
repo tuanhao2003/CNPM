@@ -22,6 +22,7 @@ public class mainGUI extends javax.swing.JFrame {
 //        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
 //        solveEvent();
           addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+          addComponent("Hoa Don",new HoaDonGUI(),"empty.png");
     }
 //=======
 //    private phieuNhapGUI pnGUI;
