@@ -480,6 +480,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 pqBLL.AddPQ(pq);
                 loadTKList();
                 loadPQList();
+                JOptionPane.showMessageDialog(this, "Thêm tài khoản mới thành công");
             }
                 
         }
@@ -531,6 +532,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 tkBLL.UpTK(tk,pq);
                 loadTKList();
                 loadPQList();
+                JOptionPane.showMessageDialog(this, "Sửa thông tin tài khoản thành công");
             }
         }catch(Exception ex){
              ex.printStackTrace();
