@@ -94,16 +94,24 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             modelPQ.addRow(row);
         }
     }
-    List<TaiKhoanDTO> listTK = new ArrayList<>();
+    
     public void getDataTableTK(){
-//        modelTK = (DefaultTableModel)jTableTaiKhoan.getModel();
-        int i = jTableTaiKhoan.getSelectedRow();
-        TaiKhoanDTO tk = listTK.get(i);
-        jTextFieldMaTaiKhoan.setText(tk.getMaTK());
-        jTextFieldTenDangNhap.setText(tk.getTenDangNhap());
-        jPasswordFieldMatKhau.setText(tk.getMatKhau());
-        jComboBoxTrangThai.setSelectedIndex(tk.getTrangThai());
-
+        int selectedRow = jTableTaiKhoan.getSelectedRow();
+        if (selectedRow != -1) {
+            TaiKhoanDTO tk = arrTaiKhoan.get(selectedRow);
+            jTextFieldMaTaiKhoan.setText(tk.getMaTK());
+            jTextFieldTenDangNhap.setText(tk.getTenDangNhap());
+            jPasswordFieldMatKhau.setText(tk.getMatKhau());
+            jComboBoxTrangThai.setSelectedIndex(tk.getTrangThai());
+    }
+    }
+    public void getDataTablePQ(){
+        int selectedRow = jTablePhanQuyen.getSelectedRow();
+        if (selectedRow != -1) {
+            PhanQuyenDTO pq = arrPhanQuyen.get(selectedRow);
+            jTextFieldmatk.setText(pq.getMaTK());
+            jTextFieldquyen.setText(String.valueOf(pq.getQuyen()));
+    }
     }
 
     
@@ -130,10 +138,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         addTKBtn = new javax.swing.JButton();
         btnSuaTK = new javax.swing.JButton();
-        btnXoaTK = new javax.swing.JButton();
         btnTimKiemTK = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTaiKhoan = new javax.swing.JTable();
+        jTextFieldTimKiem = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -141,6 +149,9 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jTextFieldquyen = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablePhanQuyen = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("Mã tài khoản:");
 
@@ -182,11 +193,9 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         });
 
         btnSuaTK.setText("Sửa");
-
-        btnXoaTK.setText("Xóa");
-        btnXoaTK.addActionListener(new java.awt.event.ActionListener() {
+        btnSuaTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaTKActionPerformed(evt);
+                btnSuaTKActionPerformed(evt);
             }
         });
 
@@ -237,7 +246,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                         .addComponent(addTKBtn)
                         .addGap(90, 90, 90)
                         .addComponent(btnSuaTK)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,8 +257,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                             .addComponent(jComboBoxQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnXoaTK)
-                        .addGap(89, 89, 89)
+                        .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnTimKiemTK)))
                 .addGap(111, 111, 111))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -282,8 +291,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addTKBtn)
                     .addComponent(btnSuaTK)
-                    .addComponent(btnXoaTK)
-                    .addComponent(btnTimKiemTK))
+                    .addComponent(btnTimKiemTK)
+                    .addComponent(jTextFieldTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,38 +321,63 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTablePhanQuyen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePhanQuyenMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTablePhanQuyen);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Note: \nQuyền 1: Admin\nQuyền 2: Nhân viên\nQuyền 3;  Khách hàng\n");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jButton1.setText("Sửa ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldmatk, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldquyen, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldmatk, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldquyen, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(227, 227, 227)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldmatk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldquyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextFieldmatk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldquyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản lý phân quyền", jPanel2);
@@ -460,11 +494,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTrangThaiActionPerformed
 
-    private void btnXoaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTKActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnXoaTKActionPerformed
-
     private void jTextFieldquyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldquyenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldquyenActionPerformed
@@ -474,12 +503,47 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         getDataTableTK();
     }//GEN-LAST:event_jTableTaiKhoanMouseClicked
 
+    private void jTablePhanQuyenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePhanQuyenMouseClicked
+        // TODO add your handling code here:
+        getDataTablePQ();
+    }//GEN-LAST:event_jTablePhanQuyenMouseClicked
+
+    private void btnSuaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaTKActionPerformed
+        // TODO add your handling code here:
+        String id = jTextFieldMaTaiKhoan.getText();
+        String username = jTextFieldTenDangNhap.getText();
+        String password = String.valueOf(jPasswordFieldMatKhau.getPassword());
+        int quyen = jComboBoxQuyen.getSelectedIndex() + 1;        
+        int trangthai = jComboBoxTrangThai.getSelectedIndex();
+        TaiKhoanDTO tk = new TaiKhoanDTO();
+        PhanQuyenDTO pq = new PhanQuyenDTO();
+        try{
+            if(username.isEmpty() || password.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
+            }
+            else{
+                tk.setMaTK(id);
+                tk.setTenDangNhap(username);
+                tk.setMatKhau(password);
+                tk.setTrangThai(trangthai);
+                pq.setMaTK(id);
+                pq.setQuyen(quyen);
+                tkBLL.UpTK(tk,pq);
+                loadTKList();
+                loadPQList();
+            }
+        }catch(Exception ex){
+             ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Thong tin khong hop le");
+        }
+    }//GEN-LAST:event_btnSuaTKActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addTKBtn;
     private javax.swing.JButton btnSuaTK;
     private javax.swing.JButton btnTimKiemTK;
-    private javax.swing.JButton btnXoaTK;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBoxQuyen;
     private javax.swing.JComboBox<String> jComboBoxTrangThai;
     private javax.swing.JLabel jLabel1;
@@ -494,11 +558,14 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     private javax.swing.JPasswordField jPasswordFieldMatKhau;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTablePhanQuyen;
     private javax.swing.JTable jTableTaiKhoan;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldMaTaiKhoan;
     private javax.swing.JTextField jTextFieldTenDangNhap;
+    private javax.swing.JTextField jTextFieldTimKiem;
     private javax.swing.JTextField jTextFieldmatk;
     private javax.swing.JTextField jTextFieldquyen;
     // End of variables declaration//GEN-END:variables

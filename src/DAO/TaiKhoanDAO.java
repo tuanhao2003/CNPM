@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+import DTO.PhanQuyenDTO;
 import java.sql.Connection;
 
 import DTO.TaiKhoanDTO;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.sql.PreparedStatement; 
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,30 +83,38 @@ public class TaiKhoanDAO {
         Connection connection = sqlConn.getConnection();
         if(connection != null){
             try {
-                String sql = "Delete from TaiKhoan where MaTK=?";
+                String sql = "Delete from TaiKhoan where MaTK=?"
+                        + "Delete from Quyen where MaTK = ?";
                 PreparedStatement stmt = connection.prepareCall(sql);
                 stmt.setString(1, id);
+                stmt.setString(2,id);
                 if(stmt.executeUpdate()>=1)
                     result = true;
             } catch (Exception e) {
+                 e.printStackTrace();
+                System.out.println("xóa thất bại DAO.TaiKhoanDAO.delTK()");
             }
         }
         return result;
     }
-    public boolean UpTK( String username, String password, int trangthai){
+    public boolean UpTK(TaiKhoanDTO t, PhanQuyenDTO p){
         boolean result =false;
         Connection connection = sqlConn.getConnection();
         if(connection != null){
             try {
-                String sql = "Update TaiKhoan set TenDangNhap=?, MatKhau=?, TrangThai=? where MaTK=?";
+                String sql = "Update TaiKhoan set TenDangNhap=?, MatKhau=?, TrangThai=? where MaTK=?"
+                        + "Update Quyen set PhanQuyen =? where MaTK=?";
                 PreparedStatement stmt = connection.prepareCall(sql);                
-                stmt.setString(1, username);
-                stmt.setString(2, password);
-                stmt.setInt(3, trangthai);
-                
+                stmt.setString(1, t.getTenDangNhap());
+                stmt.setString(2, t.getMatKhau());
+                stmt.setInt(3, t.getTrangThai());
+                stmt.setString(4, t.getMaTK());
+                stmt.setString(5, String.valueOf(p.getQuyen()));
+                stmt.setString(6, t.getMaTK());
                 if(stmt.executeUpdate()>=1)
                     result=true;
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return result;

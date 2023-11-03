@@ -5,6 +5,7 @@
 package BLL;
 
 import DAO.TaiKhoanDAO;
+import DTO.PhanQuyenDTO;
 import DTO.TaiKhoanDTO;
 import java.util.ArrayList;
 
@@ -33,8 +34,8 @@ public class TaiKhoanBLL {
             return "Xóa thất bại";
     }
     
-    public String UpTK( String username, String password, int trangthai){
-       if(tkDao.UpTK(username,password,trangthai))
+    public String UpTK(  TaiKhoanDTO t, PhanQuyenDTO p){
+       if(tkDao.UpTK(t, p))
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }
