@@ -21,7 +21,7 @@ public class NhaCungCapDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH1;"
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
                     + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");

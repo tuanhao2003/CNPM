@@ -6,7 +6,7 @@ create table NhaCungCap
 (
 	MaNCC				NCHAR(5)					NOT NULL,
 	TenNCC				NVARCHAR(10)				NOT NULL,
-	DiaChiNCC			NVARCHAR(10),
+	DiaChiNCC			NVARCHAR(40),
 	SDTNCC				NVARCHAR(10)
 )
 create table Quyen
@@ -22,7 +22,7 @@ create table SanPham
 	DungLuong			NVARCHAR(20)			NOT NULL,
 	DonGia				INT						NOT NULL,
 	SoLuong 			INT						NOT NULL,
-        DuongDanHinhAnh                 NCHAR(100)                                      NOT NULL    
+    HinhAnh                 NCHAR(100)                                      NOT NULL    
 )
 create table DoanhThu
 (
@@ -42,9 +42,10 @@ create table NhanVien
 (
 	MaNV		NCHAR(5)					NOT NULL,
 	TenNV			NVARCHAR(40)				NOT NULL,
-        GioiTinh        NVARCHAR(10)                                    NOT NULL,
-        DiaChiNV			NVARCHAR(100),
-	SDTNV				NVARCHAR(20)
+    GioiTinh        NVARCHAR(10)                                    NOT NULL,
+    DiaChiNV			NVARCHAR(100),
+	SDTNV				NVARCHAR(20),
+	MaTK				NCHAR(5)					NOT NULL
 	
 )
 
@@ -52,8 +53,9 @@ create table KhachHang
 (
 	MaKH			NCHAR(5)					NOT NULL,
 	TenKH		NVARCHAR(40)				NOT NULL,
-	DiaChi				NVARCHAR(10),
-	SDT					NVARCHAR(10)
+	DiaChi				NVARCHAR(100),
+	SDT					NVARCHAR(10),
+	MaTK				NCHAR(5)					NOT NULL
 )
 
 create table ChuongTrinhKhuyenMai
@@ -105,7 +107,7 @@ create table PhieuNhapKho
 	MaKho			NCHAR(5)						NOT NULL,
 	NgayNhap		datetime                                               NOT NULL,
 	TongTien		int                                                     NOT NULL,
-        Thue                    int
+    Thue                    int
 )
 
 create table CTPhieuNhapKho
@@ -113,15 +115,16 @@ create table CTPhieuNhapKho
 	MaPhieuNhap		NCHAR(5)						NOT NULL,
 	MaNCC			NCHAR(5)						NOT NULL,
 	SLNhap			int,
-	Tamtinh			int
+	Tamtinh			int,
         SoLuong                         int                                             NOT NULL,
         DonGia                          int                                             NOT NULL
 )
 
 create table SanPhamNCC
 (
-        MaNCC				NCHAR(5)					NOT NULL,
+    MaNCC				NCHAR(5)					NOT NULL,
 	MaSP				NCHAR(5)					NOT NULL,
+	TenSP				NVarChar(50)				NOT NULL
 )
 
 
@@ -176,9 +179,11 @@ alter table CTHoaDon
 alter table CTHoaDon 
 	add constraint FK_MaSP_CTHoaDon foreign key (MaSP) references SanPham(MaSP)
 
+alter table KhachHang
+	add constraint FK_MaTK_KhachHang foreign key (MaTK) references TaiKhoan(MaTK)
 
 alter table NhanVien
-	add constraint FK_MaNV_NhanVien foreign key (MaNV) references TaiKhoan(MaTK)
+	add constraint FK_MaTK_NhanVien foreign key (MaTK) references TaiKhoan(MaTK)
 
 alter table Quyen   
         add constraint FK_MaTK_Quyen foreign key (MaTK) references TaiKhoan(MaTK)
@@ -194,4 +199,3 @@ alter table CTPhieuNhapKho
 
 alter table ChuongTrinhKhuyenMai
 	add constraint FK_MaSP_ChuongTrinhKhuyenMai foreign key (MaSP) references SanPham(MaSP)
-

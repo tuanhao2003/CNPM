@@ -423,6 +423,159 @@ public class HoaDonGUI extends javax.swing.JPanel {
 
     private void jButton_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SearchActionPerformed
 
+<<<<<<< HEAD
+            // TODO add your handling code here:
+//        String selectedValue = jComboBox_SearchDate.getSelectedItem().toString();
+//        String selectedValueID = jComboBox_SearchType.getSelectedItem().toString();
+//        // Lấy giá trị từ jTextField
+////        String searchText = jTextField_Search.getText().trim();
+////
+////        // Tách giá trị ngày, tháng và năm từ chuỗi
+////        String[] dateParts = searchText.split("/");
+////        String day = "";
+////        String month = "";
+////        String year = "";
+////
+////        if (dateParts.length == 3) {
+////            day = dateParts[0].trim();
+////            month = dateParts[1].trim();
+////            year = dateParts[2].trim();
+////        } else {
+////            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+////            JOptionPane.showMessageDialog(this, "Giá trị ngày tháng năm không hợp lệ.");
+////            return; // Thoát khỏi hàm nếu giá trị không hợp lệ
+////        }
+////        
+////
+////        // Chuyển đổi giá trị ngày, tháng và năm thành số nguyên
+////        int dayValue = Integer.parseInt(day);
+////        int monthValue = Integer.parseInt(month);
+////        int yearValue = Integer.parseInt(year);
+////
+////        // Kiểm tra tính hợp lệ của ngày, tháng và năm
+////        if (isValidDate(dayValue, monthValue, yearValue)) {
+////            // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm
+////            if ("Ngày".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày trong jTable
+////                searchByDay(day);
+////            } else if ("Tháng".equals(selectedValue)) {
+////                // Tìm kiếm theo tháng trong jTable
+////                searchByMonth(month);
+////            } else if ("Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo năm trong jTable
+////                searchByYear(year);
+////            } else if ("Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo tháng và năm trong jTable
+////                searchByMonthAndYear(month, year);
+////            } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày, tháng và năm trong jTable
+////                searchByDayMonthYear(day, month, year);
+////            } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+////                // Tìm kiếm theo ngày, tháng và năm trong jTable
+////                SearchByKhoangCach(searchText);
+////            } 
+////            // ...
+////        } else {
+////            // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+////            JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+////        }
+//        String searchText = jTextField_Search.getText().trim();
+//
+//// Biểu thức chính quy cho ngày tháng có định dạng "ngày/tháng/năm"
+//        String datePattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+//
+//        if (searchText.matches(datePattern)) {
+//            // searchText đúng định dạng ngày tháng, thực hiện tìm kiếm
+//            String[] dateParts = searchText.split("/");
+//            String day = dateParts[0].trim();
+//            String month = dateParts[1].trim();
+//            String year = dateParts[2].trim();
+//
+//            int dayValue = Integer.parseInt(day);
+//            int monthValue = Integer.parseInt(month);
+//            int yearValue = Integer.parseInt(year);
+//
+//            if (isValidDate(dayValue, monthValue, yearValue)) {
+//                // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm theo các điều kiện
+//                if ("Ngày".equals(selectedValue)) {
+//                    searchByDay(day);
+//                } else if ("Tháng".equals(selectedValue)) {
+//                    searchByMonth(month);
+//                } else if ("Năm".equals(selectedValue)) {
+//                    searchByYear(year);
+//                } else if ("Tháng/Năm".equals(selectedValue)) {
+//                    searchByMonthAndYear(month, year);
+//                } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+//                    searchByDayMonthYear(day, month, year);
+//                } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+//                    SearchByKhoangCach(searchText);
+//                } 
+//                // ...
+//            } else {
+//                // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+//                JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+//            }
+//        }
+//
+//
+//        
+//        if ("Mã Hóa Đơn".equals(selectedValueID)){
+//            searchByIDHD(searchText);
+//        } else if ("Mã Nhân Viên".equals(selectedValueID)){
+//            searchByIDNV(searchText);
+//        } else if ("Mã Hóa Đơn".equals(selectedValueID)){
+//            searchByIDNV(searchText);
+//        } else if ("Tất cả".equals(selectedValueID)){
+//            loadHDlist();
+//        }
+//        else {
+//            // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+//            JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
+//        }
+        String selectedValue = jComboBox_SearchDate.getSelectedItem().toString();
+        String selectedValueID = jComboBox_SearchType.getSelectedItem().toString();
+        String searchText = jTextField_Search.getText().trim();
+
+        // Kiểm tra xem selectedValue có rỗng không
+        if (!selectedValue.isEmpty()) {
+            // Tìm kiếm theo ngày tháng
+            // Biểu thức chính quy cho ngày tháng có định dạng "ngày/tháng/năm"
+            String datePattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+
+            if (searchText.matches(datePattern)) {
+                // searchText đúng định dạng ngày tháng, thực hiện tìm kiếm theo ngày tháng
+                String[] dateParts = searchText.split("/");
+                String day = dateParts[0].trim();
+                String month = dateParts[1].trim();
+                String year = dateParts[2].trim();
+
+                int dayValue = Integer.parseInt(day);
+                int monthValue = Integer.parseInt(month);
+                int yearValue = Integer.parseInt(year);
+
+                if (isValidDate(dayValue, monthValue, yearValue)) {
+                    // Ngày, tháng và năm hợp lệ, thực hiện tìm kiếm theo ngày tháng
+                    if ("Ngày".equals(selectedValue)) {
+                        searchByDay(day);
+                    } else if ("Tháng".equals(selectedValue)) {
+                        searchByMonth(month);
+                    } else if ("Năm".equals(selectedValue)) {
+                        searchByYear(year);
+                    } else if ("Tháng/Năm".equals(selectedValue)) {
+                        searchByMonthAndYear(month, year);
+                    } else if ("Ngày/Tháng/Năm".equals(selectedValue)) {
+                        searchByDayMonthYear(day, month, year);
+                    } else if ("Ngày/Tháng/Năm-Ngày/Tháng/Năm".equals(selectedValue)) {
+                        SearchByKhoangCach(searchText);
+                    } 
+                    // ...
+                } else {
+                    // Ngày, tháng và năm không hợp lệ, hiển thị thông báo hoặc xử lý lỗi
+                    JOptionPane.showMessageDialog(this, "Ngày tháng năm không hợp lệ.");
+                }
+            }
+        } else {
+=======
         String selectedValue = jComboBox_SearchDate.getSelectedItem().toString();
         String selectedValueID = jComboBox_SearchType.getSelectedItem().toString();
         String searchText = jTextField_Search.getText().trim();
@@ -442,6 +595,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //                    searchByRange(jDateStart,jDateEnd);
 //        } 
         else {
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
             // Tìm kiếm theo ID nhân viên
             if ("Mã Hóa Đơn".equals(selectedValueID)) {
                 searchByIDHD(searchText);
@@ -449,6 +603,14 @@ public class HoaDonGUI extends javax.swing.JPanel {
                 searchByIDNV(searchText);
             } else if ("Mã Khách Hàng".equals(selectedValueID)) {
                 searchByIDKH(searchText);
+<<<<<<< HEAD
+            }
+            else {
+                // Hiển thị thông báo hoặc xử lý lỗi nếu giá trị không hợp lệ
+                JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
+            }
+        }
+=======
             } 
         }    
         // Kiểm tra xem selectedValue có rỗng không
@@ -496,6 +658,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //                JOptionPane.showMessageDialog(this, "Tùy chọn không hợp lệ.");
 //            }
 //        }
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
 
     }//GEN-LAST:event_jButton_SearchActionPerformed
 
@@ -714,7 +877,11 @@ public class HoaDonGUI extends javax.swing.JPanel {
                     // So sánh giá trị ngày đã chuyển đổi với ngày bạn đang tìm kiếm
                     if (ngay.equals(day)) {
                         // Nếu tìm thấy ngày, thêm hàng tương ứng vào jTable
+<<<<<<< HEAD
+                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+=======
                         Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7),modelHD.getValueAt(i,7)};
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
                         newModel.addRow(row);
                         stt++;
                     }
@@ -750,7 +917,11 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //                    // So sánh giá trị ngày đã chuyển đổi với ngày bạn đang tìm kiếm
 //                    if (formattedMonth.equals(month)) {
 //                        // Nếu tìm thấy ngày, thêm hàng tương ứng vào jTable
+<<<<<<< HEAD
+//                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+=======
 //                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7),modelHD.getValueAt(i,7)};
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
 //                        modelHD.addRow(row);
 //                        stt++;
 //                    }
@@ -786,7 +957,11 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //                    // So sánh giá trị năm đã chuyển đổi với năm bạn đang tìm kiếm
 //                    if (formattedYear.equals(year)) {
 //                        // Nếu tìm thấy năm, thêm hàng tương ứng vào jTable
+<<<<<<< HEAD
+//                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+=======
 //                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7),modelHD.getValueAt(i,7)};
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
 //                        modelHD.addRow(row);
 //                        stt++;
 //                    }
@@ -799,6 +974,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //        }
 //    }
         private void searchByMonth(String month) {
+<<<<<<< HEAD
         // Xóa tất cả dữ liệu hiện có trong jTable
         
 
@@ -811,6 +987,98 @@ public class HoaDonGUI extends javax.swing.JPanel {
         newModel.addColumn("Ngày Xuất");
         newModel.addColumn("Tổng Giá Trị");
         newModel.addColumn("Tổng Giá Trị Sau Giảm");
+
+        int stt = 1;
+
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM/yyyy");
+
+        for (int i = 0; i < modelHD.getRowCount(); i++) {
+            Object rowDataDate = modelHD.getValueAt(i, 5);
+
+            if (rowDataDate != null) {
+                try {
+                    Date date = monthFormat.parse(rowDataDate.toString());
+                    String formattedMonth = monthFormat.format(date);
+
+                    if (formattedMonth.equals(month)) {
+                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+                        newModel.addRow(row);
+                        stt++;
+                    }
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(this, "Lỗi: Không thể chuyển đổi ngày.");
+                    ex.printStackTrace();
+                }
+            }
+        }
+        jTable_HD.setModel(newModel);
+    }
+
+        private void searchByYear(String year) {
+            // Xóa tất cả dữ liệu hiện có trong jTable
+            
+
+            DefaultTableModel newModel = new DefaultTableModel();
+            newModel.addColumn("STT");
+            newModel.addColumn("Mã Hóa Đơn");
+            newModel.addColumn("Mã Nhân Viên");
+            newModel.addColumn("Mã Khách Hàng");
+            newModel.addColumn("Ngày Lập");
+            newModel.addColumn("Ngày Xuất");
+            newModel.addColumn("Tổng Giá Trị");
+            newModel.addColumn("Tổng Giá Trị Sau Giảm");
+
+            int stt = 1;
+
+            SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+
+            for (int i = 0; i < modelHD.getRowCount(); i++) {
+                Object rowDataDate = modelHD.getValueAt(i, 5);
+
+                if (rowDataDate != null) {
+                    try {
+                        Date date = yearFormat.parse(rowDataDate.toString());
+                        String formattedYear = yearFormat.format(date);
+
+                        if (formattedYear.equals(year)) {
+                            Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+                            newModel.addRow(row);
+                            stt++;
+                        }
+                    } catch (ParseException ex) {
+                        JOptionPane.showMessageDialog(this, "Lỗi: Không thể chuyển đổi năm.");
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            jTable_HD.setModel(newModel);
+        }
+    private void searchByMonthAndYear(String month, String year) {
+        // Xóa tất cả dữ liệu hiện có trong jTable
+        DefaultTableModel newModel = new DefaultTableModel();
+            newModel.addColumn("STT");
+            newModel.addColumn("Mã Hóa Đơn");
+            newModel.addColumn("Mã Nhân Viên");
+            newModel.addColumn("Mã Khách Hàng");
+            newModel.addColumn("Ngày Lập");
+            newModel.addColumn("Ngày Xuất");
+            newModel.addColumn("Tổng Giá Trị");
+            newModel.addColumn("Tổng Giá Trị Sau Giảm");
+
+=======
+        // Xóa tất cả dữ liệu hiện có trong jTable
+        
+
+        DefaultTableModel newModel = new DefaultTableModel();
+        newModel.addColumn("STT");
+        newModel.addColumn("Mã Hóa Đơn");
+        newModel.addColumn("Mã Nhân Viên");
+        newModel.addColumn("Mã Khách Hàng");
+        newModel.addColumn("Ngày Lập");
+        newModel.addColumn("Ngày Xuất");
+        newModel.addColumn("Tổng Giá Trị");
+        newModel.addColumn("Tổng Giá Trị Sau Giảm");
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
 
         int stt = 1;
 
@@ -929,7 +1197,12 @@ public class HoaDonGUI extends javax.swing.JPanel {
                     int dateYear = calendar.get(Calendar.YEAR);
 
                     if (dateMonth == Integer.parseInt(month) && dateYear == Integer.parseInt(year)) {
+<<<<<<< HEAD
+                        // Nếu tìm thấy tháng và năm, thêm hàng tương ứng vào jTable
+                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+=======
                         Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7)};
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
                         newModel.addRow(row);
                         stt++;
                     }
@@ -940,6 +1213,19 @@ public class HoaDonGUI extends javax.swing.JPanel {
         }
         jTable_HD.setModel(newModel);
     }
+<<<<<<< HEAD
+    private void searchByDayMonthYear(String day, String month, String year) {
+        // Xóa tất cả dữ liệu hiện có trong jTable
+        DefaultTableModel newModel = new DefaultTableModel();
+            newModel.addColumn("STT");
+            newModel.addColumn("Mã Hóa Đơn");
+            newModel.addColumn("Mã Nhân Viên");
+            newModel.addColumn("Mã Khách Hàng");
+            newModel.addColumn("Ngày Lập");
+            newModel.addColumn("Ngày Xuất");
+            newModel.addColumn("Tổng Giá Trị");
+            newModel.addColumn("Tổng Giá Trị Sau Giảm");
+=======
         private void searchByDayMonthYear(String search) {
         String[] dateParts = search.split("/");
 
@@ -967,6 +1253,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         newModel.addColumn("Ngày Xuất");
         newModel.addColumn("Tổng Giá Trị");
         newModel.addColumn("Tổng Giá Trị Sau Giảm");
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
 
         int stt = 1;
 
@@ -986,7 +1273,12 @@ public class HoaDonGUI extends javax.swing.JPanel {
                     int yearValue = cal.get(Calendar.YEAR);
 
                     if (day.equals(String.valueOf(dayValue)) && month.equals(String.valueOf(monthValue)) && year.equals(String.valueOf(yearValue))) {
+<<<<<<< HEAD
+                        // Nếu tìm thấy ngày, thêm hàng tương ứng vào jTable
+                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+=======
                         Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7)};
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
                         newModel.addRow(row);
                         stt++;
                     }
@@ -996,11 +1288,38 @@ public class HoaDonGUI extends javax.swing.JPanel {
             }
         }
         jTable_HD.setModel(newModel);
+<<<<<<< HEAD
+    }
+    private void SearchByKhoangCach(String DateRange) {
+        DefaultTableModel newModel = new DefaultTableModel();
+            newModel.addColumn("STT");
+            newModel.addColumn("Mã Hóa Đơn");
+            newModel.addColumn("Mã Nhân Viên");
+            newModel.addColumn("Mã Khách Hàng");
+            newModel.addColumn("Ngày Lập");
+            newModel.addColumn("Ngày Xuất");
+            newModel.addColumn("Tổng Giá Trị");
+            newModel.addColumn("Tổng Giá Trị Sau Giảm");
+        String[] dateRange = DateRange.split("-");
+        int stt=1;
+        if (dateRange.length != 2) {
+            // Nếu không có đúng hai ngày, hiển thị thông báo lỗi
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng khoảng cách ngày.");
+            return;
+        }
+
+        String startDateStr = dateRange[0].trim();
+        String endDateStr = dateRange[1].trim();
+        
+        
+        
+=======
         
     }
     
     public void searchByRange(JDateChooser jDateChooser1, JDateChooser jDateChooser2) {
         // Định dạng ngày cho SimpleDateFormat
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         // Lấy ngày bắt đầu và ngày kết thúc từ JDateChooser
@@ -1021,6 +1340,22 @@ public class HoaDonGUI extends javax.swing.JPanel {
         for (int i = 0; i < modelHD.getRowCount(); i++) {
         Object rowDataDate = modelHD.getValueAt(i, 5); // Giả sử cột ngày là cột thứ 5
 
+<<<<<<< HEAD
+            for (int i = 0; i < modelHD.getRowCount(); i++) {
+            // Lấy giá trị từ cột thứ 3 (chỉ số cột 2) trong modelHD
+            Object rowDataDate = modelHD.getValueAt(i, 5);
+
+            if (rowDataDate != null) {
+                try {
+                    // Chuyển đổi giá trị từ định dạng ngày tháng năm sang Date object
+                    Date rowDate = dateFormat.parse(rowDataDate.toString());
+
+                    if (rowDate.compareTo(startDate) >= 0 && rowDate.compareTo(endDate) <= 0) {
+                        Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6)};
+                        newModel.addRow(row);
+                        stt++;
+                   
+=======
         if( rowDataDate != null){
             try {
                 Date rowDate = dateFormat.parse(rowDataDate.toString());
@@ -1028,11 +1363,13 @@ public class HoaDonGUI extends javax.swing.JPanel {
                     Object[] row = new Object[]{stt, modelHD.getValueAt(i, 1), modelHD.getValueAt(i, 2), modelHD.getValueAt(i, 3), modelHD.getValueAt(i, 4), modelHD.getValueAt(i, 5), modelHD.getValueAt(i, 6),modelHD.getValueAt(i,7)};
                     newModel.addRow(row);
                     stt++;
+>>>>>>> 42dab1ce1fbdb1282df89d0a5f2870996f384a92
                 }
                 }catch(java.text.ParseException ex){
                     ex.printStackTrace();
                 }
             }
+            jTable_HD.setModel(newModel);
         }
         jTable_HD.setModel(newModel);
     }
