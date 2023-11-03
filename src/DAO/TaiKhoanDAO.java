@@ -39,24 +39,18 @@ public class TaiKhoanDAO {
     }
     public boolean addTk(TaiKhoanDTO tk){
        try{
-            String query = "INSERT INTO TaiKhoan (MaTK, TenDangNhap, MatKhau, TrangThai";
+            String query = "INSERT INTO TaiKhoan (MaTK, TenDangNhap, MatKhau, TrangThai) VALUES (?, ?, ?, ?)";
             Connection connection = sqlConn.getConnection();
 
-            if(connection != null){
-                row = getListall().size() + 1;
-                String id;
-                if(row>=100 && row<=999) id = "TK" + String.valueOf(row);
-                else if(row>=10 && row <=99) id = "TK0" + String.valueOf(row);
-                else if(row>1 && row <9) id = "TK00" + String.valueOf(row);
-                else id = "TK" + String.valueOf(row);
+            if(connection != null){                               
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1,id);
+                ps.setString(1,tk.getMaTK());
                 ps.setString(2,tk.getTenDangNhap());
                 ps.setString(3,tk.getMatKhau());
-                ps.setInt(4,tk.getTrangThai());
-                
+                ps.setInt(4,tk.getTrangThai());                
                 int rowInserted = ps.executeUpdate();
                 ps.close();
+                connection.commit();    
                 return rowInserted> 0;
             }else{
                 System.out.println("Không thể kết nối cơ sở dữ liệu");

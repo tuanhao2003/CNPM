@@ -12,28 +12,28 @@ public class mainGUI extends javax.swing.JFrame {
    
     public mainGUI() {
         initComponents();
-        this.nvGUI = new NhanVienGUI();
+        //this.nvGUI = new NhanVienGUI();
         
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
 
 //       addComponent("Nhập Hàng", this.pnGUI, "import.png");
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
-       addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-//       addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
+       //addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+       addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
 //       addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
 //       addComponent("Thống Kê", new thongKeGUI(), "empty.png");
-//       addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
+       addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
 //       addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
-       addComponent("Sản Phẩm", new SanPhamGUI(), "empty.png");    
-        solveEvent();
+      // addComponent("Sản Phẩm", new SanPhamGUI(), "empty.png");    
+        //solveEvent();
 
 //        addComponent("Nhập Hàng", this.pnGUI, "import.png");
 //        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 //        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-        addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
-        addComponent("Thống Kê Sản Phẩm", new thongKeGUI(), "empty.png");  
-        solveEvent();
+//        addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
+//        addComponent("Thống Kê Sản Phẩm", new thongKeGUI(), "empty.png");  
+        //solveEvent();
 
     }
 //=======

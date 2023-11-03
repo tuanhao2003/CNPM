@@ -15,12 +15,13 @@ import java.util.ArrayList;
 public class TaiKhoanBLL {
     TaiKhoanDAO tkDao = new TaiKhoanDAO();
     
+    public TaiKhoanBLL(){
+        
+    }
     public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
         return tkDao.getListall();
-    }
-    public String AddTK(TaiKhoanDTO t){
-       if(tkDao.hasTaiKhoanID(t.getMaTK()))
-           return "Mã tài khoản đã tồn tại";
+    }        
+    public String AddTK(TaiKhoanDTO t){       
        if(tkDao.addTk(t))
            return "Thêm thành công";
        return "Thêm thất bại";

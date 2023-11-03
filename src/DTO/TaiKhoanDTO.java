@@ -21,7 +21,10 @@ public class TaiKhoanDTO {
     }
 
     public TaiKhoanDTO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MaTK = null;
+        TenDangNhap = null;
+        MatKhau = null;
+        TrangThai = 0;       
     }
 
     public String getMaTK() {

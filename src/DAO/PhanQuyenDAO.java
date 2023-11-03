@@ -23,7 +23,7 @@ public class PhanQuyenDAO {
     public ArrayList<PhanQuyenDTO> getListall(){
         ArrayList<PhanQuyenDTO> resultList = new ArrayList<>();
         ResultSet rs = null;
-        String query="select * from PhanQuyen";
+        String query="select * from Quyen";
         try {
             rs = this.sqlConn.getSta().executeQuery(query);
             while(rs.next()){
