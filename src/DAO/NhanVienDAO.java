@@ -23,11 +23,8 @@ public class NhanVienDAO {
     public boolean openConnection() {
         try {
             String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCH;"
-<<<<<<< HEAD
                     + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-=======
-                    + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
->>>>>>> 1c00ada1e398fcf67a08abfa0b7d92bfbedf0cbb
+
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;

@@ -9,6 +9,7 @@ import BLL.TaiKhoanBLL;
 import DTO.PhanQuyenDTO;
 import DTO.TaiKhoanDTO;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -80,21 +81,30 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         int n = 0;
         DefaultTableModel model = (DefaultTableModel) this.jTablePhanQuyen.getModel();
         model.setRowCount(0);
-        arrPhanQuyen = pqBLL.getListPhanQuyen();
-        int value = 0;
+        arrPhanQuyen = pqBLL.getListPhanQuyen();        
         for(int i = 0; i<arrPhanQuyen.size();i++){
             PhanQuyenDTO pq = arrPhanQuyen.get(i);
-            String id= pq.getMaTK();            
-            value = pq.getQuyen();
+            String id= pq.getMaTK();                        
+            int value = pq.getQuyen();
             String quyen = null;
-            if(value == 1) quyen = "Admin" ;
+            if(value == 1) quyen = "Admin";
             else if(value == 2) quyen = "Nhân viên";
-            else if(value == 3) quyen = "Khách hàng";
+            else quyen = "Khách hàng";
             Object[] row = {id,quyen};
             modelPQ.addRow(row);
         }
     }
-    
+    List<TaiKhoanDTO> listTK = new ArrayList<>();
+    public void getDataTableTK(){
+//        modelTK = (DefaultTableModel)jTableTaiKhoan.getModel();
+        int i = jTableTaiKhoan.getSelectedRow();
+        TaiKhoanDTO tk = listTK.get(i);
+        jTextFieldMaTaiKhoan.setText(tk.getMaTK());
+        jTextFieldTenDangNhap.setText(tk.getTenDangNhap());
+        jPasswordFieldMatKhau.setText(tk.getMatKhau());
+        jComboBoxTrangThai.setSelectedIndex(tk.getTrangThai());
+
+    }
 
     
     /**
@@ -193,6 +203,11 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTaiKhoanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableTaiKhoan);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -430,6 +445,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 tkBLL.AddTK(tk);
                 pqBLL.AddPQ(pq);
                 loadTKList();
+                loadPQList();
             }
                 
         }
@@ -446,11 +462,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
     private void btnXoaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTKActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnXoaTKActionPerformed
 
     private void jTextFieldquyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldquyenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldquyenActionPerformed
+
+    private void jTableTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTaiKhoanMouseClicked
+        // TODO add your handling code here:
+        getDataTableTK();
+    }//GEN-LAST:event_jTableTaiKhoanMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

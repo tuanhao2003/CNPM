@@ -12,13 +12,7 @@ public class sqlConnect {
 
         this.dbName="QLCH";
         this.userName="sa";
-<<<<<<< HEAD
-        this.passWord="123";
-=======
-        this.passWord="123456";
->>>>>>> 1c00ada1e398fcf67a08abfa0b7d92bfbedf0cbb
-
-
+        this.passWord="123";        
         connectTosql();
     }
     
