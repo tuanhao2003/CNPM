@@ -21,8 +21,8 @@ public class NhaCungCapDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH3;"
+                    + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
@@ -69,8 +69,9 @@ public class NhaCungCapDAO {
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, emp.getMaNCC());
                 stmt.setString(2, emp.getTenNCC());
-                stmt.setString(3, emp.getSDTNCC());
-                stmt.setString(4, emp.getDiaChiNCC());
+                stmt.setString(3, emp.getDiaChiNCC());
+                stmt.setString(4, emp.getSDTNCC());
+                
 //                stmt.setString(4, emp.getLoaiHang());
                 if(stmt.executeUpdate()>=1)
                     result=true;
@@ -96,19 +97,21 @@ public class NhaCungCapDAO {
         return result;
     }
     
-    public boolean UpNCC(String id, String name, String sdt, String diachi){
-        boolean result =false;
+    public boolean UpNCC(NhaCungCapDTO n){
+        boolean result = true;
         if(openConnection()){
             try {
-                String sql = "Update NhaCungCap set TenNCC=?, SDTNCC=?,  DiaChiNCC  where MaNCC=?";
-                PreparedStatement stmt = conn.prepareCall(sql);
-                stmt.setString(1, name);
-                stmt.setString(2, sdt);
-                stmt.setString(3, diachi);
-                stmt.setString(5, id);
+                String sql = "Update NhaCungCap set TenNCC=?, DiaChiNCC=?,  SDTNCC=?  where MaNCC=?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                
+                stmt.setString(1, n.getTenNCC());
+                stmt.setString(2, n.getDiaChiNCC());
+                stmt.setString(3, n.getSDTNCC());
+                stmt.setString(4, n.getMaNCC());
                 if(stmt.executeUpdate()>=1)
                     result=true;
             } catch (Exception e) {
+                 System.out.println(e);
             }
         }
         return result;
@@ -128,7 +131,6 @@ public class NhaCungCapDAO {
         }
         return result;
     }
-    
     
 }
 

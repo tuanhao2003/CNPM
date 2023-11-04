@@ -1,11 +1,11 @@
 
-create database QLCH
-use QLCH
+create database QLCH3
+use QLCH3
 
 create table NhaCungCap
 (
 	MaNCC				NCHAR(5)					NOT NULL,
-	TenNCC				NVARCHAR(10)				NOT NULL,
+	TenNCC				NVARCHAR(40)				NOT NULL,
 	DiaChiNCC			NVARCHAR(40),
 	SDTNCC				NVARCHAR(10)
 )

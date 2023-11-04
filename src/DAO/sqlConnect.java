@@ -10,9 +10,9 @@ public class sqlConnect {
     protected sqlConnect(){
         //sửa thông tin đăng nhập ở đây
 
-        this.dbName="QLCH";
+        this.dbName="QLCH3";
         this.userName="sa";
-        this.passWord="123";        
+        this.passWord="123456";        
         connectTosql();
     }
     
