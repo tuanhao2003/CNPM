@@ -418,20 +418,20 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         int trangthai = jComboBoxTrangThai.getSelectedIndex();
         TaiKhoanDTO tk = new TaiKhoanDTO();
         PhanQuyenDTO pq = new PhanQuyenDTO();
-                
+        
                 if(quyen == 1){
                     if(arrTaiKhoan.size() == 0){
                     id = "AD001";
                     
                     }else{
-                        TaiKhoanDTO lastTK = arrTaiKhoan.get(arrTaiKhoan.size()-1);
-                        int count = Integer.parseInt(lastTK.getMaTK().substring(3));     
-                        if(count<=9)
-	                    id = ("AD00"+(count+1));
-	                else if(count>=10 && count<=99)
-	                    id = ("AD0"+(count+1));
-	                else
-	                    id = ("AD"+(count+1));
+                        int count = arrTaiKhoan.size() + 1;                     
+                        if (count <= 9) {
+                            id = "AD00" + count;
+                        } else if (count <= 99) {
+                            id = "AD0" + count;
+                        } else {
+                            id = "AD" + count;
+                        }
                     }
                 
                 }
@@ -440,14 +440,14 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                     id = ("ST001");
                     
                     }else{
-                        TaiKhoanDTO lastTK = arrTaiKhoan.get(arrTaiKhoan.size()-1);
-                        int count = Integer.parseInt(lastTK.getMaTK().substring(3));     
-                        if(count<=9)
-	                    id = ("ST00"+(count+1));
-	                else if(count>=10 && count<=99)
-	                    id =("ST0"+(count+1));
-	                else
-	                    id =("ST"+(count+1));
+                        int count = arrTaiKhoan.size() + 1;                     
+                        if (count <= 9) {
+                            id = "ST00" + count;
+                        } else if (count <= 99) {
+                            id = "ST0" + count;
+                        } else {
+                            id = "ST" + count;
+                        }
                     }
                 }
                 else if(quyen == 3){
@@ -455,21 +455,24 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                     tk.setMaTK("TK001");
                     
                     }else{
-                        TaiKhoanDTO lastTK = arrTaiKhoan.get(arrTaiKhoan.size()-1);
-                        int count = Integer.parseInt(lastTK.getMaTK().substring(3));     
-                        if(count<=9)
-	                    id = ("TK00"+(count+1));
-	                else if(count>=10 && count<=99)
-	                    id = ("TK0"+(count+1));
-	                else
-	                    id = ("TK"+(count+1));
+                        int count = arrTaiKhoan.size() + 1;                     
+                        if (count <= 9) {
+                            id = "TK00" + count;
+                        } else if (count <= 99) {
+                            id = "TK0" + count;
+                        } else {
+                            id = "TK" + count;
+                        }
                     }
                 }    
         try{
-            if(username.isEmpty() || password.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
-            }
-            else{
+            if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
+        } else {
+            boolean isUsernameExists = isUsernameExists(username);
+            if (isUsernameExists) {
+                JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại, vui lòng chọn một tên đăng nhập khác.");
+            } else {
                 tk.setMaTK(id);
                 tk.setTenDangNhap(username);
                 tk.setMatKhau(password);
@@ -482,6 +485,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 loadPQList();
                 JOptionPane.showMessageDialog(this, "Thêm tài khoản mới thành công");
             }
+
+            }
                 
         }
         catch(Exception ex){
@@ -490,11 +495,19 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_addTKBtnActionPerformed
-
+    private boolean isUsernameExists(String username) {
+    // Kiểm tra xem tên đăng nhập đã tồn tại trong danh sách tài khoản hay chưa.
+    for (TaiKhoanDTO existingTK : arrTaiKhoan) {
+        if (existingTK.getTenDangNhap().trim().equals(username.trim())) {
+            return true; // Tên đăng nhập đã tồn tại.
+        }
+    }
+    return false; // Tên đăng nhập chưa tồn tại.
+}
     private void jComboBoxTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTrangThaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxTrangThaiActionPerformed
-
+    
     private void jTextFieldquyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldquyenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldquyenActionPerformed
