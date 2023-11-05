@@ -364,7 +364,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Note: \nQuyền 1: Admin\nQuyền 2: Nhân viên\nQuyền 3;  Khách hàng\n");
+        jTextArea1.setText("Note: \nQuyền 0: Tài khoản bị khóa\nQuyền 1: Admin\nQuyền 2: Nhân viên\nQuyền 3;  Khách hàng\n");
         jScrollPane3.setViewportView(jTextArea1);
 
         btnSuaQuyen.setText("Sửa ");
@@ -622,7 +622,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             pq.setQuyen(quyen);
             pqBLL.UpPQ(pq);
             loadPQList();
-            JOptionPane.showMessageDialog(this, "Sửa thông tin tài khoản thành công");
+            JOptionPane.showMessageDialog(this, "Sửa thông tin phân quyền thành công");
             }
         }catch(Exception ex){
             ex.printStackTrace();

@@ -204,15 +204,24 @@ public class Login extends javax.swing.JFrame {
             ps.setString(2,MatKhau);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
-                if(rs.getInt(4)==1){
+                String id = rs.getString(1);                
+                String query = "select * from [dbo].[Quyen] where MaTK = ?";
+                PreparedStatement PS = con.prepareCall(query);
+                PS.setString(1,id);
+                ResultSet RS = PS.executeQuery();
+                if(RS.getInt(2) == 1){
                     mainGUI sg = new mainGUI();
                     sg.setVisible(true);
                 }
-                else if (rs.getInt(4)==0)
+                else if (RS.getInt(2)==0)
                     JOptionPane.showMessageDialog(this,"Tài khoản đã bị khóa");
-                else{                 
-                    mainGUI nv = new mainGUI();
-                    nv.setVisible(true);
+                else if (RS.getInt(2)==2){
+                    StaffGUI st = new StaffGUI();
+                    st.setVisible(confirms);
+                }
+                    
+                else if(RS.getInt(2)==3){                 
+                    //Hiện trang mua hàng
                 }                
                 this.dispose();
             }
