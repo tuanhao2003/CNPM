@@ -24,4 +24,9 @@ public class PhanQuyenBLL {
     public ArrayList<PhanQuyenDTO> getListPhanQuyen(){
        return daoPQ.getListall();
     }
+    public String UpPQ(  PhanQuyenDTO p){
+       if(daoPQ.updatePhanQuyen(p))
+            return "Cap nhat thanh cong";
+        return "Cap nhat that bai";
+    }
 }

@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -97,20 +98,17 @@ public class TaiKhoanDAO {
         }
         return result;
     }
-    public boolean UpTK(TaiKhoanDTO t, PhanQuyenDTO p){
+    public boolean UpTK(TaiKhoanDTO t){
         boolean result =false;
         Connection connection = sqlConn.getConnection();
         if(connection != null){
             try {
-                String sql = "Update TaiKhoan set TenDangNhap=?, MatKhau=?, TrangThai=? where MaTK=?"
-                        + "Update Quyen set PhanQuyen =? where MaTK=?";
+                String sql = "Update TaiKhoan set TenDangNhap=?, MatKhau=?, TrangThai=? where MaTK=?";
                 PreparedStatement stmt = connection.prepareCall(sql);                
                 stmt.setString(1, t.getTenDangNhap());
                 stmt.setString(2, t.getMatKhau());
                 stmt.setInt(3, t.getTrangThai());
                 stmt.setString(4, t.getMaTK());
-                stmt.setString(5, String.valueOf(p.getQuyen()));
-                stmt.setString(6, t.getMaTK());
                 if(stmt.executeUpdate()>=1)
                     result=true;
             } catch (Exception e) {
@@ -119,5 +117,25 @@ public class TaiKhoanDAO {
         }
         return result;
     }   
-    
+    public ArrayList<TaiKhoanDTO> SearchTK(String username){
+        ArrayList<TaiKhoanDTO> arr = new ArrayList<>();
+        Connection connection = sqlConn.getConnection();
+        if(connection != null){
+            try {                
+                String sql = "SELECT * FROM TaiKhoan WHERE TenDangNhap = '"+ username + "'";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);                
+                while (rs.next()) {
+                    TaiKhoanDTO tk = new TaiKhoanDTO();
+                    tk.setMaTK(rs.getString(1));
+                    tk.setTenDangNhap(rs.getString(2));
+                    tk.setTrangThai(rs.getInt(3));
+                    arr.add(tk);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            } 
+        }
+        return arr;
+    }
 }
