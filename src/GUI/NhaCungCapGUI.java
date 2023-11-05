@@ -550,6 +550,14 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         return true;
     }
     
+    private boolean isMaSPNCCUnique(String maSPNCC) {
+        for (SanPhamNCCDTO spncc : arrSPNCC) {
+            if (spncc.getMaSP().equals(maSPNCC)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private boolean isValidPhoneNumber(String phoneNumber) {
         String regex = "(84|0)(2[0-9]|3[2-9]|4[0-9]|5[6-9]|6[2-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7,8}";
         return phoneNumber.matches(regex);
@@ -646,15 +654,18 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         String maSPNCC = jComboBox_IDSP.getSelectedItem().toString();
         
         try {
-            // Kiểm tra nếu cả hai trường không rỗng
+            
             SanPhamNCCDTO spncc=new SanPhamNCCDTO();
+            if(isMaSPNCCUnique(maSPNCC)){
+                JOptionPane.showMessageDialog(this, "nhà cung cấp đã có sản phẩm này");
+            }else{
+                spncc.setMaNCC((String) jComboBox_IDNCC.getSelectedItem());
+                spncc.setMaSP((String) jComboBox_IDSP.getSelectedItem());
 
-            spncc.setMaNCC((String) jComboBox_IDNCC.getSelectedItem());
-            spncc.setMaSP((String) jComboBox_IDSP.getSelectedItem());
+                spnccBLL.addSPNCC(spncc);
+                loadSPNCCList();
 
-            spnccBLL.addSPNCC(spncc);
-            loadSPNCCList();
- 
+                }
             }
         catch (Exception ex) {
             ex.printStackTrace();
