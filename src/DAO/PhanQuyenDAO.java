@@ -78,15 +78,15 @@ public class PhanQuyenDAO {
         }
         return result;
     }
-    public boolean updatePhanQuyen(String maTK, int quyen) {
+    public boolean updatePhanQuyen(PhanQuyenDTO p) {
     boolean result = false;
     Connection connection = sqlConn.getConnection();
     if (connection != null) {
         try {
             String updateQuyenSQL = "UPDATE Quyen SET PhanQuyen=? WHERE MaTK=?";
             PreparedStatement quyenStmt = connection.prepareCall(updateQuyenSQL);
-            quyenStmt.setInt(1, quyen);
-            quyenStmt.setString(2, maTK);
+            quyenStmt.setInt(1, p.getQuyen());
+            quyenStmt.setString(2, p.getMaTK());
 
             int quyenUpdated = quyenStmt.executeUpdate();
 
@@ -98,5 +98,6 @@ public class PhanQuyenDAO {
         }
     }
     return result;
-}
+    }
+    
 }
