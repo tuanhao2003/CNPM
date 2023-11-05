@@ -417,7 +417,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Note: &#xa;Quy&#x1ec1;n 1: Admin&#xa;Quy&#x1ec1;n 2: Nh&#xe2;n vi&#xea;n&#xa;Quy&#x1ec1;n 3;  Kh&#xe1;ch h&#xe0;ng&#xa;"/>
+                    <Property name="text" type="java.lang.String" value="Note: &#xa;Quy&#x1ec1;n 0: T&#xe0;i kho&#x1ea3;n b&#x1ecb; kh&#xf3;a&#xa;Quy&#x1ec1;n 1: Admin&#xa;Quy&#x1ec1;n 2: Nh&#xe2;n vi&#xea;n&#xa;Quy&#x1ec1;n 3;  Kh&#xe1;ch h&#xe0;ng&#xa;"/>
                   </Properties>
                 </Component>
               </SubComponents>
