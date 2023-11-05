@@ -34,9 +34,9 @@ public class NhaCungCapBLL {
             return "Xóa thất bại";
     }
     
-    public String UpNCC(String id, String name, String sdt, String diachi )
+    public String UpNCC(NhaCungCapDTO n )
     {
-       if(nccDAO.UpNCC(id, name, sdt, diachi))
+       if(nccDAO.UpNCC(n))
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }

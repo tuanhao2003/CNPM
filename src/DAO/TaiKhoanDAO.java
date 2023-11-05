@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+import DTO.PhanQuyenDTO;
 import java.sql.Connection;
 
 import DTO.TaiKhoanDTO;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.sql.PreparedStatement; 
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,24 +42,18 @@ public class TaiKhoanDAO {
     }
     public boolean addTk(TaiKhoanDTO tk){
        try{
-            String query = "INSERT INTO TaiKhoan (MaTK, TenDangNhap, MatKhau, TrangThai";
+            String query = "INSERT INTO TaiKhoan (MaTK, TenDangNhap, MatKhau, TrangThai) VALUES (?, ?, ?, ?)";
             Connection connection = sqlConn.getConnection();
 
-            if(connection != null){
-                row = getListall().size() + 1;
-                String id;
-                if(row>=100 && row<=999) id = "TK" + String.valueOf(row);
-                else if(row>=10 && row <=99) id = "TK0" + String.valueOf(row);
-                else if(row>1 && row <9) id = "TK00" + String.valueOf(row);
-                else id = "TK" + String.valueOf(row);
+            if(connection != null){                               
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1,id);
+                ps.setString(1,tk.getMaTK());
                 ps.setString(2,tk.getTenDangNhap());
                 ps.setString(3,tk.getMatKhau());
-                ps.setInt(4,tk.getTrangThai());
-                
+                ps.setInt(4,tk.getTrangThai());                
                 int rowInserted = ps.executeUpdate();
                 ps.close();
+                connection.commit();    
                 return rowInserted> 0;
             }else{
                 System.out.println("Không thể kết nối cơ sở dữ liệu");
@@ -87,33 +84,58 @@ public class TaiKhoanDAO {
         Connection connection = sqlConn.getConnection();
         if(connection != null){
             try {
-                String sql = "Delete from TaiKhoan where MaTK=?";
+                String sql = "Delete from TaiKhoan where MaTK=?"
+                        + "Delete from Quyen where MaTK = ?";
                 PreparedStatement stmt = connection.prepareCall(sql);
                 stmt.setString(1, id);
+                stmt.setString(2,id);
                 if(stmt.executeUpdate()>=1)
                     result = true;
             } catch (Exception e) {
+                 e.printStackTrace();
+                System.out.println("xóa thất bại DAO.TaiKhoanDAO.delTK()");
             }
         }
         return result;
     }
-    public boolean UpTK( String username, String password, int trangthai){
+    public boolean UpTK(TaiKhoanDTO t){
         boolean result =false;
         Connection connection = sqlConn.getConnection();
         if(connection != null){
             try {
                 String sql = "Update TaiKhoan set TenDangNhap=?, MatKhau=?, TrangThai=? where MaTK=?";
                 PreparedStatement stmt = connection.prepareCall(sql);                
-                stmt.setString(1, username);
-                stmt.setString(2, password);
-                stmt.setInt(3, trangthai);
-                
+                stmt.setString(1, t.getTenDangNhap());
+                stmt.setString(2, t.getMatKhau());
+                stmt.setInt(3, t.getTrangThai());
+                stmt.setString(4, t.getMaTK());
                 if(stmt.executeUpdate()>=1)
                     result=true;
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return result;
     }   
-    
+    public ArrayList<TaiKhoanDTO> SearchTK(String username){
+        ArrayList<TaiKhoanDTO> arr = new ArrayList<>();
+        Connection connection = sqlConn.getConnection();
+        if(connection != null){
+            try {                
+                String sql = "SELECT * FROM TaiKhoan WHERE TenDangNhap = '"+ username + "'";
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);                
+                while (rs.next()) {
+                    TaiKhoanDTO tk = new TaiKhoanDTO();
+                    tk.setMaTK(rs.getString(1));
+                    tk.setTenDangNhap(rs.getString(2));
+                    tk.setTrangThai(rs.getInt(3));
+                    arr.add(tk);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            } 
+        }
+        return arr;
+    }
 }

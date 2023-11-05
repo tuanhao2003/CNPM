@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
             String dbUrl = "localhost";
             String DatabaseName="QLCH" ;
             String TenDangNhap = "sa"; 
-            String MatKhau= "1234";
+            String MatKhau= "123";
             String url = "jdbc:sqlserver://" +dbUrl + ":1433;DatabaseName=" + DatabaseName + ";username="+TenDangNhap+";password="+MatKhau+";encrypt=true;trustServerCertificate=true;";
             con=DriverManager.getConnection(url);         
             return true;

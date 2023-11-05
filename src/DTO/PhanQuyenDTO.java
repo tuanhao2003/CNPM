@@ -17,7 +17,8 @@ public class PhanQuyenDTO {
     }
 
     public PhanQuyenDTO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MaTK = null;
+        Quyen = 0;
     }
 
     public String getMaTK() {

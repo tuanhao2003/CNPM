@@ -198,6 +198,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jComboBoxHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IPhone", "Samsung", " " }));
         jComboBoxHang.setPreferredSize(new java.awt.Dimension(60, 30));
+        jComboBoxHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxHangActionPerformed(evt);
+            }
+        });
 
         jLabelAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabelAnh.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -451,6 +456,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
             loadSPlist();
         }
     }//GEN-LAST:event_jButtonXoaActionPerformed
+
+    private void jComboBoxHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxHangActionPerformed
 
     public void loadSPlist(){
         arrSP = spBLL.getListSanPham();

@@ -5,6 +5,7 @@
 package BLL;
 
 import DAO.TaiKhoanDAO;
+import DTO.PhanQuyenDTO;
 import DTO.TaiKhoanDTO;
 import java.util.ArrayList;
 
@@ -13,28 +14,33 @@ import java.util.ArrayList;
  * @author Trung Hiếu
  */
 public class TaiKhoanBLL {
-    TaiKhoanDAO tkDao = new TaiKhoanDAO();
+    TaiKhoanDAO tkDAO = new TaiKhoanDAO();
     
-    public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
-        return tkDao.getListall();
+    public TaiKhoanBLL(){
+        
     }
-    public String AddTK(TaiKhoanDTO t){
-       if(tkDao.hasTaiKhoanID(t.getMaTK()))
-           return "Mã tài khoản đã tồn tại";
-       if(tkDao.addTk(t))
+    public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
+        return tkDAO.getListall();
+    }        
+    public String AddTK(TaiKhoanDTO t){       
+       if(tkDAO.addTk(t))
            return "Thêm thành công";
        return "Thêm thất bại";
     }
         public String delTK(String id){
-        if(tkDao.delTK(id))
+        if(tkDAO.delTK(id))
             return "Xoá thành công";
         else 
             return "Xóa thất bại";
     }
     
-    public String UpTK( String username, String password, int trangthai){
-       if(tkDao.UpTK(username,password,trangthai))
+    public String UpTK(  TaiKhoanDTO t){
+       if(tkDAO.UpTK(t))
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }
+     public ArrayList<TaiKhoanDTO> timKiemTK(String username) {
+        return tkDAO.SearchTK(username);
+    }
+    
 }

@@ -22,7 +22,7 @@ public class CTHoaDonDAO {
     public boolean openConnection() {
         try {
             String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=1234;encrypt=true;trustServerCertificate=true";
+                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;

@@ -12,7 +12,12 @@ public class mainGUI extends javax.swing.JFrame {
    
     public mainGUI() {
         initComponents();
+<<<<<<< HEAD
         this.nvGUI = new NhanVienGUI();
+=======
+        //this.nvGUI = new NhanVienGUI();
+        
+>>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         //addComponent("Nhập Hàng", this.pnGUI, "import.png");
 //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
@@ -22,8 +27,57 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent("Thống Kê", new thongKeGUI(), "empty.png");
         addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
 
+<<<<<<< HEAD
         solveEvent();
 
+=======
+//       addComponent("Nhập Hàng", this.pnGUI, "import.png");
+        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+       //addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//       addComponent("Tài Khoản", new TaiKhoanGUI(),"empty.png");
+//       addComponent("Khách Hàng", new KhachHangGUI(),"empty.png");
+//       addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//       addComponent("Nhân Viên",new NhanVienGUI(),"empty.png");
+//       addComponent("Hóa Đơn", new HoaDonGUI(), "empty.png");
+      // addComponent("Sản Phẩm", new SanPhamGUI(), "empty.png");    
+        //solveEvent();
+
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Thống Kê Sản Phẩm", new thongKeSanPhamGUI(), "empty.png");
+//        addComponent("Thống Kê Sản Phẩm", new thongKeGUI(), "empty.png");  
+        //solveEvent();
+
+//        this.nvGUI = new NhanVienGUI();
+        
+//thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
+//        addComponent("Nhập Hàng", this.pnGUI, "import.png");
+//        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+//        addComponent("Thống Kê", new thongKeGUI(), "empty.png");        
+//        solveEvent();
+//          addComponent("Nhan Vien",new NhanVienGUI(),"empty.png");
+//          addComponent("Hoa Don",new HoaDonGUI(),"empty.png");
+//    
+//    private phieuNhapGUI pnGUI;
+ 
+
+//thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
+        //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
+//        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+        addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
+        addComponent("Thống Kê", new thongKeGUI(), "empty.png");
+        addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
+        addComponent("Nhân Viên", new NhanVienGUI(), "empty.png");
+        addComponent("Hoá Đơn", new HoaDonGUI(), "empty.png");
+        addComponent("Nhà Cung Cấp", new NhaCungCapGUI(), "empty.png");
+
+        solveEvent();
+>>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
     }
 
 //hàm thêm phần tử

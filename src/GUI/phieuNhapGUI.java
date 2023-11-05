@@ -101,7 +101,7 @@ public class phieuNhapGUI extends javax.swing.JPanel {
     public void show(ArrayList<phieuNhapDTO> dto){
         int n = 0;
         DefaultTableModel model = (DefaultTableModel) this.tablePhieunhap.getModel();
-        model.setRowCount(0);
+        model.setRowCount(0);   
         
         for(phieuNhapDTO i : dto){
             n++;
