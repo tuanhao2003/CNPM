@@ -1,5 +1,3 @@
-
-create database QLCH
 use QLCH
 
 create table NhaCungCap
@@ -113,9 +111,9 @@ create table CTPhieuNhapKho
 	MaPhieuNhap		NCHAR(5)						NOT NULL,
 	MaNCC			NCHAR(5)						NOT NULL,
 	SLNhap			int,
-	Tamtinh			int
         SoLuong                         int                                             NOT NULL,
-        DonGia                          int                                             NOT NULL
+        DonGia                          int                                             NOT NULL,
+	Tamtinh			int
 )
 
 create table SanPhamNCC

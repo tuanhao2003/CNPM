@@ -72,7 +72,7 @@ public class phieuNhapDAO {
     }
     
     public void themCtpn(ctphieuNhapDTO pn){
-        String query = "insert into CTPhieuNhapKho((MaPhieuNhap, MaNcc,SoLuong,DonGia,TamTinh) values('"+pn.getmaPn()+"','"+pn.getmaNcc()+"','"+ pn.getsoLuong() +"',"+pn.getdonGia()+","+ pn.gettamTinh()+");";
+        String query = "insert into CTPhieuNhapKho(MaPhieuNhap, MaNcc,SoLuong,DonGia,TamTinh) values('"+pn.getmaPn()+"','"+pn.getmaNcc()+"','"+ pn.getsoLuong() +"',"+pn.getdonGia()+","+ pn.gettamTinh()+");";
         try {
             this.sql.getSta().executeUpdate(query);
         } catch (Exception e) {
