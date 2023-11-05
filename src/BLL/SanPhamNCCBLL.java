@@ -20,8 +20,6 @@ public class SanPhamNCCBLL {
     }
     
     public String addSPNCC(SanPhamNCCDTO s) {
-        if(spnccDAO.hasSanPhamNCC( s.getMaNCC()))
-            return "Mã đã tồn tại";
         if(spnccDAO.addSPNCC(s))
             return "Thêm thành công";
         return "Thêm thất bại";

@@ -49,6 +49,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class NhaCungCapGUI extends javax.swing.JPanel {
 
     NhaCungCapBLL nccBLL=new NhaCungCapBLL();
+    SanPhamNCCBLL spnccBLL = new SanPhamNCCBLL();
     
     ArrayList<NhaCungCapDTO> arrNhaCungCap=new ArrayList<NhaCungCapDTO>();
     ArrayList<SanPhamNCCDTO> arrSPNCC=new ArrayList<SanPhamNCCDTO>();
@@ -89,6 +90,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         modelSPNCC.addColumn("Mã Sản Phẩm");
         
         loadNCClist();
+        loadSPNCCList();
     }
 
     /**
@@ -283,6 +285,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jButton_Sua.setBounds(334, 199, 100, 23);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        jPanel1.setEnabled(false);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Số Điện Thoại");
@@ -309,6 +312,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Mã Nhà Cung Cấp");
 
+        jTextField_Ma.setEditable(false);
         jTextField_Ma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_MaActionPerformed(evt);
@@ -492,10 +496,9 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
                 if (isValidPhoneNumber(sdt)) {
                     NhaCungCapDTO ncc=new NhaCungCapDTO();
 
-
                     String newMaNCC = generateMaNCC();
                     ncc.setMaNCC(newMaNCC);
-
+                    
                     ncc.setTenNCC(jTextField_Ten.getText());
                     ncc.setDiaChiNCC(jTextField_DiaChi.getText());
                     ncc.setSDTNCC(jTextField_SDT.getText());
@@ -584,11 +587,13 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private void jButton_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_XoaActionPerformed
         // TODO add your handling code here:
         int i= jTable1.getSelectedRow();
+        
         if(i>=0){
             nccBLL.delNCC(modelNCC.getValueAt(i,1).toString());
             loadNCClist();
         }
-
+        
+        
     }//GEN-LAST:event_jButton_XoaActionPerformed
 
     private void jTextField_SearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_SearchFocusGained
@@ -634,10 +639,27 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             setTextFieldPlaceholderNCC(selectedValue);
         }
     }//GEN-LAST:event_jComboBox_SearchType1ItemStateChanged
-//Thêm sản phẩm ncc-----------------------------------------------------------------------------------
+//------------------------------Thêm sản phẩm ncc-----------------------------------------------------------------------------------
     private void Them_SPNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Them_SPNCCActionPerformed
         // TODO add your handling code here:
+        String maNCC = jComboBox_IDNCC.getSelectedItem().toString();
+        String maSPNCC = jComboBox_IDSP.getSelectedItem().toString();
         
+        try {
+            // Kiểm tra nếu cả hai trường không rỗng
+            SanPhamNCCDTO spncc=new SanPhamNCCDTO();
+
+            spncc.setMaNCC((String) jComboBox_IDNCC.getSelectedItem());
+            spncc.setMaSP((String) jComboBox_IDSP.getSelectedItem());
+
+            spnccBLL.addSPNCC(spncc);
+            loadSPNCCList();
+ 
+            }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Thông tin không hợp lệ");
+        }
     }//GEN-LAST:event_Them_SPNCCActionPerformed
 
     private void SanPhamNCC_DialogWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_SanPhamNCC_DialogWindowActivated
@@ -829,10 +851,25 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         }
     }
     
-    public void SanPhamNCC()
-    {
-        
+    public void loadSPNCCList() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
+        model.setRowCount(0);
+        arrSPNCC = spnccBLL.getListSanPhamNCC();
+        for(int i = modelSPNCC.getRowCount()-1;i>=0;i--)
+            modelSPNCC.removeRow(i);
+        for(int i = 0; i<arrSPNCC.size();i++){
+            SanPhamNCCDTO em = arrSPNCC.get(i);
+            int stt = i+1;
+            String idncc = em.getMaNCC();
+            String idsp = em.getMaSP();
+            
+            Object[] row = {stt,idncc,idsp};
+            modelSPNCC.addRow(row);
+            
+        }
     }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dong_SPNCC;
