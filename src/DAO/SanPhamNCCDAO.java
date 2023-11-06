@@ -21,8 +21,8 @@ public class SanPhamNCCDAO {
     
     public boolean openConnection() {
         try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH3;"
-                    + "user=sa;password=123456;encrypt=true;trustServerCertificate=true";
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
+                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
             conn = DriverManager.getConnection(connectionUrl);
             System.out.println("Connected to database successfully.");
             return true;
