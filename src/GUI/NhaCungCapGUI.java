@@ -40,6 +40,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 /**
  *
  * @author Dao Khanh
@@ -47,11 +49,12 @@ import javax.swing.JTextField;
 public class NhaCungCapGUI extends javax.swing.JPanel {
 
     NhaCungCapBLL nccBLL=new NhaCungCapBLL();
+    SanPhamNCCBLL spnccBLL = new SanPhamNCCBLL();
     
     ArrayList<NhaCungCapDTO> arrNhaCungCap=new ArrayList<NhaCungCapDTO>();
     ArrayList<SanPhamNCCDTO> arrSPNCC=new ArrayList<SanPhamNCCDTO>();
     Connection conn;
-    
+    private JComboBox<String> comboBox;
     DefaultTableModel modelNCC = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -87,6 +90,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         modelSPNCC.addColumn("Mã Sản Phẩm");
         
         loadNCClist();
+        loadSPNCCList();
     }
 
     /**
@@ -126,10 +130,8 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jComboBox_SearchType1 = new javax.swing.JComboBox<>();
         jTextField_Search = new javax.swing.JTextField();
         jButton_Search = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -283,6 +285,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jButton_Sua.setBounds(334, 199, 100, 23);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        jPanel1.setEnabled(false);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Số Điện Thoại");
@@ -309,6 +312,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Mã Nhà Cung Cấp");
 
+        jTextField_Ma.setEditable(false);
         jTextField_Ma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_MaActionPerformed(evt);
@@ -422,8 +426,6 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         add(jButton_Search);
         jButton_Search.setBounds(631, 228, 108, 44);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)));
-
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jScrollPane1MouseClicked(evt);
@@ -448,21 +450,8 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-        );
-
-        add(jPanel2);
-        jPanel2.setBounds(6, 278, 474, 310);
+        add(jScrollPane1);
+        jScrollPane1.setBounds(10, 300, 540, 238);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -477,22 +466,8 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         ));
         jScrollPane7.setViewportView(jTable2);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-
-        add(jPanel5);
-        jPanel5.setBounds(487, 278, 479, 100);
+        add(jScrollPane7);
+        jScrollPane7.setBounds(560, 300, 390, 240);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_HuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HuyActionPerformed
@@ -512,32 +487,28 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         String sdt = jTextField_SDT.getText();
         
         
+        
         try{
             // Kiểm tra nếu cả hai trường không rỗng
             if (ten.isEmpty() &&  sdt.isEmpty() && diachi.isEmpty())
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
             else{
                 if (isValidPhoneNumber(sdt)) {
-                NhaCungCapDTO ncc=new NhaCungCapDTO();
-                
-//                CenteredTextField jTextField_Ten = new CenteredTextField();
-//                jTextField_SDT.setHorizontalAlignment(JTextField.CENTER);
-//                jTextField_DiaChi.setHorizontalAlignment(JTextField.CENTER);
-                
-                String newMaNCC = generateMaNCC();
-                ncc.setMaNCC(newMaNCC);
-                
-                ncc.setTenNCC(jTextField_Ten.getText());
-                ncc.setDiaChiNCC(jTextField_DiaChi.getText());
-                ncc.setSDTNCC(jTextField_SDT.getText());
+                    NhaCungCapDTO ncc=new NhaCungCapDTO();
 
-                nccBLL.addNCC(ncc);
-                loadNCClist();
-                
-                jTextField_Ten.setText("");
-                jTextField_DiaChi.setText("");
-                jTextField_SDT.setText("");
-                
+                    String newMaNCC = generateMaNCC();
+                    ncc.setMaNCC(newMaNCC);
+                    
+                    ncc.setTenNCC(jTextField_Ten.getText());
+                    ncc.setDiaChiNCC(jTextField_DiaChi.getText());
+                    ncc.setSDTNCC(jTextField_SDT.getText());
+
+                    nccBLL.addNCC(ncc);
+                    loadNCClist();
+
+                    jTextField_Ten.setText("");
+                    jTextField_DiaChi.setText("");
+                    jTextField_SDT.setText("");
                 } else {
                     JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ. Vui lòng kiểm tra lại.");
                 }
@@ -547,8 +518,6 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Thông tin không hợp lệ");
         }
-        // Thêm dữ liệu mới vào mô hình
-
     }//GEN-LAST:event_jButton_ThemActionPerformed
 
     public String generateMaNCC()
@@ -581,6 +550,14 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         return true;
     }
     
+    private boolean isMaSPNCCUnique(String maSPNCC) {
+        for (SanPhamNCCDTO spncc : arrSPNCC) {
+            if (spncc.getMaSP().equals(maSPNCC)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private boolean isValidPhoneNumber(String phoneNumber) {
         String regex = "(84|0)(2[0-9]|3[2-9]|4[0-9]|5[6-9]|6[2-9]|7[0-9]|8[1-9]|9[0-9])[0-9]{7,8}";
         return phoneNumber.matches(regex);
@@ -618,11 +595,13 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private void jButton_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_XoaActionPerformed
         // TODO add your handling code here:
         int i= jTable1.getSelectedRow();
+        
         if(i>=0){
             nccBLL.delNCC(modelNCC.getValueAt(i,1).toString());
             loadNCClist();
         }
-
+        
+        
     }//GEN-LAST:event_jButton_XoaActionPerformed
 
     private void jTextField_SearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_SearchFocusGained
@@ -648,10 +627,11 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
 
     private void jButton_SanPhamNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SanPhamNCCActionPerformed
         // TODO add your handling code here:
-        SanPhamNCC_Dialog.setSize(450, 450);
+       SanPhamNCC_Dialog.setSize(450, 450);
+       
+       DoMaVaoComBoBox(jComboBox_IDNCC, "NhaCungCap", "MaNCC");
+       DoMaVaoComBoBox(jComboBox_IDSP, "SanPham", "MaSP");
        SanPhamNCC_Dialog.setVisible(true);
-        
-        
     }//GEN-LAST:event_jButton_SanPhamNCCActionPerformed
 
     private void jComboBox_SearchType1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SearchType1ActionPerformed
@@ -667,10 +647,30 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             setTextFieldPlaceholderNCC(selectedValue);
         }
     }//GEN-LAST:event_jComboBox_SearchType1ItemStateChanged
-//Thêm sản phẩm ncc-----------------------------------------------------------------------------------
+//------------------------------Thêm sản phẩm ncc-----------------------------------------------------------------------------------
     private void Them_SPNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Them_SPNCCActionPerformed
         // TODO add your handling code here:
+        String maNCC = jComboBox_IDNCC.getSelectedItem().toString();
+        String maSPNCC = jComboBox_IDSP.getSelectedItem().toString();
         
+        try {
+            
+            SanPhamNCCDTO spncc=new SanPhamNCCDTO();
+            if(isMaSPNCCUnique(maSPNCC)){
+                JOptionPane.showMessageDialog(this, "nhà cung cấp đã có sản phẩm này");
+            }else{
+                spncc.setMaNCC((String) jComboBox_IDNCC.getSelectedItem());
+                spncc.setMaSP((String) jComboBox_IDSP.getSelectedItem());
+
+                spnccBLL.addSPNCC(spncc);
+                loadSPNCCList();
+
+                }
+            }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Thông tin không hợp lệ");
+        }
     }//GEN-LAST:event_Them_SPNCCActionPerformed
 
     private void SanPhamNCC_DialogWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_SanPhamNCC_DialogWindowActivated
@@ -691,6 +691,44 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_SearchActionPerformed
 
+    private void jTextField_MaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_MaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextField_MaActionPerformed
+    public void DoMaVaoComBoBox(JComboBox<String> comboBox, String tableName, String columnName) {
+        connecttoDatabase();
+        
+        ArrayList<String> maNCCList = new ArrayList<>();
+        try {
+            Statement pstmt = conn.createStatement();
+            String query = "SELECT " + columnName + " FROM " + tableName;
+            ResultSet rs = pstmt.executeQuery(query);
+            
+
+            while(rs.next()){
+                maNCCList.add(rs.getString(columnName));
+            }
+            DefaultComboBoxModel cbbID = new DefaultComboBoxModel<>(maNCCList.toArray(new String[0]));
+            comboBox.setModel(cbbID);
+            rs.close();
+            pstmt.close();
+//            SanPhamNCC_Dialog.setVisible(true);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    private void jComboBox_IDNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_IDNCCActionPerformed
+        // TODO add your handling code here:
+//       
+    }//GEN-LAST:event_jComboBox_IDNCCActionPerformed
+
+    private void jComboBox_IDNCCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_IDNCCItemStateChanged
+        // TODO add your handling code here:
+//       
+    }//GEN-LAST:event_jComboBox_IDNCCItemStateChanged
+
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane1MouseClicked
@@ -706,70 +744,6 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
             jTextField_Ma.setEnabled(false);
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTextField_MaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_MaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jTextField_MaActionPerformed
-    public void DoMaSanPhamVaoComBoBox() {
-        
-    }
-    private void jComboBox_IDNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_IDNCCActionPerformed
-        // TODO add your handling code here:
-        connecttoDatabase();
-        DefaultComboBoxModel cbbID = (DefaultComboBoxModel) jComboBox_IDNCC.getModel();
-        cbbID.removeAllElements(); 
-        List<String> maNCCList = new ArrayList<>();
-
-        try {
-            String query = "SELECT MaNCC FROM NhaCungCap";
-            Statement pstmt = conn.createStatement();
-            ResultSet rs = pstmt.executeQuery(query);
-
-            while(rs.next()){
-                String maNCC = rs.getString("MaNCC");
-                maNCCList.add(maNCC);
-            }
-            rs.close();
-            pstmt.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        
-
-        for (String maNCC : maNCCList) {
-            cbbID.addElement(maNCC); 
-        }
-    }//GEN-LAST:event_jComboBox_IDNCCActionPerformed
-
-    private void jComboBox_IDNCCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_IDNCCItemStateChanged
-        // TODO add your handling code here:
-//       connecttoDatabase();
-//        DefaultComboBoxModel cbbID = (DefaultComboBoxModel) jComboBox_IDNCC.getModel();
-//        List<String> maNCCList = new ArrayList<>();
-//
-//        try {
-//            String query = "SELECT MaNCC FROM NhaCungCap";
-//            PreparedStatement pstmt = conn.prepareStatement(query);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            while(rs.next()){
-//                String maNCC = rs.getString("MaNCC");
-//                maNCCList.add(maNCC);
-//            }
-//            rs.close();
-//            pstmt.close();
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//
-//        cbbID.removeAllElements(); 
-//
-//        for (String maNCC : maNCCList) {
-//            cbbID.addElement(maNCC); 
-//        }
-    }//GEN-LAST:event_jComboBox_IDNCCItemStateChanged
                                                                                                
     public void connecttoDatabase ()
     {
@@ -888,10 +862,25 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
         }
     }
     
-    public void SanPhamNCC()
-    {
-        
+    public void loadSPNCCList() {
+        DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
+        model.setRowCount(0);
+        arrSPNCC = spnccBLL.getListSanPhamNCC();
+        for(int i = modelSPNCC.getRowCount()-1;i>=0;i--)
+            modelSPNCC.removeRow(i);
+        for(int i = 0; i<arrSPNCC.size();i++){
+            SanPhamNCCDTO em = arrSPNCC.get(i);
+            int stt = i+1;
+            String idncc = em.getMaNCC();
+            String idsp = em.getMaSP();
+            
+            Object[] row = {stt,idncc,idsp};
+            modelSPNCC.addRow(row);
+            
+        }
     }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dong_SPNCC;
@@ -914,9 +903,7 @@ public class NhaCungCapGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;

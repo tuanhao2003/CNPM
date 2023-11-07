@@ -187,52 +187,57 @@ public class Login extends javax.swing.JFrame {
         String TenDangNhap = TxtTenDangNhap.getText();
         String MatKhau = String.valueOf(TxtMatKhau.getPassword());
         boolean confirms = true;
-        if (TenDangNhap.equals("")){
+
+        if (TenDangNhap.equals("")) {
             confirms = false;
-            System.out.print("Không đc đê trống");
-        }
-        else if (MatKhau.equals("")){
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập không được để trống");
+        } else if (MatKhau.equals("")) {
             confirms = false;
-            System.out.print("Mật khẩu không được để trống\n");
+            JOptionPane.showMessageDialog(this, "Mật khẩu không được để trống");
         }
-        else if ( confirms == true )
-            if(openConnection()){
-                try{
-            String sql="select * from [dbo].[TaiKhoan] where TenDangNhap = ? and MatKhau = ?";
-            PreparedStatement ps=con.prepareCall(sql);
-            ps.setString(1,TxtTenDangNhap.getText());
-            ps.setString(2,MatKhau);
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                String id = rs.getString(1);                
-                String query = "select * from [dbo].[Quyen] where MaTK = ?";
-                PreparedStatement PS = con.prepareCall(query);
-                PS.setString(1,id);
-                ResultSet RS = PS.executeQuery();
-                if(RS.getInt(2) == 1){
-                    mainGUI sg = new mainGUI();
-                    sg.setVisible(true);
+
+        if (confirms) {
+            if (openConnection()) {
+                try {
+                    String sql = "SELECT tk.MaTK, q.PhanQuyen " +
+                                 "FROM TaiKhoan tk " +
+                                 "INNER JOIN Quyen q ON tk.MaTK = q.MaTK " +
+                                 "WHERE tk.TenDangNhap = ? AND tk.MatKhau = ?";
+                    PreparedStatement ps = con.prepareCall(sql);
+                    ps.setString(1, TenDangNhap);
+                    ps.setString(2, MatKhau);
+                    ResultSet rs = ps.executeQuery();
+
+                    if (rs.next()) {
+                        int phanQuyen = rs.getInt("PhanQuyen");
+
+                        if (phanQuyen == 1) {
+                            // Hiển thị trang Admin
+                            mainGUI ad = new mainGUI();
+                            ad.setVisible(true);
+                            JOptionPane.showMessageDialog(ad, "Chào mừng bạn đến với trang Admin.");
+
+                        } else if (phanQuyen == 0) {
+                            JOptionPane.showMessageDialog(this, "Tài khoản đã bị khóa");
+                        } else if (phanQuyen == 2) {
+                            // Hiển thị trang Nhân Viên
+                            StaffGUI st = new StaffGUI();
+                            st.setVisible(true);
+                            JOptionPane.showMessageDialog(st, "Chào mừng bạn đến với trang Nhân viên.");
+                        } else if (phanQuyen == 3) {
+                            // Hiển thị trang mua hàng
+                            JOptionPane.showMessageDialog(this, "Chào mừng bạn đến với trang mua hàng.");
+                        }
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
                 }
-                else if (RS.getInt(2)==0)
-                    JOptionPane.showMessageDialog(this,"Tài khoản đã bị khóa");
-                else if (RS.getInt(2)==2){
-                    StaffGUI st = new StaffGUI();
-                    st.setVisible(confirms);
-                }
-                    
-                else if(RS.getInt(2)==3){                 
-                    //Hiện trang mua hàng
-                }                
-                this.dispose();
             }
-            else{
-                JOptionPane.showMessageDialog(this,"Sai tên đăng nhập hoặc mật khẩu");
-            }
-        }
-        catch (SQLException ex){
-            System.out.println(ex);
-        }
-            }
+}
+
     }//GEN-LAST:event_LoginbtnActionPerformed
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
@@ -246,7 +251,14 @@ public class Login extends javax.swing.JFrame {
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         // TODO add your handling code here:
-        
+        RegisterGUI rg = new RegisterGUI();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                rg.setLocationRelativeTo(null); // Đặt vị trí của frame giữa màn hình
+                rg.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_btnDangKyActionPerformed
    
     

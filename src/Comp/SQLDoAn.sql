@@ -131,8 +131,8 @@ create table CTPhieuNhapKho
 create table SanPhamNCC
 (
     MaNCC				NCHAR(5)					NOT NULL,
-	MaSP				NCHAR(5)					NOT NULL,
-	TenSP				NVarChar(50)				NOT NULL
+	MaSP				NCHAR(5)					NOT NULL
+
 )
 
 

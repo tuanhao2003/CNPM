@@ -15,6 +15,12 @@ public class KhachHangDTO {
     private String SDT;
 
     public KhachHangDTO(String MaKH, String TenKH, String DiaChi, String SDT){
+        this.MaKH = MaKH;
+        this.TenKH = TenKH;
+        this.DiaChi = DiaChi;
+        this.SDT = SDT;
+    }
+    public KhachHangDTO(){
         
     }
     public String getMaKH() {

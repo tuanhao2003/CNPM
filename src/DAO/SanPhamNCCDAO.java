@@ -50,8 +50,6 @@ public class SanPhamNCCDAO {
                 }
                 spncc.setMaNCC(rs.getString("MaNCC"));
                 spncc.setMaSP(rs.getString("MaSP"));
-                spncc.setSoLuong(rs.getInt("SoLuong"));
-                spncc.setDonGia(rs.getInt("DonGia"));
 //                ncc.setLoaiHang(rs.getString("loaiHang"));      
                 list.add(spncc);
             }
@@ -65,12 +63,10 @@ public class SanPhamNCCDAO {
         boolean result= false;
         if(openConnection()){
             try {
-                String sql = "Insert into Nha Cung cap values(?,?,?,?,?)";
+                String sql = "Insert into SanPhamNCC values(?,?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, emp.getMaNCC());
                 stmt.setString(2, emp.getMaSP());
-                stmt.setInt(3, emp.getSoLuong());
-                stmt.setInt(4, emp.getDonGia());
 //                stmt.setString(4, emp.getLoaiHang());
                 if(stmt.executeUpdate()>=1)
                     result=true;

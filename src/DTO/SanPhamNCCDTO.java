@@ -11,21 +11,15 @@ package DTO;
 public class SanPhamNCCDTO {
     private String MaNCC;
     private String MaSP;
-    private int SoLuong;
-    private int DonGia;
-
-    public SanPhamNCCDTO(String MaNCC, String MaSP, int SoLuong, int DonGia) {
+    
+    public SanPhamNCCDTO(String MaNCC, String MaSP) {
         this.MaNCC = MaNCC;
         this.MaSP = MaSP;
-        this.SoLuong = SoLuong;
-        this.DonGia = DonGia;
     }
 
     public SanPhamNCCDTO(){
         MaNCC=null;
         MaSP=null; 
-        SoLuong=0;
-        DonGia=0;
     }
     public String getMaNCC() {
         return MaNCC;
@@ -41,23 +35,5 @@ public class SanPhamNCCDTO {
 
     public void setMaSP(String MaSP) {
         this.MaSP = MaSP;
-    }
-
-    public int getSoLuong() {
-        return SoLuong;
-    }
-
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
-    }
-
-    public int getDonGia() {
-        return DonGia;
-    }
-
-    public void setDonGia(int DonGia) {
-        this.DonGia = DonGia;
-    }
-    
-    
+    }   
 }
