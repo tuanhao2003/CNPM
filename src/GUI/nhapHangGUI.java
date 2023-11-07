@@ -1,11 +1,38 @@
 package GUI;
 
-public class nhapHang extends javax.swing.JPanel {
+import DTO.SanPhamDTO;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-    public nhapHang() {
+public class nhapHangGUI extends javax.swing.JPanel {
+    private ArrayList<SanPhamDTO> dssanpham = new ArrayList();
+    
+    public nhapHangGUI() {
         initComponents();
+        solveEvents();
     }
 
+    public void solveEvents(){
+        this.btnXoads.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                dsSanphamchon.removeAll();
+            }
+        });
+    }
+    
+    public void dialogSanpham(){
+        ArrayList<JPanel> sanPhamdaxoa = new ArrayList();
+        for(SanPhamDTO i : dssanpham){
+            JPanel sp = new JPanel();
+            JLabel masp = new JLabel(i.getMaSP());
+            JLabel tenSp = new JLabel(i.getTenSP());
+            JLabel hang = new JLabel(i.getHang());
+            JLabel donGia = new JLabel(Integer.toString(i.getDonGia()));
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -20,8 +47,8 @@ public class nhapHang extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnNhaphang = new javax.swing.JButton();
         btnXoads = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnQuanlypn = new javax.swing.JButton();
+        btnTrashbin = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
@@ -59,11 +86,11 @@ public class nhapHang extends javax.swing.JPanel {
         btnXoads.setText("Xóa Danh Sách Chọn");
         btnXoads.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        jButton4.setText("Quản Lý Phiếu Nhập");
-        jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnQuanlypn.setText("Quản Lý Phiếu Nhập");
+        btnQuanlypn.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        jButton5.setText("Sản Phẩm Vừa Xóa");
-        jButton5.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnTrashbin.setText("Sản Phẩm Vừa Xóa");
+        btnTrashbin.setPreferredSize(new java.awt.Dimension(150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,11 +111,11 @@ public class nhapHang extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnQuanlypn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(btnXoads, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnTrashbin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(btnNhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35))))))
@@ -98,9 +125,7 @@ public class nhapHang extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,22 +138,22 @@ public class nhapHang extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnQuanlypn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnXoads, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnNhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnTrashbin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNhaphang;
+    private javax.swing.JButton btnQuanlypn;
+    private javax.swing.JButton btnTrashbin;
     private javax.swing.JButton btnXoads;
     private javax.swing.JPanel dsNcc;
     private javax.swing.JPanel dsSanphamchon;
     private javax.swing.JPanel dsSanphamncc;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
