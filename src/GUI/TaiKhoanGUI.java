@@ -89,7 +89,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             String quyen = null;
             if(value == 1) quyen = "Admin";
             else if(value == 2) quyen = "Nhân viên";
-            else quyen = "Khách hàng";
+            else if(value == 1) quyen = "Khách hàng";
+            else quyen = "Tài khoản bi khóa";
             Object[] row = {id,quyen};
             modelPQ.addRow(row);
         }
@@ -614,12 +615,13 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         String id = jTextFieldmatkquyen.getText();
         PhanQuyenDTO pq = new PhanQuyenDTO();
         try{
-            if(quyen == 0|| id.isEmpty()){
+            if(id.isEmpty()){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
             }
             else{
             pq.setMaTK(id);
             pq.setQuyen(quyen);
+            if (quyen == 0) JOptionPane.showMessageDialog(this, "Khóa tài khoản thành công");
             pqBLL.UpPQ(pq);
             loadPQList();
             JOptionPane.showMessageDialog(this, "Sửa thông tin phân quyền thành công");
