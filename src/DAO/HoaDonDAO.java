@@ -17,27 +17,14 @@ import java.util.ArrayList;
  * @author HAO KIET
  */
 public class HoaDonDAO {
-    private Connection conn;
+    private sqlConnect SQLCon = new sqlConnect();
+    private Connection conn = SQLCon.getConnection();
     
-    public boolean openConnection() {
-        try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-            conn = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to database successfully.");
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
+    
     public ArrayList<HoaDonDTO> getListHoaDon() {
         ArrayList<HoaDonDTO> list = new ArrayList<HoaDonDTO>();
         String sql = "SELECT * FROM HoaDon";
         try {
-            if (conn == null) {
-                openConnection();
-            }
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -64,7 +51,7 @@ public class HoaDonDAO {
     } 
     public boolean AddNgayGiao(String id, String NgayGiao) {
         boolean result = false;
-        if (openConnection()) {
+        
             try {
                 String sql = "UPDATE HoaDon SET NgayXuat = ? WHERE MaHoaDon = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
@@ -80,12 +67,12 @@ public class HoaDonDAO {
 //            finally {
 //                closeConnection();
 //            }
-        }
+        
         return result;
     }
     public boolean DelSL(String id, int soluong) {
     boolean result = false;
-    if (openConnection()) {
+   
         try {
             // Lấy số lượng hiện tại của sản phẩm với mã id
             String selectQuery = "SELECT SoLuong FROM SanPham WHERE MaSP = ?";
@@ -117,12 +104,12 @@ public class HoaDonDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
+    
     return result;
     }
     public boolean DelHD(String id){
         boolean result = false;
-        if(openConnection()){
+        
             try {
                 String sql1 = "Delete from CTHoaDon where MaHoaDon=?";
                 PreparedStatement pc1 = conn.prepareCall(sql1);
@@ -139,7 +126,7 @@ public class HoaDonDAO {
                 System.out.println(e);
             }
             
-        }
+        
         return result;
     }
 }

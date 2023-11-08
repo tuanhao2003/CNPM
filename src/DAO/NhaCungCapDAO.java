@@ -17,29 +17,17 @@ import java.util.ArrayList;
  * @author Dao Khanh
  */
 public class NhaCungCapDAO {
-    private Connection conn;
+    private sqlConnect SQLCon = new sqlConnect();
+    private Connection conn = SQLCon.getConnection();
     
-    public boolean openConnection() {
-        try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-            conn = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to database successfully.");
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
+    
     
     public ArrayList<NhaCungCapDTO> getListNCC()
     {
         ArrayList<NhaCungCapDTO> list = new ArrayList<NhaCungCapDTO>();
         String sql = "SELECT * FROM NhaCungCap";
         try {
-            if (conn == null) {
-                openConnection();
-            }
+            
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -63,7 +51,7 @@ public class NhaCungCapDAO {
     
     public boolean addNCC(NhaCungCapDTO emp){
         boolean result= false;
-        if(openConnection()){
+        
             try {
                 String sql = "Insert into NhaCungCap values(?,?,?,?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -78,13 +66,13 @@ public class NhaCungCapDAO {
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        
         return result;
     }
     
     public boolean delNCC(String id){
         boolean result = false;
-        if(openConnection()){
+        
             try {
                 String sql = "Delete from NhaCungCap where MaNCC=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
@@ -93,13 +81,13 @@ public class NhaCungCapDAO {
                     result = true;
             } catch (Exception e) {
             }
-        }
+        
         return result;
     }
     
     public boolean UpNCC(NhaCungCapDTO n){
         boolean result = true;
-        if(openConnection()){
+        
             try {
                 String sql = "Update NhaCungCap set TenNCC=?, DiaChiNCC=?,  SDTNCC=?  where MaNCC=?";
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -113,13 +101,13 @@ public class NhaCungCapDAO {
             } catch (Exception e) {
                  System.out.println(e);
             }
-        }
+        
         return result;
     }
     
     public boolean hasNhaCungCapID(String id){
         boolean result=false;
-        if(openConnection()){
+        
             try {
                 String sql = "Select * from NhaCungCap where MaNCC="+id;
                 Statement stmt = conn.createStatement();
@@ -128,7 +116,7 @@ public class NhaCungCapDAO {
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        
         return result;
     }
     

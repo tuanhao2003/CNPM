@@ -17,27 +17,14 @@ import java.util.ArrayList;
  * @author HAO KIET
  */
 public class CTHoaDonDAO {
-    private Connection conn;
+    private sqlConnect SQLCon = new sqlConnect();
+    private Connection conn = SQLCon.getConnection();
     
-    public boolean openConnection() {
-        try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-            conn = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to database successfully.");
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
     public ArrayList<CTHoaDonDTO> getListCTHoaDon() {
         ArrayList<CTHoaDonDTO> list = new ArrayList<CTHoaDonDTO>();
         String sql = "SELECT * FROM CTHoaDon";
         try {
-            if (conn == null) {
-                openConnection();
-            }
+
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

@@ -1,10 +1,6 @@
- <<<<<<< HEAD
-use QLCH
-=======
 
-create database QLCH3
-use QLCH3
->>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
+use QLCH;
+
 
 create table NhaCungCap
 (
@@ -119,12 +115,9 @@ create table CTPhieuNhapKho
 	MaPhieuNhap		NCHAR(5)						NOT NULL,
 	MaNCC			NCHAR(5)						NOT NULL,
 	SLNhap			int,
-<<<<<<< HEAD
-=======
-	Tamtinh			int,
->>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
-        SoLuong                         int                                             NOT NULL,
-        DonGia                          int                                             NOT NULL,
+	
+    SoLuong                         int                                             NOT NULL,
+    DonGia                          int                                             NOT NULL,
 	Tamtinh			int
 )
 

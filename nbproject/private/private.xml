@@ -3,31 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/sqlConnect.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/phieuNhapDAO.java</file>
+            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/Comp/SQLDoAn.sql</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/mainGUI.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/phieuNhapGUI.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/BLL/phieuNhapBLL.java</file>
-            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/nhapHang.java</file>
-=======
-            <file>file:/D:/JAVAProjects/CNPM/src/DAO/khuyenMaiDAO.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/DAO/TaiKhoanDAO.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/GUI/TaiKhoanGUI.java</file>
->>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
-=======
-            <file>file:/D:/JAVAProjects/CNPM/src/DTO/KhachHangDTO.java</file>
-=======
->>>>>>> 6eb4520c0ab47e682d864da661467bf4c6288476
-            <file>file:/D:/JAVAProjects/CNPM/src/GUI/KhachHangGUI.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/GUI/TaiKhoanGUI.java</file>
-<<<<<<< HEAD
-            <file>file:/D:/JAVAProjects/CNPM/src/BLL/TaiKhoanBLL.java</file>
->>>>>>> 29b6157549293e26d23b88a3761be7277765cacd
-=======
->>>>>>> 6eb4520c0ab47e682d864da661467bf4c6288476
+            <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/nhapHangGUI.java</file>
         </group>
     </open-files>
 </project-private>

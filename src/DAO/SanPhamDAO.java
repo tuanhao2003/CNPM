@@ -17,25 +17,8 @@ import java.util.ArrayList;
  * @author PC
  */
 public class SanPhamDAO {
-    private Connection conn;
-    
-    public boolean openConnection() {
-        try {
-//<<<<<<< HEAD
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-//=======
-//            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
-//                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-//>>>>>>> 0b5ad3c8aaa1c9f2e85adc63e172726b2d825ec4
-            conn = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to database successfully.");
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-    }
+    private sqlConnect SQLCon = new sqlConnect();
+    private Connection conn = SQLCon.getConnection();
     
 //    public void closeConnection(){
 //        try {
@@ -49,7 +32,7 @@ public class SanPhamDAO {
     public ArrayList<SanPhamDTO> getListSanpham(){
         ArrayList<SanPhamDTO> list = new ArrayList<SanPhamDTO>();
         String sql = "SELECT * FROM SanPham";
-        if(openConnection()){
+        
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -72,13 +55,13 @@ public class SanPhamDAO {
             
             }
             
-        }
+        
         return list;
     }
     
     public boolean addSP(SanPhamDTO sp){
        boolean result= false;
-        if(openConnection()){
+        
             try {
                 String sql = "Insert into SanPham values(?,?,?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
@@ -98,13 +81,13 @@ public class SanPhamDAO {
 //                closeConnection();
 //            }
             
-        }
+        
         return result;
     }
     
     public boolean DelSP(String id){
     boolean result = false;
-        if(openConnection()){
+        
             try {
                 String sql = "Delete from SanPham where MaSP=?";
                 PreparedStatement pc = conn.prepareCall(sql);
@@ -115,13 +98,13 @@ public class SanPhamDAO {
 //            }finally{
 //                closeConnection();
             }
-        }
+        
         return result;
     }
     
     public boolean UpdateDS(String MaSP, String TenSP, String Hang, String DungLuong, int SoLuong, int DonGia, String HinhAnh) {
     boolean result = false;
-    if (openConnection()) {
+    
         try {
             String sql = "UPDATE SanPham SET TenSP=?, Hang=?, DungLuong=?, SoLuong=?, DonGia=?, HinhAnh=? WHERE MaSP=?";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -138,13 +121,13 @@ public class SanPhamDAO {
         } catch (Exception e) {
             e.printStackTrace();
     }
-    }
+    
         return result;
     }
     
     public boolean hasSanPhamID(String id){
         boolean result=false;
-        if(openConnection()){
+        
             try {
                 String sql = "Select * from SanPham where MaSP="+id;
                 Statement stmt = conn.createStatement();
@@ -153,7 +136,7 @@ public class SanPhamDAO {
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        
         return result;
     }
 }

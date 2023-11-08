@@ -18,28 +18,14 @@ import java.util.ArrayList;
  * @author HAO KIET
  */
 public class NhanVienDAO {
-    private Connection conn;
+        private sqlConnect SQLCon = new sqlConnect();
+    private Connection conn = SQLCon.getConnection();
     
-    public boolean openConnection() {
-        try {
-            String connectionUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=QLCH;"
-                    + "user=sa;password=123;encrypt=true;trustServerCertificate=true";
-
-            conn = DriverManager.getConnection(connectionUrl);
-            System.out.println("Connected to database successfully.");
-            return true;
-        } catch (Exception e) {
-            System.out.println("Ket noi that bai :"+e);
-            return false;
-        }
-    }
     public ArrayList<NhanVienDTO> getListNhanVien() {
         ArrayList<NhanVienDTO> list = new ArrayList<NhanVienDTO>();
         String sql = "SELECT * FROM NhanVien";
         try {
-            if (conn == null) {
-                openConnection();
-            }
+            
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -64,7 +50,7 @@ public class NhanVienDAO {
     } 
     public boolean hasNhanVienID(String id){
         boolean result=false;
-        if(openConnection()){
+        
             try {
                 String sql = "Select * from NhanVien where MaNV="+id;
                 Statement stmt = conn.createStatement();
@@ -73,12 +59,12 @@ public class NhanVienDAO {
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        
         return result;
     }
     public boolean addNV(NhanVienDTO emp){
         boolean result= false;
-        if(openConnection()){
+        
             try {
                 String sql = "Insert into NhanVien values(?,?,?,?,?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -92,12 +78,12 @@ public class NhanVienDAO {
             } catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        
         return result;
     }
     public boolean delNV(String id){
         boolean result = false;
-        if(openConnection()){
+        
             try {
                 String sql = "Delete from NhanVien where MaNV=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
@@ -106,12 +92,12 @@ public class NhanVienDAO {
                     result = true;
             } catch (Exception e) {
             }
-        }
+       
         return result;
     }
     public boolean UpNV(String id,String name,String sdt,String gioiTinh,String diachi){
         boolean result =false;
-        if(openConnection()){
+        
             try {
                 String sql = "Update NhanVien set TenNV=?, GioiTinh=?, DiaChi=?, SDT=?  where MaNV=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
@@ -124,7 +110,7 @@ public class NhanVienDAO {
                     result=true;
             } catch (Exception e) {
             }
-        }
+        
         return result;
     }
      
