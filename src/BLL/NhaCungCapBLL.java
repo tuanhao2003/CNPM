@@ -40,4 +40,8 @@ public class NhaCungCapBLL {
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }
+    
+    public ArrayList<NhaCungCapDTO> getListAll(){
+        return this.nccDAO.getListNCC();
+    }
 }

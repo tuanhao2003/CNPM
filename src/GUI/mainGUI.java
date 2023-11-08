@@ -5,14 +5,16 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class mainGUI extends javax.swing.JFrame {
-
     private int working = -1;
     private String manvLogined;
-    private NhanVienGUI nvGUI;
+    private Login DangNhap = new Login();
+    private NhanVienGUI nvGUI = new NhanVienGUI();
+    private nhapHangGUI QLNhapHang = new nhapHangGUI();
+    private phieuNhapGUI QLPhieuNhap = new phieuNhapGUI();
    
     public mainGUI() {
+        this.DangNhap.startLogin();
         initComponents();
-        this.nvGUI = new NhanVienGUI();
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
         addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
@@ -24,7 +26,9 @@ public class mainGUI extends javax.swing.JFrame {
         addComponent("Hoá Đơn", new HoaDonGUI(), "empty.png");
         addComponent("Nhà Cung Cấp", new NhaCungCapGUI(), "empty.png");
         addComponent("Sản Phẩm", new SanPhamGUI(), "empty.png");
+        addComponent("Nhập Hàng", QLNhapHang, "import.png");
 
+        
         solveEvent();
     }
 
@@ -68,11 +72,10 @@ public class mainGUI extends javax.swing.JFrame {
 
 //xử lý sự kiện
     private void solveEvent() {
-//Lấy mã nv đã đăng nhập và thêm vào màn hình chính
+//Xử lý giao diện main
         this.manvLogined = "nv001";//đổi thành phương thức get mã nhân viên
         this.labelManv.setText(this.labelManv.getText() + this.manvLogined);
 
-//sửa nút logOut
         logOut.setPreferredSize(new Dimension(50, 50));
         logOut.setForeground(Color.white);
         logOut.setFont(new Font(logOut.getFont().getName(), Font.BOLD, 14));
@@ -89,7 +92,6 @@ public class mainGUI extends javax.swing.JFrame {
             }
         });
 
-//xử lý hoạt ảnh đang hoạt động của thanh công cụ
         for (int i = 0; i < this.toolsPanel.getComponentCount(); i++) {
             int tmp = i;
             this.toolsPanel.getComponent(i).addFocusListener(new FocusAdapter() {
@@ -104,14 +106,23 @@ public class mainGUI extends javax.swing.JFrame {
             });
         }
 
+//xử lý giao diện nhập hàng và phiếu nhập
+        this.QLNhapHang.openQlpn().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainDisplay.removeAll();
+                mainDisplay.add(QLPhieuNhap);
+                mainDisplay.repaint();
+                mainDisplay.revalidate();
+                title.setText("Quản Lý Phiếu Nhập");
+            }
+        });
     }
 
     public static void main(String[] args) {
         mainGUI display = new mainGUI();
         display.setVisible(true);
     }
-
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

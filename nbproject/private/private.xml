@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/sqlConnect.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/DAO/phieuNhapDAO.java</file>
             <file>file:/C:/wazapy/Study/nam3_HK1/Sofware-Technique/CNPM/src/GUI/mainGUI.java</file>
@@ -18,13 +19,15 @@
 >>>>>>> 98a082b4bbddfd439e785472fcf872e10bfd2f81
 =======
             <file>file:/D:/JAVAProjects/CNPM/src/DTO/KhachHangDTO.java</file>
+=======
+>>>>>>> 6eb4520c0ab47e682d864da661467bf4c6288476
             <file>file:/D:/JAVAProjects/CNPM/src/GUI/KhachHangGUI.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/BLL/KhachHangBLL.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/DAO/KhachHangDAO.java</file>
-            <file>file:/D:/JAVAProjects/CNPM/src/DAO/TaiKhoanDAO.java</file>
             <file>file:/D:/JAVAProjects/CNPM/src/GUI/TaiKhoanGUI.java</file>
+<<<<<<< HEAD
             <file>file:/D:/JAVAProjects/CNPM/src/BLL/TaiKhoanBLL.java</file>
 >>>>>>> 29b6157549293e26d23b88a3761be7277765cacd
+=======
+>>>>>>> 6eb4520c0ab47e682d864da661467bf4c6288476
         </group>
     </open-files>
 </project-private>

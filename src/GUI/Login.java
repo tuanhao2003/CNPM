@@ -52,6 +52,12 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex); }
     }
+    
+    
+    public void startLogin(){
+        this.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
+        this.setVisible(true);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -66,12 +72,6 @@ public class Login extends javax.swing.JFrame {
         btnDangKy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("ĐĂNG NHẬP");
@@ -94,12 +94,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Tên đăng nhập:");
 
         jLabel4.setText("Mật khẩu:");
-
-        TxtMatKhau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtMatKhauActionPerformed(evt);
-            }
-        });
 
         btnDangKy.setText("Đăng ký");
         btnDangKy.addActionListener(new java.awt.event.ActionListener() {
@@ -177,11 +171,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TxtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtMatKhauActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtMatKhauActionPerformed
-
     private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
         // TODO add your handling code here:
         String TenDangNhap = TxtTenDangNhap.getText();
@@ -240,10 +229,6 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_LoginbtnActionPerformed
 
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel1MousePressed
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Vui lòng liên hệ trantrunghieu20122002@gmail.com để lấy lại mật khẩu");
@@ -260,22 +245,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_btnDangKyActionPerformed
-   
-    
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Login login = new Login();
-            login.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
-            login.setVisible(true);
-                
-            }
-        });
-    }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Loginbtn;
     private javax.swing.JPasswordField TxtMatKhau;
