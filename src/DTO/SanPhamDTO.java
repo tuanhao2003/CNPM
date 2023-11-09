@@ -9,10 +9,12 @@ package DTO;
  * @author PC
  */
 public class SanPhamDTO {
-    private int SoLuong, DonGia;
+    private float MucGiamGia;
+    private int SoLuong;
     private String MaSP, Hang, TenSP, HinhAnh, DungLuong,stt;
+    private long DonGia,GiaSauGiam;
 
-    public SanPhamDTO(int SoLuong, int DonGia, String MaSP, String Hang, String TenSP, String HinhAnh, String DungLuong,String stt) {
+    public SanPhamDTO(int SoLuong, long DonGia, String MaSP, String Hang, String TenSP, String HinhAnh, String DungLuong,String stt, float MucGiamGia, long GiaSauGiam) {
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
         this.MaSP = MaSP;   
@@ -20,12 +22,14 @@ public class SanPhamDTO {
         this.TenSP = TenSP;
         this.HinhAnh = HinhAnh;
         this.DungLuong = DungLuong;
+        this.MucGiamGia= MucGiamGia;
+        this.GiaSauGiam= GiaSauGiam;
     }
 
     public SanPhamDTO() {
     }
 
-    public int getDonGia() {
+    public long getDonGia() {
         return DonGia;
     }
 
@@ -53,7 +57,7 @@ public class SanPhamDTO {
         return TenSP;
     }
 
-    public void setDonGia(int DonGia) {
+    public void setDonGia(long DonGia) {
         this.DonGia = DonGia;
     }
 
@@ -88,4 +92,22 @@ public class SanPhamDTO {
     public void setStt(String stt) {
         this.stt = stt;
     }
+
+    public float getGiaSauGiam() {
+        return GiaSauGiam;
+    }
+
+    public float getMucGiamGia() {
+        return MucGiamGia;
+    }
+
+    public void setGiaSauGiam(long GiaSauGiam) {
+        this.GiaSauGiam = GiaSauGiam;
+    }
+
+    public void setMucGiamGia(float MucGiamGia) {
+        this.MucGiamGia = MucGiamGia;
+    }
+    
+    
 }

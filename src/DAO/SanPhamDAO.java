@@ -19,6 +19,21 @@ import java.util.ArrayList;
 public class SanPhamDAO {
     private sqlConnect SQLCon = new sqlConnect();
     private Connection conn = SQLCon.getConnection();
+//    private Connection conn;
+    
+    public boolean openConnection() {
+        try {
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;databasename=QLCH;"
+                    + "user=sa;password=12345;encrypt=true;trustServerCertificate=true";
+            conn = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected to database successfully.");
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     
 //    public void closeConnection(){
 //        try {
@@ -69,8 +84,8 @@ public class SanPhamDAO {
                 ps.setString(2, sp.getTenSP());
                 ps.setString(3, sp.getHang());
                 ps.setString(4, sp.getDungLuong());
-                ps.setInt(5, sp.getSoLuong());
-                ps.setInt(6, sp.getDonGia());
+                ps.setInt(6, sp.getSoLuong());
+                ps.setLong(5, sp.getDonGia());
                 ps.setString(7, sp.getHinhAnh());
                 if(ps.executeUpdate()>=1)
                     result=true;
