@@ -142,10 +142,10 @@ public class StaffGUI extends javax.swing.JFrame {
 
     }
 
-    public static void main(String[] args) {
-        StaffGUI display = new StaffGUI();
-        display.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        StaffGUI display = new StaffGUI();
+//        display.setVisible(true);
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

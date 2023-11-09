@@ -7,13 +7,12 @@ import javax.swing.*;
 public class mainGUI extends javax.swing.JFrame {
     private int working = -1;
     private String manvLogined;
-    private Login DangNhap = new Login();
     private NhanVienGUI nvGUI = new NhanVienGUI();
     private nhapHangGUI QLNhapHang = new nhapHangGUI();
     private phieuNhapGUI QLPhieuNhap = new phieuNhapGUI();
    
     public mainGUI() {
-        this.DangNhap.startLogin();
+        
         initComponents();
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
@@ -120,8 +119,19 @@ public class mainGUI extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
-        mainGUI display = new mainGUI();
-        display.setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setResizable(false);
+                new Login().setLocationRelativeTo(null);
+                new Login().setVisible(true);
+                
+            }
+        });
+//            private Login DangNhap = new Login();
+//
+//          DangNhap.setVisible(true);
+//        mainGUI display = new mainGUI();
+//        display.setVisible(true);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -16,6 +16,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.crypto.AEADBadTagException;
 /**
  *
  * @author toica
@@ -228,7 +229,9 @@ public class Login extends javax.swing.JFrame {
 }
 
     }//GEN-LAST:event_LoginbtnActionPerformed
-
+    public static void main(String[] args) {
+       
+    }
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Vui lòng liên hệ trantrunghieu20122002@gmail.com để lấy lại mật khẩu");
