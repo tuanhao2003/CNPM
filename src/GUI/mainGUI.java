@@ -121,10 +121,10 @@ public class mainGUI extends javax.swing.JFrame {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setResizable(false);
-                new Login().setLocationRelativeTo(null);
-                new Login().setVisible(true);
-                
+                Login lg = new Login();
+                lg.setVisible(true);
+                lg.setResizable(false);
+                lg.setLocationRelativeTo(null);
             }
         });
 //            private Login DangNhap = new Login();

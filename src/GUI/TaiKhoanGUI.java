@@ -103,7 +103,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             jTextFieldMaTaiKhoan.setText(tk.getMaTK());
             jTextFieldTenDangNhap.setText(tk.getTenDangNhap());
             jPasswordFieldMatKhau.setText(tk.getMatKhau());
-            jComboBoxTrangThai.setSelectedIndex(tk.getTrangThai());
     }
     }
     public void getDataTablePQ(){
@@ -263,15 +262,12 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(157, 157, 157))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(addTKBtn)
                 .addGap(41, 41, 41)
                 .addComponent(btnSuaTK)
                 .addGap(39, 39, 39)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -289,6 +285,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,7 +426,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -441,10 +441,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTextFieldMaTaiKhoanActionPerformed
-
-    private void jComboBoxQuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuyenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxQuyenActionPerformed
 
     
             
@@ -542,11 +538,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         }
     }
     return false; // Tên đăng nhập chưa tồn tại.
-}
-    private void jComboBoxTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTrangThaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxTrangThaiActionPerformed
-    
+}    
     private void jTextFieldquyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldquyenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldquyenActionPerformed
@@ -631,6 +623,14 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Thong tin khong hop le");
             }        
     }//GEN-LAST:event_btnSuaQuyenActionPerformed
+
+    private void jComboBoxTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTrangThaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTrangThaiActionPerformed
+
+    private void jComboBoxQuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxQuyenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxQuyenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

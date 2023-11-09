@@ -525,7 +525,6 @@ public class NhanVienGUI extends javax.swing.JPanel {
     public void loadNVlist(){
         arrNhanVien = nvBLL.getListNhanVien();
 //        int a = arrNCC.size();
-        System.out.print("sai ne` ba");
         for(int i = modelNV.getRowCount()-1;i>=0;i--)
             modelNV.removeRow(i);
         for(int i = 0; i<arrNhanVien.size();i++){
