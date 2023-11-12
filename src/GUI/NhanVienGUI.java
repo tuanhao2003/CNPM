@@ -5,8 +5,12 @@
  */
 package GUI;
 import BLL.NhanVienBLL;
+import BLL.PhanQuyenBLL;
+import BLL.TaiKhoanBLL;
 import DAO.NhanVienDAO;
 import DTO.NhanVienDTO;
+import DTO.PhanQuyenDTO;
+import DTO.TaiKhoanDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +37,8 @@ import javax.swing.JLabel;
  */
 public class NhanVienGUI extends javax.swing.JPanel {
     NhanVienBLL nvBLL=new NhanVienBLL();
+    TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+    PhanQuyenBLL pqBLL = new PhanQuyenBLL();
     
     ArrayList<NhanVienDTO> arrNhanVien=new ArrayList<NhanVienDTO>();
     
@@ -56,6 +62,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         modelNV.addColumn("Giới Tính");
         modelNV.addColumn("Địa Chỉ");
         modelNV.addColumn("Số Điện Thoại");
+        modelNV.addColumn("Mã Tài Khoản");
         
         loadNVlist();
     }
@@ -141,7 +148,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -224,6 +231,11 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_NhanVienMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_NhanVien);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -315,23 +327,29 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String gioitinh = jComboBox_Gender.getSelectedItem().toString();
         try{
     // Kiểm tra nếu cả hai trường không rỗng
-            if (ten.isEmpty() && gioitinh.isEmpty() && sdt.isEmpty() && diachi.isEmpty()) 
+            if (ten.isEmpty() || gioitinh.isEmpty() || sdt.isEmpty() || diachi.isEmpty()) 
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
             else{
                 NhanVienDTO nv=new NhanVienDTO();
+                TaiKhoanDTO tk=new TaiKhoanDTO();
+                PhanQuyenDTO pq=new PhanQuyenDTO();
                 if(arrNhanVien.size()==0){
                     nv.setMaNV("NV001");
+                    tk.setMaTK("ST001");
                 }
                 else {
                     NhanVienDTO NV = arrNhanVien.get(arrNhanVien.size()-1);
 	                int id = Integer.parseInt(NV.getMaNV().substring(3));
 	                
-	                if(id<=9)
+	                if(id<=9){
 	                    nv.setMaNV("NV00"+(id+1));
-	                else if(id>=10 && id<=99)
+                            tk.setMaTK("ST00"+(id+1));}
+	                else if(id>=10 && id<=99){
 	                    nv.setMaNV("NV0"+(id+1));
-	                else
+                            tk.setMaTK("ST0"+(id+1));}
+                        else{
 	                    nv.setMaNV("NV"+(id+1));
+                            tk.setMaTK("ST"+(id+1));}
                 }
                 nv.setTenNV(jTextField_Ten.getText());
                 nv.setGioiTinh(jComboBox_Gender.getSelectedItem().toString());
@@ -339,7 +357,18 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 nv.setSDT(jTextField_SDT.getText());
                 
                 nvBLL.addNV(nv);
-                loadNVlist();
+                
+                tk.setTenDangNhap(tk.getMaTK());
+                tk.setMatKhau("123");
+                tk.setTrangThai(0);
+                
+                tkBLL.AddTK(tk);
+                
+                pq.setMaTK(tk.getMaTK());
+                pq.setQuyen(2);
+                
+                pqBLL.AddPQ(pq);
+                
             }
         
         }   
@@ -362,9 +391,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String diachi = jTextField_DiaChi.getText();
         String sdt = jTextField_SDT.getText();
         String gender = jComboBox_Gender.getSelectedItem().toString();
+        String idtk = modelNV.getValueAt(i, 6).toString();
         
-        
-        nvBLL.UpNV(id,name,gender,diachi,sdt);
+        nvBLL.UpNV(id,name,gender,diachi,sdt,idtk);
         	
         
         loadNVlist();
@@ -375,7 +404,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i= jTable_NhanVien.getSelectedRow();
         if(i>=0){
-            nvBLL.delNV(modelNV.getValueAt(i,1).toString());
+            nvBLL.delNV(modelNV.getValueAt(i,1).toString(),modelNV.getValueAt(i,6).toString());
             loadNVlist();
         }
          
@@ -430,6 +459,18 @@ public class NhanVienGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jComboBox_SearchTypeItemStateChanged
 
+    private void jTable_NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_NhanVienMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = jTable_NhanVien.getSelectedRow();
+        if (selectedRow != -1) {
+            NhanVienDTO nv = arrNhanVien.get(selectedRow);
+            jTextField_Ten.setText(nv.getTenNV());
+            jTextField_SDT.setText(nv.getSDT());
+            jTextField_DiaChi.setText(nv.getDiaChi());
+            jComboBox_Gender.setSelectedItem(nv.getGioiTinh());
+        }
+    }//GEN-LAST:event_jTable_NhanVienMouseClicked
+
 //    private void searchByID(String id) {
 //    // Thực hiện tìm kiếm theo ID trong jTable và cập nhật kết quả lên jTable
 //        
@@ -457,6 +498,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
 //        
 //    }
     private void searchByID(String id) {
+        
+    
         int stt = 1;
         DefaultTableModel newModel = new DefaultTableModel(); // Tạo một DefaultTableModel mới để chứa kết quả tìm kiếm\
         newModel.addColumn("STT");
@@ -465,13 +508,14 @@ public class NhanVienGUI extends javax.swing.JPanel {
         newModel.addColumn("Giới Tính");
         newModel.addColumn("Địa Chỉ");
         newModel.addColumn("Số Điện Thoại");
-
+        newModel.addColumn("Mã Tài Khoản");
+        
         for (int i = 0; i < modelNV.getRowCount(); i++) {
             String rowData = modelNV.getValueAt(i, 1).toString(); // Lấy giá trị từ cột ID (cột 1)
 
             if (rowData.contains(id)) {
                 // Nếu tìm thấy ID, thêm hàng tương ứng vào DefaultTableModel mới
-                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5)};
+                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5),modelNV.getValueAt(i, 6)};
                 newModel.addRow(row);
                 stt++;
             }
@@ -493,13 +537,14 @@ public class NhanVienGUI extends javax.swing.JPanel {
         newModel.addColumn("Giới Tính");
         newModel.addColumn("Địa Chỉ");
         newModel.addColumn("Số Điện Thoại");
+        newModel.addColumn("Mã Tài Khoản");
 
         for (int i = 0; i < modelNV.getRowCount(); i++) {
             String rowData = modelNV.getValueAt(i, 2).toString(); // Lấy giá trị từ cột ID (cột 1)
 
             if (rowData.contains(name)) {
                 // Nếu tìm thấy ID, thêm hàng tương ứng vào DefaultTableModel mới
-                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5)};
+                Object[] row = {stt, modelNV.getValueAt(i, 1), modelNV.getValueAt(i, 2), modelNV.getValueAt(i, 3), modelNV.getValueAt(i, 4), modelNV.getValueAt(i, 5),modelNV.getValueAt(i, 6)};
                 newModel.addRow(row);
                 stt++;
             }
@@ -535,8 +580,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
             String gender = em.getGioiTinh();
             String address = em.getDiaChi();
             String sdt = em.getSDT();
+            String idtk = em.getMaTK();
             
-            Object[] row = {stt,id,name,gender,address,sdt};
+            Object[] row = {stt,id,name,gender,address,sdt,idtk};
             modelNV.addRow(row);
         }
     }

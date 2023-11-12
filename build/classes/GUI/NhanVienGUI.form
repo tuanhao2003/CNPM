@@ -127,7 +127,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" pref="148" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBox_Gender" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBox_Gender" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
@@ -307,6 +307,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable_NhanVienMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

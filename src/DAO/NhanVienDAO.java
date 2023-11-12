@@ -39,6 +39,7 @@ public class NhanVienDAO {
                 nv.setGioiTinh(rs.getString("GioiTinh"));
                 nv.setDiaChi(rs.getString("DiaChiNV"));
                 nv.setSDT(rs.getString("SDTNV"));
+                nv.setMaTK(rs.getString("MaTK"));
                 
                 list.add(nv);
             }
@@ -62,17 +63,34 @@ public class NhanVienDAO {
         
         return result;
     }
+//    public boolean hasUser(String tentk){
+//        boolean result=false;
+//        
+//            try {
+//                String sql = "Select * from NhanVien where MaNV="+id;
+//                Statement stmt = conn.createStatement();
+//                ResultSet rs= stmt.executeQuery(sql);
+//                result = rs.next();
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//        
+//        return result;
+//    }
     public boolean addNV(NhanVienDTO emp){
         boolean result= false;
         
             try {
-                String sql = "Insert into NhanVien values(?,?,?,?,?)";
+                String sql = "Insert into NhanVien values(?,?,?,?,?,?)";
+                
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setString(1, emp.getMaNV());
                 stmt.setString(2, emp.getTenNV());
                 stmt.setString(3, emp.getGioiTinh());
                 stmt.setString(4, emp.getDiaChi());
                 stmt.setString(5, emp.getSDT());
+                stmt.setString(6, emp.getMaTK());
+
                 if(stmt.executeUpdate()>=1)
                     result=true;
             } catch (Exception e) {
@@ -81,33 +99,43 @@ public class NhanVienDAO {
         
         return result;
     }
-    public boolean delNV(String id){
+    public boolean delNV(String id,String idtk){
         boolean result = false;
         
             try {
                 String sql = "Delete from NhanVien where MaNV=?";
+                String sql1 = "Delete from Quyen where MaTK=?";
+                String sql2 = "Delete from TaiKhoan where MaTK=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
                 stmt.setString(1, id);
-                if(stmt.executeUpdate()>=1)
+                PreparedStatement stmt1 = conn.prepareCall(sql1);
+                stmt.setString(1, idtk);
+                PreparedStatement stmt2 = conn.prepareCall(sql2);
+                stmt.setString(1, idtk);
+                
+                if(stmt.executeUpdate()>=1 && stmt1.executeUpdate()>=1 && stmt2.executeUpdate()>=1)
                     result = true;
             } catch (Exception e) {
             }
        
         return result;
     }
-    public boolean UpNV(String id,String name,String sdt,String gioiTinh,String diachi){
+    public boolean UpNV(String id,String name,String sdt,String gioiTinh,String diachi,String MaTK){
         boolean result =false;
         
             try {
-                String sql = "Update NhanVien set TenNV=?, GioiTinh=?, DiaChi=?, SDT=?  where MaNV=?";
+                String sql = "Update NhanVien set TenNV=?, GioiTinh=?, DiaChi=?, SDT=?, MaTK=?  where MaNV=?";
                 PreparedStatement stmt = conn.prepareCall(sql);
                 stmt.setString(1, name);
                 stmt.setString(4, sdt);
                 stmt.setString(2, gioiTinh);
                 stmt.setString(3, diachi);
-                stmt.setString(5, id);
+                stmt.setString(5, MaTK);
+                stmt.setString(6, id);
+                
                 if(stmt.executeUpdate()>=1)
                     result=true;
+                
             } catch (Exception e) {
             }
         

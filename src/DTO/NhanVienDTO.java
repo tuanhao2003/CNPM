@@ -15,6 +15,7 @@ public class NhanVienDTO {
     public String SDT;
     public String GioiTinh;
     public String DiaChi;
+    public String MaTK;
     
     
     public NhanVienDTO(){
@@ -23,13 +24,19 @@ public class NhanVienDTO {
         this.DiaChi=null;
         this.SDT=null;
         this.GioiTinh=null;
+        this.MaTK=null;
     }
-    public NhanVienDTO(String MaNV,String TenNV,String SDT,String GioiTinh,String DiaChi){
+    public NhanVienDTO(String MaNV,String TenNV,String SDT,String GioiTinh,String DiaChi,String MaTK){
         this.MaNV=MaNV;
         this.TenNV=TenNV;
         this.DiaChi=DiaChi;
         this.SDT=SDT;
         this.GioiTinh=GioiTinh;
+        this.MaTK=MaTK;
+    }
+
+    public String getMaTK() {
+        return MaTK;
     }
 
     public String getDiaChi() {
@@ -62,6 +69,10 @@ public class NhanVienDTO {
 
     public void setTenNV(String TenNV) {
         this.TenNV = TenNV;
+    }
+
+    public void setMaTK(String MaTK) {
+        this.MaTK = MaTK;
     }
 
     public void setMaNV(String MaNV) {
