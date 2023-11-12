@@ -83,7 +83,7 @@ public class nhapHangGUI extends javax.swing.JPanel {
             JLabel masp = new JLabel(i.getMaSP());
             JLabel tenSp = new JLabel(i.getTenSP());
             JLabel hang = new JLabel(i.getHang());
-            JLabel donGia = new JLabel(Integer.toString(i.getDonGia()));
+            JLabel donGia = new JLabel(Long.toString(i.getDonGia()));
             JLabel hinhAnh = new JLabel();
             hinhAnh.setIcon(new ImageIcon(new ImageIcon(getClass().getClassLoader().getResource(i.getHinhAnh())).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
             sp.add(hinhAnh);

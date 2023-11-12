@@ -475,7 +475,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
             String hang = em.getHang();
             String dungluong = em.getDungLuong();
             int soluong=em.getSoLuong();
-            int dongia=em.getDonGia();
+            long dongia=em.getDonGia();
             String hinhanh = em.getHinhAnh();
             Object[] row = {stt,masp,tensp,hang,dungluong,soluong,dongia,hinhanh};
             modelSP.addRow(row);

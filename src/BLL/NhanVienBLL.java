@@ -28,15 +28,15 @@ public class NhanVienBLL {
         return "Thêm thất bại";
     }
     
-    public String delNV(String id){
-        if(nvDAO.delNV(id))
+    public String delNV(String id,String idtk){
+        if(nvDAO.delNV(id,idtk))
             return "Xoá thành công";
         else 
             return "Xóa thất bại";
     }
     
-    public String UpNV(String id,String name,String gioiTinh,String diachi,String sdt){
-       if(nvDAO.UpNV(id, name, gioiTinh,diachi,sdt))
+    public String UpNV(String id,String name,String gioiTinh,String diachi,String sdt,String idtk){
+       if(nvDAO.UpNV(id, name, gioiTinh,diachi,sdt,idtk))
             return "Cap nhat thanh cong";
         return "Cap nhat that bai";
     }

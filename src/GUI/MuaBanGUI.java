@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BLL.MuaBanBLL;
+//import BLL.MuaBanBLL;
 import BLL.SanPhamBLL;
 import DTO.SanPhamDTO;
 import java.awt.Image;
@@ -20,7 +20,7 @@ import javax.swing.table.TableColumnModel;
  * @author PC
  */
 public class MuaBanGUI extends javax.swing.JFrame {
-    MuaBanBLL mbBLL=new MuaBanBLL();
+//    MuaBanBLL mbBLL=new MuaBanBLL();
     
     ArrayList<SanPhamDTO> arrSP=new ArrayList<SanPhamDTO>();
         
