@@ -355,7 +355,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 nv.setGioiTinh(jComboBox_Gender.getSelectedItem().toString());
                 nv.setDiaChi(jTextField_DiaChi.getText());
                 nv.setSDT(jTextField_SDT.getText());
-                
+                nv.setMaTK(tk.getMaTK()); 
                 nvBLL.addNV(nv);
                 
                 tk.setTenDangNhap(tk.getMaTK());

@@ -7,7 +7,7 @@ public class sqlConnect {
     private String userName;
     private String passWord;
             
-    protected sqlConnect(){
+    public sqlConnect(){
         //sửa thông tin đăng nhập ở đây
 
         this.dbName="QLCH";
@@ -31,7 +31,7 @@ public class sqlConnect {
         return this.S;
     }
     
-    protected Connection getConnection() {
+    public Connection getConnection() {
         return this.C;
     }
 }

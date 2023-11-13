@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+import DAO.PhanQuyenDAO;
+import DAO.TaiKhoanDAO;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -11,6 +13,9 @@ import javax.naming.spi.DirStateFactory;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import DAO.sqlConnect;
+import DTO.TaiKhoanDTO;
+import DTO.PhanQuyenDTO;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -22,6 +27,7 @@ import javax.crypto.AEADBadTagException;
  * @author toica
  */
 public class Login extends javax.swing.JFrame {
+        private sqlConnect sqlConn;
 
     /**
      * Creates new form Login
@@ -29,31 +35,9 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        sqlConn = new sqlConnect();
     }
- private Connection con;
-    public boolean openConnection(){
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl = "localhost";
-            String DatabaseName="QLCH" ;
-            String TenDangNhap = "sa"; 
-            String MatKhau= "123";
-            String url = "jdbc:sqlserver://" +dbUrl + ":1433;DatabaseName=" + DatabaseName + ";username="+TenDangNhap+";password="+MatKhau+";encrypt=true;trustServerCertificate=true;";
-            con=DriverManager.getConnection(url);         
-            return true;
-        }catch (Exception ex){
-            System.out.println(ex);
-            return false;
-        }
-    }
-    public void closeConection(){
-        try {
-            if (con != null)
-                con.close();
-        } catch (SQLException ex) {
-            System.out.println(ex); }
-    }
-    
+ 
     
     public void startLogin(){
         this.setLocationRelativeTo(null); // Đặt JFrame ra giữa màn hình
@@ -173,9 +157,10 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
-        // TODO add your handling code here:
-        String TenDangNhap = TxtTenDangNhap.getText();
-        String MatKhau = String.valueOf(TxtMatKhau.getPassword());
+        TaiKhoanDAO tkdao = new TaiKhoanDAO();
+        PhanQuyenDAO pqdao = new PhanQuyenDAO();
+        String TenDangNhap = TxtTenDangNhap.getText().trim();
+        String MatKhau = String.valueOf(TxtMatKhau.getPassword()).trim();
         boolean confirms = true;
 
         if (TenDangNhap.equals("")) {
@@ -184,49 +169,57 @@ public class Login extends javax.swing.JFrame {
         } else if (MatKhau.equals("")) {
             confirms = false;
             JOptionPane.showMessageDialog(this, "Mật khẩu không được để trống");
-        }
+        } else {
+            TaiKhoanDTO tk = tkdao.getTK(TenDangNhap);
 
-        if (confirms) {
-            if (openConnection()) {
-                try {
-                    String sql = "SELECT tk.MaTK, q.PhanQuyen " +
-                                 "FROM TaiKhoan tk " +
-                                 "INNER JOIN Quyen q ON tk.MaTK = q.MaTK " +
-                                 "WHERE tk.TenDangNhap = ? AND tk.MatKhau = ?";
-                    PreparedStatement ps = con.prepareCall(sql);
-                    ps.setString(1, TenDangNhap);
-                    ps.setString(2, MatKhau);
-                    ResultSet rs = ps.executeQuery();
+            if (tk == null) {
+                // Tên đăng nhập không tồn tại trong hệ thống
+                JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            } else {
+                // Tài khoản tồn tại, kiểm tra mật khẩu
+                if (MatKhau.equals(tk.getMatKhau())) {
+                    // Mật khẩu đúng, lấy quyền
+                    PhanQuyenDTO pq = pqdao.getQuyen(tk.getMaTK());
 
-                    if (rs.next()) {
-                        int phanQuyen = rs.getInt("PhanQuyen");
+                    if (pq != null) {
+                        int phanQuyen = pq.getQuyen();
 
-                        if (phanQuyen == 1) {
-                            // Hiển thị trang Admin
-                            mainGUI ad = new mainGUI();
-                            ad.setVisible(true);
-                            JOptionPane.showMessageDialog(ad, "Chào mừng bạn đến với trang Admin.");
-
-                        } else if (phanQuyen == 0) {
-                            JOptionPane.showMessageDialog(this, "Tài khoản đã bị khóa");
-                        } else if (phanQuyen == 2) {
-                            // Hiển thị trang Nhân Viên
-                            StaffGUI st = new StaffGUI();
-                            st.setVisible(true);
-                            JOptionPane.showMessageDialog(st, "Chào mừng bạn đến với trang Nhân viên.");
-                        } else if (phanQuyen == 3) {
-                            // Hiển thị trang mua hàng
-                            JOptionPane.showMessageDialog(this, "Chào mừng bạn đến với trang mua hàng.");
+                        switch (phanQuyen) {
+                            case 1:
+                                // Hiển thị trang Admin
+                                mainGUI ad = new mainGUI();
+                                ad.setVisible(true);
+                                JOptionPane.showMessageDialog(ad, "Chào mừng bạn đến với trang Admin.");
+                                break;
+                            case 0:
+                                JOptionPane.showMessageDialog(this, "Tài khoản đã bị khóa");
+                                break;
+                            case 2:
+                                // Hiển thị trang Nhân Viên
+                                StaffGUI st = new StaffGUI();
+                                st.setVisible(true);
+                                JOptionPane.showMessageDialog(st, "Chào mừng bạn đến với trang Nhân viên.");
+                                break;
+                            case 3:
+                                // Hiển thị trang mua hàng
+                                JOptionPane.showMessageDialog(this, "Chào mừng bạn đến với trang mua hàng.");
+                                break;
+                            default:
+                                // Xử lý trường hợp khác nếu cần thiết
+                                break;
                         }
-                        this.dispose();
+                        this.dispose(); // Đóng cửa sổ đăng nhập sau khi đăng nhập thành công
                     } else {
-                        JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu");
+                        JOptionPane.showMessageDialog(this, "Không thể lấy thông tin quyền");
                     }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
+                } else {
+                    // Mật khẩu không đúng
+                    JOptionPane.showMessageDialog(this, "Sai mật khẩu");
                 }
             }
-}
+    }
+            
+        
 
     }//GEN-LAST:event_LoginbtnActionPerformed
     public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class mainGUI extends javax.swing.JFrame {
 //thêm nút vào thanh công cụ và set màn hình được hiển thị khi nhấn nút
         //lưu file trong thư mục Comp xong ghi tên file vào đây → → → → ↓
         addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
-        addComponent("Tài Khoản", new TaiKhoanGUI(), "empty.png");
+        addComponent("Tài Khoản", new TaiKhoanGUI(), "user.png");
         addComponent("Khách Hàng", new KhachHangGUI(), "empty.png");
         addComponent("Thống Kê", new thongKeGUI(), "empty.png");
         addComponent("Khuyến Mãi", new khuyenMaiGUI(), "empty.png");
@@ -121,10 +121,12 @@ public class mainGUI extends javax.swing.JFrame {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login lg = new Login();
-                lg.setVisible(true);
-                lg.setResizable(false);
-                lg.setLocationRelativeTo(null);
+//                Login lg = new Login();
+//                lg.setVisible(true);
+//                lg.setResizable(false);
+//                lg.setLocationRelativeTo(null);
+                 mainGUI display = new mainGUI();
+        display.setVisible(true);
             }
         });
 //            private Login DangNhap = new Login();

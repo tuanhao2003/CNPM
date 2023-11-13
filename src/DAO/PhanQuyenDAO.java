@@ -99,5 +99,33 @@ public class PhanQuyenDAO {
     }
     return result;
     }
-    
+    public PhanQuyenDTO getQuyen(String matk){
+        PhanQuyenDTO phanQuyenDTO = null;
+
+        try {
+            String sql = "SELECT q.PhanQuyen " +
+                         "FROM TaiKhoan tk " +
+                         "INNER JOIN Quyen q ON tk.MaTK = q.MaTK " +
+                         "WHERE tk.MaTK = ?";
+            
+            Connection con = sqlConn.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, matk);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int phanQuyen = rs.getInt("PhanQuyen");
+                phanQuyenDTO = new PhanQuyenDTO(matk, phanQuyen);
+            }
+
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            // Xử lý exception nếu cần thiết
+            ex.printStackTrace();
+        }
+
+        return phanQuyenDTO;
+    }
 }

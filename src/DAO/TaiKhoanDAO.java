@@ -138,4 +138,33 @@ public class TaiKhoanDAO {
         }
         return arr;
     }
+    public TaiKhoanDTO getTK(String username) {
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        TaiKhoanDTO taiKhoan = null;
+        try {
+            Connection con = sqlConn.getConnection();
+            String sql = "SELECT * FROM TaiKhoan WHERE TenDangNhap = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // Assuming TaiKhoanDTO has appropriate constructors and setters
+                taiKhoan = new TaiKhoanDTO();
+                taiKhoan.setMaTK(rs.getString("MaTK"));
+                taiKhoan.setTenDangNhap(rs.getString("TenDangNhap"));
+                taiKhoan.setMatKhau(rs.getString("MatKhau"));
+                taiKhoan.setTrangThai(rs.getInt("TrangThai"));
+                // Set other properties as needed
+            }
+
+        } catch (SQLException ex) {
+            // Handle exceptions appropriately (e.g., log or throw)
+            System.out.println(ex);
+        } 
+
+        return taiKhoan;
+    }
 }
