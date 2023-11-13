@@ -19,6 +19,10 @@ public class SanPhamBLL {
         return spDAO.getListSanpham();
     }
     
+    public ArrayList<SanPhamDTO> getListSanphamWithDiscount(){
+        return spDAO.getListSanphamWithDiscount();
+    }
+    
     public String addSP(SanPhamDTO d){
         if(spDAO.hasSanPhamID(d.getMaSP()))
             return "Mã đã tồn tại";

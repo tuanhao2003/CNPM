@@ -44,6 +44,45 @@ public class SanPhamDAO {
 //        }
 //    }
 //    
+    
+    public ArrayList<SanPhamDTO> getListSanphamWithDiscount() {
+        ArrayList<SanPhamDTO> list = new ArrayList<SanPhamDTO>();
+        String sql = "SELECT SanPham.*, ChuongTrinhKhuyenMai.MucGiamGia " +
+                     "FROM SanPham " +
+                     "LEFT JOIN ChuongTrinhKhuyenMai ON SanPham.Hang = ChuongTrinhKhuyenMai.LoaiSanPhamDuocApDung";
+        if (openConnection()) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    SanPhamDTO s = new SanPhamDTO();
+                    s.setMaSP(rs.getString("MaSP"));
+                    s.setTenSP(rs.getString("TenSP"));
+                    s.setHang(rs.getString("Hang"));
+                    s.setDungLuong(rs.getString("DungLuong"));
+                    s.setSoLuong(rs.getInt("SoLuong"));
+                    s.setDonGia(rs.getLong("DonGia"));
+                    s.setHinhAnh(rs.getString("HinhAnh"));
+
+                    // Lấy mức giảm giá từ cột MucGiamGia trong ChuongTrinhKhuyenMai
+                    long mucGiamGia = rs.getInt("MucGiamGia");
+
+                    // Tính giá sau giảm
+                    long giaGoc = s.getDonGia();
+                    long giaSauGiam = giaGoc - (giaGoc * mucGiamGia / 100);
+
+                    s.setMucGiamGia(mucGiamGia);
+                    s.setGiaSauGiam(giaSauGiam);
+
+                    list.add(s);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        return list;
+    }
     public ArrayList<SanPhamDTO> getListSanpham(){
         ArrayList<SanPhamDTO> list = new ArrayList<SanPhamDTO>();
         String sql = "SELECT * FROM SanPham";

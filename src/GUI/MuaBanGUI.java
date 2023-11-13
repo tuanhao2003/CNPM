@@ -20,7 +20,7 @@ import javax.swing.table.TableColumnModel;
  * @author PC
  */
 public class MuaBanGUI extends javax.swing.JFrame {
-//    MuaBanBLL mbBLL=new MuaBanBLL();
+    SanPhamBLL mbBLL=new SanPhamBLL();
     
     ArrayList<SanPhamDTO> arrSP=new ArrayList<SanPhamDTO>();
         
