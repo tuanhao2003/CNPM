@@ -17,17 +17,18 @@ import java.util.ArrayList;
  * @author Dao Khanh
  */
 public class NhaCungCapDAO {
-    private sqlConnect SQLCon = new sqlConnect();
-    private Connection conn = SQLCon.getConnection();
+    private sqlConnect sqlConn;
     
     
-    
+    public NhaCungCapDAO(){
+         sqlConn = new sqlConnect();
+    }
     public ArrayList<NhaCungCapDTO> getListNCC()
     {
         ArrayList<NhaCungCapDTO> list = new ArrayList<NhaCungCapDTO>();
         String sql = "SELECT * FROM NhaCungCap";
         try {
-            
+            sqlConn.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
